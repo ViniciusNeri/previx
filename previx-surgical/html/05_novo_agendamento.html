@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#6a4fa0",
+                        "surface-container": "#f3ebfa",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#eaddff",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#7c3aed",
+                        "outline": "#7b7487",
+                        "outline-variant": "#ccc3d8",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "surface-variant": "#e8dfee",
+                        "on-tertiary-container": "#ffe0cd",
+                        "tertiary-container": "#a15100",
+                        "surface": "#fef7ff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#eaddff",
+                        "surface-container-highest": "#e8dfee",
+                        "inverse-primary": "#d2bbff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fef7ff",
+                        "tertiary": "#7d3d00",
+                        "surface-dim": "#dfd7e6",
+                        "on-tertiary-fixed": "#301400",
+                        "surface-tint": "#732ee4",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#332f39",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#d2bbff",
+                        "on-secondary-fixed": "#25005a",
+                        "on-primary-container": "#ede0ff",
+                        "on-primary-fixed": "#25005a",
+                        "on-surface-variant": "#4a4455",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#523787",
+                        "surface-container-low": "#f9f1ff",
+                        "inverse-on-surface": "#f6eefc",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "tertiary-fixed": "#ffdcc6",
+                        "secondary-container": "#c4a7ff",
+                        "on-background": "#1d1a24",
+                        "on-surface": "#1d1a24",
+                        "on-secondary-fixed-variant": "#523787",
+                        "primary": "#630ed4",
+                        "background": "#fef7ff",
+                        "surface-container-high": "#ede5f4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "container-padding": "2rem",
+                        "header-height": "64px",
+                        "table-cell-padding": "1rem 1.5rem",
+                        "stack-gap": "1rem"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; }
+        .sidebar-active { background-color: #eaddff; color: #25005a; font-weight: 700; border-left: 4px solid #630ed4; border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+  <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity" title="Ir para Dashboard">
+    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+      <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+    </div>
+    <div>
+      <h1 class="text-title-sm font-black text-primary">Previx</h1>
+      <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+    </div>
+  </a>
+  <div class="px-4 mb-4">
+    <button onclick="window.location.href='05_novo_agendamento.html'" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+      <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+      Novo Procedimento
+    </button>
+  </div>
+  <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="../index.html">
+      <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+      <span class="text-label-bold font-label-bold">Dashboard</span>
+    </a>
+    <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-all" href="01_agenda.html">
+      <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+      <span class="text-label-bold font-label-bold">Agenda</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="10_relatorios.html">
+      <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+      <span class="text-label-bold font-label-bold">Relatórios</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="06_cadastros_base.html">
+      <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+      <span class="text-label-bold font-label-bold">Cadastros Base</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="07_gestao_usuarios.html">
+      <span class="material-symbols-outlined" data-icon="group">group</span>
+      <span class="text-label-bold font-label-bold">Usuários</span>
+    </a>
+  </nav>
+  <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="12_configuracoes.html">
+      <span class="material-symbols-outlined" data-icon="settings">settings</span>
+      <span class="text-label-bold font-label-bold">Configurações</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="#">
+      <span class="material-symbols-outlined" data-icon="help">help</span>
+      <span class="text-label-bold font-label-bold">Suporte</span>
+    </a>
+  </div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-[260px] h-16 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-8 z-10 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md w-64" placeholder="Search surgery or materiais..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors" data-icon="account_circle">account_circle</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors" data-icon="logout">logout</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] mt-16 p-8">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-display-lg font-display-lg text-on-surface">Novo Agendamento</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Preencha os detalhes para reservar materiais e equipe.</p>
+</div>
+</div>
+<!-- Conflict Alert -->
+<div class="flex items-center gap-4 p-4 bg-error-container border-l-4 border-error rounded-r-lg shadow-sm">
+<span class="material-symbols-outlined text-error" data-icon="warning" data-weight="fill" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="text-body-md font-body-md text-on-error-container"><strong>Conflito Detectado:</strong> Piezo X já alocado para Hospital Santa Catarina no horário selecionado.</span>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Dados da Cirurgia Card -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="stethoscope">stethoscope</span>
+<h3 class="text-title-sm font-title-sm">Dados da Cirurgia</h3>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Data da Cirurgia</label>
+<input id="surgery-date" class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Horário da Cirurgia</label>
+<input id="surgery-time" class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" type="time"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Estimativa de Entrega</label>
+<input id="delivery-time" class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" type="time"/>
+</div>
+<div class="col-span-2 space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Hospital</label>
+<select id="hospital-select" class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option>Selecione o hospital...</option>
+<option>Hospital Santa Catarina</option>
+<option>Hospital Albert Einstein</option>
+<option>Hospital Sírio-Libanês</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Médico Cirurgião</label>
+<input id="doctor-name" class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Nome do médico" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Paciente</label>
+<input id="patient-name" class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Nome completo do paciente" type="text"/>
+</div>
+</div>
+</div>
+<!-- Equipe e Empresa Card -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+<h3 class="text-title-sm font-title-sm">Equipe e Empresa</h3>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Empresa Fornecedora</label>
+<select class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option>MedTech Solutions</option>
+<option>Cirúrgico Plus</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Instrumentador</label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Nome do prdeissional" type="text"/>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant">
+<p class="text-label-bold font-label-bold text-on-surface-variant mb-3">Status da Equipe</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-body-sm font-body-sm">Aguardando confirmação do hospital</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Procedimento Card -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary" data-icon="medical_services">medical_services</span>
+            <h3 class="text-title-sm font-title-sm">Procedimento Cirúrgico</h3>
+        </div>
+        <button class="text-primary font-label-bold flex items-center gap-1 hover:underline">
+            <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span> Adicionar Procedimento
+        </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+            <label class="text-label-bold font-label-bold text-on-surface-variant">Procedimento Principal</label>
+            <select id="procedure-select" class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                <option>Artrodese Cervical Anterior</option>
+                <option>Herniorrafia Inguinal</option>
+                <option>Colecistectomia</option>
+            </select>
+        </div>
+        <div class="space-y-2">
+            <label class="text-label-bold font-label-bold text-on-surface-variant">CIDs Relacionados</label>
+            <input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Ex: M50.1, M51.0" type="text"/>
+        </div>
+    </div>
+</div>
+
+<!-- Materiais Card -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm mt-0">
+    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary" data-icon="inventory_2">inventory_2</span>
+            <h3 class="text-title-sm font-title-sm">Seleção de Materiais (Kits e Consumíveis)</h3>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="relative w-64">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+                <input class="w-full pl-9 pr-3 py-1.5 border border-outline-variant rounded-lg text-body-sm focus:ring-1 focus:ring-primary outline-none" placeholder="Buscar materiais..." type="text"/>
+            </div>
+            <button onclick="window.location.href='09_selecao_visual_grid.html'" class="text-primary font-label-bold flex items-center gap-1 hover:bg-primary/5 px-4 py-2 rounded-lg transition-all border border-primary/20">
+                <span class="material-symbols-outlined text-[18px]" data-icon="grid_view">grid_view</span> Ver Catálogo Completo
+            </button>
+        </div>
+    </div>
+    
+    <!-- Visual Product Selection Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        
+        <!-- Product 1: Kit Artrodese -->
+        <div class="border-2 border-primary bg-primary/5 rounded-xl p-3 relative hover:shadow-md transition-all cursor-pointer group flex flex-col">
+            <div class="absolute top-3 right-3 z-10">
+                <label class="relative flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="peer sr-only">
+                    <div class="w-5 h-5 border-2 border-primary rounded bg-primary text-white flex items-center justify-center peer-checked:after:content-['✓'] after:text-xs font-bold"></div>
+                </label>
+            </div>
+            <div class="h-32 w-full rounded-lg overflow-hidden mb-3 bg-white border border-outline-variant/30 flex items-center justify-center">
+                <img src="../assets/images/kit_artrodese_1778447784487.png" alt="Kit Artrodese" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="flex-1">
+                <span class="text-[10px] font-bold text-primary uppercase tracking-wider mb-1 block">Kit Cirúrgico</span>
+                <h4 class="font-bold text-on-surface text-body-sm leading-tight mb-1">Kit Artrodese Cervical</h4>
+                <p class="text-[10px] text-on-surface-variant font-data-mono">Cód: KIT-204</p>
+            </div>
+            <div class="mt-3 flex items-center justify-between border-t border-outline-variant/50 pt-3">
+                <span class="text-label-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Disponível</span>
+                <div class="flex items-center gap-2 bg-white border border-outline-variant rounded-lg p-0.5">
+                    <button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+                    <span class="text-sm font-bold w-4 text-center text-on-surface">1</span>
+                    <button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">add</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2: Placa Cervical -->
+        <div class="border border-outline-variant hover:border-primary/50 bg-white rounded-xl p-3 relative hover:shadow-md transition-all cursor-pointer group flex flex-col">
+            <div class="absolute top-3 right-3 z-10">
+                <label class="relative flex items-center cursor-pointer">
+                    <input type="checkbox" class="peer sr-only">
+                    <div class="w-5 h-5 border-2 border-outline-variant rounded flex items-center justify-center peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white peer-checked:after:content-['✓'] after:text-xs font-bold transition-all"></div>
+                </label>
+            </div>
+            <div class="h-32 w-full rounded-lg overflow-hidden mb-3 bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center">
+                <img src="../assets/images/placa_cervical_1778447798110.png" alt="Placa Cervical" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="flex-1">
+                <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-1 block">Implante</span>
+                <h4 class="font-bold text-on-surface text-body-sm leading-tight mb-1">Placa Cervical 2 Níveis</h4>
+                <p class="text-[10px] text-on-surface-variant font-data-mono">Cód: PL-9920</p>
+            </div>
+            <div class="mt-3 flex items-center justify-between border-t border-outline-variant/50 pt-3">
+                <span class="text-label-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Disponível</span>
+                <div class="flex items-center gap-2 bg-white border border-outline-variant rounded-lg p-0.5 opacity-50 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity">
+                    <button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+                    <span class="text-sm font-bold w-4 text-center text-on-surface">1</span>
+                    <button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">add</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3: Parafuso -->
+        <div class="border-2 border-primary bg-primary/5 rounded-xl p-3 relative hover:shadow-md transition-all cursor-pointer group flex flex-col">
+            <div class="absolute top-3 right-3 z-10">
+                <label class="relative flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="peer sr-only">
+                    <div class="w-5 h-5 border-2 border-primary rounded bg-primary text-white flex items-center justify-center peer-checked:after:content-['✓'] after:text-xs font-bold"></div>
+                </label>
+            </div>
+            <div class="h-32 w-full rounded-lg overflow-hidden mb-3 bg-white border border-outline-variant/30 flex items-center justify-center">
+                <img src="../assets/images/parafuso_titanio_1778447810540.png" alt="Parafuso Titânio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="flex-1">
+                <span class="text-[10px] font-bold text-primary uppercase tracking-wider mb-1 block">Implante</span>
+                <h4 class="font-bold text-on-surface text-body-sm leading-tight mb-1">Parafuso de Titânio 14mm</h4>
+                <p class="text-[10px] text-on-surface-variant font-data-mono">Cód: PT-1102</p>
+            </div>
+            <div class="mt-3 flex items-center justify-between border-t border-outline-variant/50 pt-3">
+                <span class="text-label-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Disponível</span>
+                <div class="flex items-center gap-2 bg-white border border-outline-variant rounded-lg p-0.5">
+                    <button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+                    <span class="text-sm font-bold w-4 text-center text-on-surface">4</span>
+                    <button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">add</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 4: Cimento Ósseo -->
+        <div class="border border-outline-variant hover:border-primary/50 bg-white rounded-xl p-3 relative hover:shadow-md transition-all cursor-pointer group flex flex-col">
+            <div class="absolute top-3 right-3 z-10">
+                <label class="relative flex items-center cursor-pointer">
+                    <input type="checkbox" class="peer sr-only">
+                    <div class="w-5 h-5 border-2 border-outline-variant rounded flex items-center justify-center peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white peer-checked:after:content-['✓'] after:text-xs font-bold transition-all"></div>
+                </label>
+            </div>
+            <div class="h-32 w-full rounded-lg overflow-hidden mb-3 bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center">
+                <img src="../assets/images/cimento_osseo_1778447824627.png" alt="Cimento Ósseo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="flex-1">
+                <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-1 block">Consumível</span>
+                <h4 class="font-bold text-on-surface text-body-sm leading-tight mb-1">Cimento Ósseo 40g</h4>
+                <p class="text-[10px] text-on-surface-variant font-data-mono">Cód: CM-40G</p>
+            </div>
+            <div class="mt-3 flex items-center justify-between border-t border-outline-variant/50 pt-3">
+                <span class="text-label-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">Baixo Estoque</span>
+                <div class="flex items-center gap-2 bg-white border border-outline-variant rounded-lg p-0.5 opacity-50 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity">
+                    <button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+                    <span class="text-sm font-bold w-4 text-center text-on-surface">1</span>
+                    <button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">add</span></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Equipamentos Section -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h3 class="text-title-sm font-title-sm">Equipamentos e Caixas</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Piezo Card -->
+<div class="p-4 border border-error bg-error-container/10 rounded-xl relative">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-error" data-icon="electrical_services">electrical_services</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<h4 class="font-label-bold text-on-surface">Piezo</h4>
+<select class="mt-2 w-full text-body-sm p-1.5 border-none bg-surface-container rounded focus:ring-1 focus:ring-primary">
+<option>Piezo X - Mod. 2023</option>
+<option>Piezo Y - Compact</option>
+</select>
+<p class="mt-2 text-[10px] text-error font-bold uppercase tracking-wider">⚠️ Conflito de agenda</p>
+</div>
+<!-- Motor Card -->
+<div class="p-4 border border-outline-variant hover:border-primary transition-all rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings_input_component">settings_input_component</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<h4 class="font-label-bold text-on-surface">Motor</h4>
+<select class="mt-2 w-full text-body-sm p-1.5 border-none bg-surface-container rounded focus:ring-1 focus:ring-primary">
+<option>DrillMaster Pro</option>
+<option>Standard Motor</option>
+</select>
+</div>
+<!-- Ótica Card -->
+<div class="p-4 border border-outline-variant hover:border-primary transition-all rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="visibility">visibility</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<h4 class="font-label-bold text-on-surface">Ótica</h4>
+<select class="mt-2 w-full text-body-sm p-1.5 border-none bg-surface-container rounded focus:ring-1 focus:ring-primary">
+<option>HD Scope 30°</option>
+<option>Full HD Scope 0°</option>
+</select>
+</div>
+<!-- CX Apoio Card -->
+<div class="p-4 border border-outline-variant hover:border-primary transition-all rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="inventory">inventory</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<h4 class="font-label-bold text-on-surface">CX Apoio</h4>
+<select class="mt-2 w-full text-body-sm p-1.5 border-none bg-surface-container rounded focus:ring-1 focus:ring-primary">
+<option>Caixa Instrumental #04</option>
+<option>Caixa Instrumental #09</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Observações -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="notes">notes</span>
+<h3 class="text-title-sm font-title-sm">Observações</h3>
+</div>
+<textarea id="notes-textarea" class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md" placeholder="Insira aqui observações críticas sobre a cirurgia, restrições do paciente ou solicitações especiais..." rows="4"></textarea>
+</div>
+</div>
+<!-- Footer Actions Mobile/Responsive -->
+<div class="flex justify-end gap-3 pb-12">
+<button class="px-8 py-3 rounded-lg border border-outline-variant text-on-surface-variant font-label-bold hover:bg-surface-container-high transition-all"onclick="window.location.href='01_agenda.html'" >Cancelar</button>
+<button id="btn-save-appointment" onclick="saveAppointment()" class="px-8 py-3 rounded-lg bg-primary text-on-primary font-label-bold shadow-lg hover:opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="save">save</span> Finalizar Agendamento
+                </button>
+</div>
+</div>
+</main>
+
+<script>
+    function saveAppointment() {
+        const appointment = {
+            id: Date.now(),
+            date: document.getElementById('surgery-date').value,
+            time: document.getElementById('surgery-time').value,
+            deliveryTime: document.getElementById('delivery-time').value,
+            hospital: document.getElementById('hospital-select').value,
+            doctor: document.getElementById('doctor-name').value,
+            patient: document.getElementById('patient-name').value,
+            procedure: document.getElementById('procedure-select').value,
+            notes: document.getElementById('notes-textarea').value,
+            status: 'Pendente',
+            materialsProgress: 0,
+            representative: 'Pedro Mendes',
+            instrumentist: 'Fernanda Luz'
+        };
+
+        if (!appointment.date || !appointment.patient || !appointment.hospital) {
+            alert('Por favor, preencha a data, o paciente e o hospital.');
+            return;
+        }
+
+        // Get existing appointments from cache
+        const cache = localStorage.getItem('previx_appointments');
+        const appointments = cache ? JSON.parse(cache) : [];
+        
+        // Add new appointment
+        appointments.push(appointment);
+        
+        // Save back to cache
+        localStorage.setItem('previx_appointments', JSON.stringify(appointments));
+        
+        // Feedback and redirect
+        alert('Agendamento salvo com sucesso no cache local!');
+        window.location.href = '01_agenda.html';
+    }
+</script>
+</body></html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Previx - Relatórios</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#6a4fa0",
+                        "surface-container": "#f3ebfa",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#eaddff",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#7c3aed",
+                        "outline": "#7b7487",
+                        "outline-variant": "#ccc3d8",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "surface-variant": "#e8dfee",
+                        "on-tertiary-container": "#ffe0cd",
+                        "tertiary-container": "#a15100",
+                        "surface": "#fef7ff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#eaddff",
+                        "surface-container-highest": "#e8dfee",
+                        "inverse-primary": "#d2bbff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fef7ff",
+                        "tertiary": "#7d3d00",
+                        "surface-dim": "#dfd7e6",
+                        "on-tertiary-fixed": "#301400",
+                        "surface-tint": "#732ee4",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#332f39",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#d2bbff",
+                        "on-secondary-fixed": "#25005a",
+                        "on-primary-container": "#ede0ff",
+                        "on-primary-fixed": "#25005a",
+                        "on-surface-variant": "#4a4455",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#523787",
+                        "surface-container-low": "#f9f1ff",
+                        "inverse-on-surface": "#f6eefc",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "tertiary-fixed": "#ffdcc6",
+                        "secondary-container": "#c4a7ff",
+                        "on-background": "#1d1a24",
+                        "on-surface": "#1d1a24",
+                        "on-secondary-fixed-variant": "#523787",
+                        "primary": "#630ed4",
+                        "background": "#fef7ff",
+                        "surface-container-high": "#ede5f4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "container-padding": "2rem",
+                        "header-height": "64px",
+                        "table-cell-padding": "1rem 1.5rem",
+                        "stack-gap": "1rem"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        .table-row-zebra:nth-child(even) { background-color: #f9fafb; }
+        .active-table-row { border-left: 2px solid #630ed4; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+  <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity" title="Ir para Dashboard">
+    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+      <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+    </div>
+    <div>
+      <h1 class="text-title-sm font-black text-primary">Previx</h1>
+      <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+    </div>
+  </a>
+  <div class="px-4 mb-4">
+    <button onclick="window.location.href='05_novo_agendamento.html'" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+      <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+      Novo Procedimento
+    </button>
+  </div>
+  <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="../index.html">
+      <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+      <span class="text-label-bold font-label-bold">Dashboard</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="01_agenda.html">
+      <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+      <span class="text-label-bold font-label-bold">Agenda</span>
+    </a>
+    <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-all" href="10_relatorios.html">
+      <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+      <span class="text-label-bold font-label-bold">Relatórios</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="06_cadastros_base.html">
+      <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+      <span class="text-label-bold font-label-bold">Cadastros Base</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="07_gestao_usuarios.html">
+      <span class="material-symbols-outlined" data-icon="group">group</span>
+      <span class="text-label-bold font-label-bold">Usuários</span>
+    </a>
+  </nav>
+  <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="12_configuracoes.html">
+      <span class="material-symbols-outlined" data-icon="settings">settings</span>
+      <span class="text-label-bold font-label-bold">Configurações</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="#">
+      <span class="material-symbols-outlined" data-icon="help">help</span>
+      <span class="text-label-bold font-label-bold">Suporte</span>
+    </a>
+  </div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-8 z-20">
+  <div class="flex items-center flex-1 max-w-xl">
+    <div class="relative w-full">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+      <input class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-md font-body-md focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Pesquisar relatórios..." type="text"/>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full relative">
+      <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+      <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+    </button>
+    <div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+    <div class="flex items-center gap-3">
+      <div class="text-right">
+        <p class="text-label-bold font-label-bold text-on-surface">Dr. Ricardo Silva</p>
+        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+      </div>
+      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-sm">DR</div>
+    </div>
+    <button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" onclick="window.location.href='../html/02_login.html'" title="Sair">
+      <span class="material-symbols-outlined" data-icon="logout">logout</span>
+    </button>
+  </div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] pt-[64px] min-h-screen">
+<div class="p-container-padding max-w-[1600px] mx-auto">
+<!-- Page Header & Filters -->
+<div class="mb-8">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-6">Relatórios de Gestão</h2>
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
+<div class="space-y-2">
+<label class="text-label-bold text-on-surface-variant">Período</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm" data-icon="date_range">date_range</span>
+<select class="w-full pl-10 pr-4 py-2 rounded-lg border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary text-body-sm appearance-none">
+<option>Últimos 30 dias</option>
+<option>Este Mês</option>
+<option>Trimestre Atual</option>
+<option>Personalizado</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold text-on-surface-variant">Hospital</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm" data-icon="hospital">local_hospital</span>
+<select class="w-full pl-10 pr-4 py-2 rounded-lg border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary text-body-sm appearance-none">
+<option>Todos os Hospitais</option>
+<option>Hospital Santa Luzia</option>
+<option>Centro Médico Central</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold text-on-surface-variant">Status</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm" data-icon="filter_list">filter_list</span>
+<select class="w-full pl-10 pr-4 py-2 rounded-lg border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary text-body-sm appearance-none">
+<option>Todos os Status</option>
+<option>Concluído</option>
+<option>Em Andamento</option>
+<option>Cancelado</option>
+</select>
+</div>
+</div>
+<button class="bg-secondary text-white py-2 px-6 rounded-lg font-bold text-body-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 h-[42px]">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+                    Filtrar Resultados
+                </button>
+</div>
+</div>
+<!-- Report Tipo Cards (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all group cursor-pointer border-l-4 border-l-primary">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container rounded-lg group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="event_note">event_note</span>
+</div>
+<span class="text-label-bold text-primary bg-primary/10 px-2 py-1 rounded">Popular</span>
+</div>
+<h3 class="text-title-sm font-bold text-on-surface mb-2">Agenda por Período</h3>
+<p class="text-body-sm text-on-surface-variant mb-4 leading-relaxed">Visualização completa de cirurgias agendadas, canceladas e realizadas por intervalo.</p>
+<div class="flex items-center gap-2 text-primary font-bold text-body-sm">
+                    Gerar agora
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container rounded-lg group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+</div>
+<h3 class="text-title-sm font-bold text-on-surface mb-2">Uso de Equipamentos</h3>
+<p class="text-body-sm text-on-surface-variant mb-4 leading-relaxed">Relatório detalhado de taxa de ocupação e manutenção de materiais cirúrgicos.</p>
+<div class="flex items-center gap-2 text-primary font-bold text-body-sm">
+                    Gerar agora
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container rounded-lg group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="receipt_long">receipt_long</span>
+</div>
+</div>
+<h3 class="text-title-sm font-bold text-on-surface mb-2">Faturamento e Custos</h3>
+<p class="text-body-sm text-on-surface-variant mb-4 leading-relaxed">Análise financeira de procedimentos versus consumo de materiais por equipe.</p>
+<div class="flex items-center gap-2 text-primary font-bold text-body-sm">
+                    Gerar agora
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Table Preview Section -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-white">
+<div>
+<h3 class="text-title-sm font-bold text-on-surface">Pré-visualização dos Dados</h3>
+<p class="text-body-sm text-on-surface-variant">Exibindo os 10 registros mais recentes do filtro aplicado.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-body-sm font-bold text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-error" data-icon="picture_as_pdf">picture_as_pdf</span>
+                        Exportar PDF
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-body-sm font-bold text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-green-600" data-icon="description">description</span>
+                        Exportar Excel
+                    </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="p-table-cell-padding text-label-bold text-on-surface-variant">ID</th>
+<th class="p-table-cell-padding text-label-bold text-on-surface-variant">Data da Cirurgia</th>
+<th class="p-table-cell-padding text-label-bold text-on-surface-variant">Hospital</th>
+<th class="p-table-cell-padding text-label-bold text-on-surface-variant">Procedimento</th>
+<th class="p-table-cell-padding text-label-bold text-on-surface-variant">Médico Resp.</th>
+<th class="p-table-cell-padding text-label-bold text-on-surface-variant">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="table-row-zebra hover:bg-surface-container/50 transition-colors active-table-row">
+<td class="p-table-cell-padding text-data-mono">#98231</td>
+<td class="p-table-cell-padding text-body-sm">12 Out, 2023 08:30</td>
+<td class="p-table-cell-padding text-body-sm">Hospital Santa Luzia</td>
+<td class="p-table-cell-padding text-body-sm">Artroplastia de Quadril</td>
+<td class="p-table-cell-padding text-body-sm">Dr. Ricardo Silva</td>
+<td class="p-table-cell-padding">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Realizada</span>
+</td>
+</tr>
+<tr class="table-row-zebra hover:bg-surface-container/50 transition-colors">
+<td class="p-table-cell-padding text-data-mono">#98244</td>
+<td class="p-table-cell-padding text-body-sm">12 Out, 2023 10:15</td>
+<td class="p-table-cell-padding text-body-sm">Centro Médico Central</td>
+<td class="p-table-cell-padding text-body-sm">Colecistectomia</td>
+<td class="p-table-cell-padding text-body-sm">Dra. Amanda Costa</td>
+<td class="p-table-cell-padding">
+<span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-2 py-1 rounded-full uppercase">Em Andamento</span>
+</td>
+</tr>
+<tr class="table-row-zebra hover:bg-surface-container/50 transition-colors">
+<td class="p-table-cell-padding text-data-mono">#98256</td>
+<td class="p-table-cell-padding text-body-sm">13 Out, 2023 07:00</td>
+<td class="p-table-cell-padding text-body-sm">Hospital Santa Luzia</td>
+<td class="p-table-cell-padding text-body-sm">Hernioplastia Inguinal</td>
+<td class="p-table-cell-padding text-body-sm">Dr. Marcos Oliveira</td>
+<td class="p-table-cell-padding">
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-full uppercase">Agendada</span>
+</td>
+</tr>
+<tr class="table-row-zebra hover:bg-surface-container/50 transition-colors">
+<td class="p-table-cell-padding text-data-mono">#98260</td>
+<td class="p-table-cell-padding text-body-sm">13 Out, 2023 14:00</td>
+<td class="p-table-cell-padding text-body-sm">Hospital da Cidade</td>
+<td class="p-table-cell-padding text-body-sm">Neurocirurgia Espinal</td>
+<td class="p-table-cell-padding text-body-sm">Dra. Beatriz Santos</td>
+<td class="p-table-cell-padding">
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-full uppercase">Cancelada</span>
+</td>
+</tr>
+<tr class="table-row-zebra hover:bg-surface-container/50 transition-colors">
+<td class="p-table-cell-padding text-data-mono">#98272</td>
+<td class="p-table-cell-padding text-body-sm">14 Out, 2023 09:00</td>
+<td class="p-table-cell-padding text-body-sm">Centro Médico Central</td>
+<td class="p-table-cell-padding text-body-sm">Septoplastia</td>
+<td class="p-table-cell-padding text-body-sm">Dr. Ricardo Silva</td>
+<td class="p-table-cell-padding">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Realizada</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer -->
+<div class="p-6 bg-surface-container-low flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Exibindo 5 de 142 registros</span>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded hover:bg-surface-container-high transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<div class="flex gap-1">
+<button class="w-8 h-8 rounded bg-primary text-white text-body-sm font-bold">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-body-sm transition-colors">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-body-sm transition-colors">3</button>
+</div>
+<button class="p-2 rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Conflict Alert Module (as per guidance) -->
+<div class="mt-8 bg-error-container/20 border-l-4 border-error p-6 rounded-r-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+<div>
+<h4 class="text-body-md font-bold text-on-error-container">Alerta de Inconsistência Detectada</h4>
+<p class="text-body-sm text-on-error-container opacity-80 mb-3">Existem 3 relatórios de faturamento que apresentam divergência entre o material solicitado e o material efetivamente utilizado no período selecionado.</p>
+<button class="text-error text-label-bold flex items-center gap-1 hover:underline">
+                    Verificar divergências agora
+                    <span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Suppression for Reports screen as per instructions -->
+</body></html>

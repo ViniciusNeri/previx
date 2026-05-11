@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#6a4fa0",
+            "surface-container": "#f3ebfa",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#eaddff",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#7c3aed",
+            "outline": "#7b7487",
+            "outline-variant": "#ccc3d8",
+            "secondary-fixed-dim": "#d2bbff",
+            "surface-variant": "#e8dfee",
+            "on-tertiary-container": "#ffe0cd",
+            "tertiary-container": "#a15100",
+            "surface": "#fef7ff",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#eaddff",
+            "surface-container-highest": "#e8dfee",
+            "inverse-primary": "#d2bbff",
+            "surface-container-lowest": "#ffffff",
+            "surface-bright": "#fef7ff",
+            "tertiary": "#7d3d00",
+            "surface-dim": "#dfd7e6",
+            "on-tertiary-fixed": "#301400",
+            "surface-tint": "#732ee4",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "inverse-surface": "#332f39",
+            "on-error-container": "#93000a",
+            "primary-fixed-dim": "#d2bbff",
+            "on-secondary-fixed": "#25005a",
+            "on-primary-container": "#ede0ff",
+            "on-primary-fixed": "#25005a",
+            "on-surface-variant": "#4a4455",
+            "on-tertiary-fixed-variant": "#713700",
+            "on-primary-fixed-variant": "#5a00c6",
+            "error": "#ba1a1a",
+            "on-secondary-container": "#523787",
+            "surface-container-low": "#f9f1ff",
+            "inverse-on-surface": "#f6eefc",
+            "tertiary-fixed-dim": "#ffb784",
+            "tertiary-fixed": "#ffdcc6",
+            "secondary-container": "#c4a7ff",
+            "on-background": "#1d1a24",
+            "on-surface": "#1d1a24",
+            "on-secondary-fixed-variant": "#523787",
+            "primary": "#630ed4",
+            "background": "#fef7ff",
+            "surface-container-high": "#ede5f4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "sidebar-width": "260px",
+            "container-padding": "2rem",
+            "header-height": "64px",
+            "table-cell-padding": "1rem 1.5rem",
+            "stack-gap": "1rem"
+          },
+          "fontFamily": {
+            "data-mono": ["Inter"],
+            "display-lg": ["Inter"],
+            "label-bold": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-md": ["Inter"],
+            "title-sm": ["Inter"]
+          },
+          "fontSize": {
+            "data-mono": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    body {
+      background-color: #F9FAFB;
+    }
+  </style>
+</head>
+
+<body class="font-body-md text-on-surface bg-background">
+  <!-- SideNavBar -->
+  <aside
+    class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+    <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
+      title="Ir para Dashboard">
+      <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+        <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+      </div>
+      <div>
+        <h1 class="text-title-sm font-black text-primary">Previx</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+      </div>
+    </a>
+    <div class="px-4 mb-4">
+      <button onclick="window.location.href='05_novo_agendamento.html'"
+        class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+        <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+        Novo Procedimento
+      </button>
+    </div>
+    <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="../index.html">
+        <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+        <span class="text-label-bold font-label-bold">Dashboard</span>
+      </a>
+      <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-all"
+        href="01_agenda.html">
+        <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+        <span class="text-label-bold font-label-bold">Agenda</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="10_relatorios.html">
+        <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+        <span class="text-label-bold font-label-bold">Relatórios</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="06_cadastros_base.html">
+        <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+        <span class="text-label-bold font-label-bold">Cadastros Base</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="07_gestao_usuarios.html">
+        <span class="material-symbols-outlined" data-icon="group">group</span>
+        <span class="text-label-bold font-label-bold">Usuários</span>
+      </a>
+    </nav>
+    <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="12_configuracoes.html">
+        <span class="material-symbols-outlined" data-icon="settings">settings</span>
+        <span class="text-label-bold font-label-bold">Configurações</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="#">
+        <span class="material-symbols-outlined" data-icon="help">help</span>
+        <span class="text-label-bold font-label-bold">Suporte</span>
+      </a>
+    </div>
+  </aside>
+  <!-- TopAppBar -->
+  <header
+    class="fixed top-0 right-0 left-[260px] h-header-height bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-container-padding z-10">
+    <div class="flex items-center gap-4">
+      <button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+        <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+      </button>
+      <h2 class="text-headline-md font-headline-md font-bold text-primary">Detalhes do Agendamento</h2>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
+        <button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+          <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        </button>
+        <button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+          <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+        </button>
+        <button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+          <span class="material-symbols-outlined" data-icon="logout">logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Main Content -->
+  <main class="ml-[260px] pt-[64px] min-h-screen">
+    <div class="p-container-padding max-w-7xl mx-auto space-y-8">
+      <!-- Read-only Header Actions -->
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-label-bold font-label-bold">ID:
+            #SURG-2023-4582</span>
+          <div class="relative" id="status-wrap-det">
+            <button onclick="toggleStatusDrop('det')" id="status-btn-det"
+              class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-label-bold font-label-bold flex items-center gap-1 hover:ring-2 transition-all">
+              <span class="material-symbols-outlined text-[14px]" data-icon="check_circle"
+                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              Confirmado
+              <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+            </button>
+            <div id="status-drop-det"
+              class="hidden absolute left-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
+              <button onclick="setStatusDet('Confirmado','bg-green-100 text-green-800','check_circle')"
+                class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span
+                  class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
+              <button onclick="setStatusDet('Em Rota','bg-blue-100 text-blue-800','local_shipping')"
+                class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span
+                  class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
+              <button onclick="setStatusDet('Pendente','bg-amber-100 text-amber-800','schedule')"
+                class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span
+                  class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <button
+            class="px-6 py-2 bg-white border border-outline-variant text-on-surface rounded-lg font-label-bold hover:bg-surface-container-high transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]" data-icon="print">print</span>
+            Imprimir
+          </button>
+          <button
+            class="px-6 py-2 bg-primary text-white rounded-lg font-label-bold hover:opacity-90 transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+            Editar
+          </button onclick="window.location.href='05_novo_agendamento.html'">
+        </div>
+      </div>
+      <!-- Bento Grid - Surgery Details -->
+      <div class="grid grid-cols-12 gap-6">
+        <!-- Information Card - Paciente & Procedimento -->
+        <div class="col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+          <div class="flex items-center gap-2 mb-6 text-primary">
+            <span class="material-symbols-outlined" data-icon="info">info</span>
+            <h3 class="text-title-sm font-title-sm">Informações da Cirurgia</h3>
+          </div>
+          <div class="grid grid-cols-2 gap-y-6 gap-x-12">
+            <div class="space-y-1">
+              <p class="text-label-bold font-label-bold text-outline uppercase">Paciente</p>
+              <p class="text-body-md font-body-md font-semibold">Ana Beatriz Cavalcanti</p>
+            </div>
+            <div class="space-y-1">
+              <p class="text-label-bold font-label-bold text-outline uppercase">Procedimento</p>
+              <p class="text-body-md font-body-md font-semibold">Artroplastia Total de Quadril</p>
+            </div>
+            <div class="space-y-1">
+              <p class="text-label-bold font-label-bold text-outline uppercase">Cirurgião Principal</p>
+              <p class="text-body-md font-body-md font-semibold">Dr. Ricardo M. Santos</p>
+            </div>
+            <div class="space-y-1">
+              <p class="text-label-bold font-label-bold text-outline uppercase">Hospital / Unidade</p>
+              <p class="text-body-md font-body-md font-semibold">Hospital Santa Luzia - Bloco C</p>
+            </div>
+            <div class="col-span-2 space-y-1">
+              <p class="text-label-bold font-label-bold text-outline uppercase">Descrição Técnica</p>
+              <p
+                class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed bg-surface-container-low p-4 rounded-lg border border-outline-variant/30">
+                Abordagem posterolateral. Substituição completa da articulação do quadril com prótese
+                cerâmica-polietileno. Necessário kit de afastadores de Hohmann e motor pneumático.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Logistics Card - Hora & Data -->
+        <div
+          class="col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm flex flex-col">
+          <div class="flex items-center gap-2 mb-6 text-primary">
+            <span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+            <h3 class="text-title-sm font-title-sm">Logística e Prazo</h3>
+          </div>
+          <div class="space-y-6 flex-grow">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                <span class="material-symbols-outlined" data-icon="event">event</span>
+              </div>
+              <div>
+                <p class="text-label-bold font-label-bold text-outline">DATA</p>
+                <p class="text-body-md font-body-md font-bold">24 de Outubro, 2023</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                <span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-label-bold font-label-bold text-outline">INSTRUMENTADOR</p>
+                <select
+                  class="w-full mt-1 bg-transparent border-none p-0 text-body-md font-bold focus:ring-0 cursor-pointer text-primary">
+                  <option>Ana Paula</option>
+                  <option>Beto Silva</option>
+                  <option>Fernanda Luz</option>
+                  <option>Carlos Edu</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                <span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-label-bold font-label-bold text-outline">MOTORISTA / LOGÍSTICA</p>
+                <select
+                  class="w-full mt-1 bg-transparent border-none p-0 text-body-md font-bold focus:ring-0 cursor-pointer text-primary">
+                  <option>Carlos (Van 04)</option>
+                  <option>Marcos (Moto 02)</option>
+                  <option>José (Caminhão 01)</option>
+                  <option>Entregador Externo</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                <span class="material-symbols-outlined" data-icon="alarm_on">alarm_on</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-label-bold font-label-bold text-outline">ESTIMATIVA DE ENTREGA</p>
+                <input type="time" value="07:30"
+                  class="w-full mt-1 bg-transparent border-none p-0 text-body-md font-bold focus:ring-0 cursor-pointer text-primary">
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-outline-variant">
+            <p class="text-body-sm font-body-sm text-outline flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]" data-icon="update">update</span>
+              Tempo estimado: 3h 15min
+            </p>
+          </div>
+        </div>
+        <!-- Materials & Inventory List -->
+        <div
+          class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+          <div class="p-6 border-b border-outline-variant flex justify-between items-center bg-white">
+            <div class="flex items-center gap-2 text-primary">
+              <span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+              <h3 class="text-title-sm font-title-sm">Materiais e Instrumental</h3>
+            </div>
+            <span class="text-label-bold font-label-bold text-on-surface-variant">4 Itens Solicitados</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-surface-container-low text-outline text-label-bold">
+                <tr>
+                  <th class="px-6 py-4">CÓDIGO</th>
+                  <th class="px-6 py-4">DESCRIÇÃO DO MATERIAL</th>
+                  <th class="px-6 py-4">FORNECEDOR</th>
+                  <th class="px-6 py-4 text-center">QUANTIDADE</th>
+                  <th class="px-6 py-4">STATUS</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant">
+                <tr class="hover:bg-surface-container-high transition-colors">
+                  <td class="px-6 py-4 text-data-mono font-data-mono">OPME-9912</td>
+                  <td class="px-6 py-4 font-semibold">Haste Femoral Modular - Titânio</td>
+                  <td class="px-6 py-4">MedTech Corp</td>
+                  <td class="px-6 py-4 text-center">01</td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                      Em Estoque
+                    </span>
+                  </td>
+                </tr>
+                <tr class="bg-surface-container-low/30 hover:bg-surface-container-high transition-colors">
+                  <td class="px-6 py-4 text-data-mono font-data-mono">OPME-8843</td>
+                  <td class="px-6 py-4 font-semibold">Cúpula Acetabular Press-Fit</td>
+                  <td class="px-6 py-4">OrthoSystems</td>
+                  <td class="px-6 py-4 text-center">01</td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                      Em Estoque
+                    </span>
+                  </td>
+                </tr>
+                <tr class="hover:bg-surface-container-high transition-colors">
+                  <td class="px-6 py-4 text-data-mono font-data-mono">INST-0021</td>
+                  <td class="px-6 py-4 font-semibold">Kit Raspadores Quadril (Geral)</td>
+                  <td class="px-6 py-4">LogMed</td>
+                  <td class="px-6 py-4 text-center">02</td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                      <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                      Em Trânsito
+                    </span>
+                  </td>
+                </tr>
+                <tr class="bg-surface-container-low/30 hover:bg-surface-container-high transition-colors">
+                  <td class="px-6 py-4 text-data-mono font-data-mono">CONS-4401</td>
+                  <td class="px-6 py-4 font-semibold">Cimento Ósseo com Gentamicina</td>
+                  <td class="px-6 py-4">PharmaSurg</td>
+                  <td class="px-6 py-4 text-center">03</td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                      Em Estoque
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Histórico de Alterações Horaline -->
+        <div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+          <div class="flex items-center gap-2 mb-8 text-primary">
+            <span class="material-symbols-outlined" data-icon="history">history</span>
+            <h3 class="text-title-sm font-title-sm">Histórico de Alterações</h3>
+          </div>
+          <div
+            class="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-primary before:via-outline-variant before:to-transparent">
+            <!-- Horaline Item 1 -->
+            <div class="relative flex items-center justify-between md:justify-start">
+              <div
+                class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-primary text-white shadow shrink-0 z-10">
+                <span class="material-symbols-outlined text-[18px]" data-icon="done_all">done_all</span>
+              </div>
+              <div
+                class="ml-6 flex flex-col md:flex-row md:items-center gap-4 bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 w-full">
+                <div class="shrink-0 w-32">
+                  <p class="text-label-bold font-label-bold text-primary">Hoje, 14:20</p>
+                  <p class="text-body-sm font-body-sm text-outline">Sistema</p>
+                </div>
+                <div class="flex-grow">
+                  <p class="text-body-md font-body-md font-bold text-on-surface">Status alterado para <span
+                      class="text-green-600">Confirmado</span></p>
+                  <p class="text-body-sm font-body-sm text-on-surface-variant">Todos os materiais obrigatórios foram
+                    validados em estoque pela logística.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Horaline Item 2 -->
+            <div class="relative flex items-center justify-between md:justify-start">
+              <div
+                class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-secondary text-white shadow shrink-0 z-10">
+                <span class="material-symbols-outlined text-[18px]" data-icon="person">person</span>
+              </div>
+              <div
+                class="ml-6 flex flex-col md:flex-row md:items-center gap-4 bg-white p-4 rounded-xl border border-outline-variant/30 w-full">
+                <div class="shrink-0 w-32">
+                  <p class="text-label-bold font-label-bold text-on-surface">Ontem, 09:15</p>
+                  <p class="text-body-sm font-body-sm text-outline">Luiza Mendes</p>
+                </div>
+                <div class="flex-grow">
+                  <p class="text-body-md font-body-md font-bold text-on-surface">Edição de Materiais</p>
+                  <p class="text-body-sm font-body-sm text-on-surface-variant">Adicionado "Cimento Ósseo com Gentamicina
+                    (3un)" a pedido do Dr. Ricardo.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Horaline Item 3 -->
+            <div class="relative flex items-center justify-between md:justify-start">
+              <div
+                class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-outline-variant text-on-surface-variant shadow shrink-0 z-10">
+                <span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+              </div>
+              <div
+                class="ml-6 flex flex-col md:flex-row md:items-center gap-4 bg-white p-4 rounded-xl border border-outline-variant/30 w-full opacity-70">
+                <div class="shrink-0 w-32">
+                  <p class="text-label-bold font-label-bold text-on-surface">22 Out, 11:00</p>
+                  <p class="text-body-sm font-body-sm text-outline">Carlos Edu</p>
+                </div>
+                <div class="flex-grow">
+                  <p class="text-body-md font-body-md font-bold text-on-surface">Criação do Agendamento</p>
+                  <p class="text-body-sm font-body-sm text-on-surface-variant">Registro inicial da cirurgia realizado
+                    via portal do médico.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Action Footer -->
+        <div class="col-span-12 flex justify-end items-center gap-4 py-8">
+          <button
+            class="px-8 py-3 bg-transparent text-outline font-label-bold hover:bg-surface-container-high rounded-lg transition-all">
+            Voltar para Agenda
+          </button>
+          <button
+            class="px-10 py-3 bg-primary text-white font-label-bold rounded-lg shadow-md hover:opacity-90 active:scale-[0.98] transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined" data-icon="edit">edit</span>
+            Salvar Agendamento
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    function toggleStatusDrop(id) {
+      const d = document.getElementById('status-drop-' + id);
+      d.classList.toggle('hidden');
+    }
+
+    function setStatusDet(label, cls, icon) {
+      const btn = document.getElementById('status-btn-det');
+      btn.className = 'px-3 py-1 ' + cls + ' rounded-full text-label-bold font-label-bold flex items-center gap-1 hover:ring-2 transition-all';
+      btn.innerHTML = `<span class="material-symbols-outlined text-[14px]" data-icon="${icon}" style="font-variation-settings: 'FILL' 1;">${icon}</span> ${label} <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>`;
+      document.getElementById('status-drop-det').classList.add('hidden');
+
+      // Toast
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-on-surface text-white px-5 py-3 rounded-xl shadow-xl text-body-sm font-bold';
+      toast.innerHTML = '<span class="material-symbols-outlined text-green-400">check_circle</span> Status atualizado para: ' + label;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('#status-wrap-det')) {
+        document.getElementById('status-drop-det')?.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+
+</html>

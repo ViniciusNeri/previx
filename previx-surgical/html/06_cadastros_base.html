@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cadastros Base - Previx Surgical</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#630ed4",
+                        "primary-hover": "#4e0baf",
+                        "surface-container": "#f3ebfa",
+                        "surface-container-low": "#f9f1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#ede5f4",
+                        "surface-container-highest": "#e8dfee",
+                        "on-surface": "#1d1a24",
+                        "on-surface-variant": "#4a4455",
+                        "outline-variant": "#ccc3d8",
+                        "outline": "#7b7487",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#eaddff",
+                        "on-secondary-fixed": "#25005a",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#7c3aed",
+                        "on-primary-container": "#ede0ff",
+                        "success": "#16a34a",
+                        "success-container": "#dcfce7",
+                        "on-success-container": "#166534",
+                        "warning": "#eab308",
+                        "warning-container": "#fef08a",
+                        "on-warning-container": "#713f12",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        "label-bold": ["Inter", "sans-serif"],
+                        "title-sm": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                    },
+                    fontSize: {
+                        "label-bold": ["12px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "label": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fc; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .sidebar-active { background-color: #eaddff; color: #25005a; font-weight: 700; border-left: 4px solid #630ed4; border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+        
+        /* Modern scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #ccc3d8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #7b7487; }
+    </style>
+</head>
+<body class="text-on-surface">
+
+<!-- SideNavBar -->
+  <aside
+    class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+    <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
+      title="Ir para Dashboard">
+      <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+        <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+      </div>
+      <div>
+        <h1 class="text-title-sm font-black text-primary">Previx</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+      </div>
+    </a>
+    <div class="px-4 mb-4">
+      <button onclick="window.location.href='05_novo_agendamento.html'"
+        class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+        <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+        Novo Procedimento
+      </button>
+    </div>
+    <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="../index.html">
+        <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+        <span class="text-label-bold font-label-bold">Dashboard</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="01_agenda.html">
+        <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+        <span class="text-label-bold font-label-bold">Agenda</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="10_relatorios.html">
+        <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+        <span class="text-label-bold font-label-bold">Relatórios</span>
+      </a>
+      <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-all"
+        href="06_cadastros_base.html">
+        <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+        <span class="text-label-bold font-label-bold">Cadastros Base</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="07_gestao_usuarios.html">
+        <span class="material-symbols-outlined" data-icon="group">group</span>
+        <span class="text-label-bold font-label-bold">Usuários</span>
+      </a>
+    </nav>
+    <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="12_configuracoes.html">
+        <span class="material-symbols-outlined" data-icon="settings">settings</span>
+        <span class="text-label-bold font-label-bold">Configurações</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="#">
+        <span class="material-symbols-outlined" data-icon="help">help</span>
+        <span class="text-label-bold font-label-bold">Suporte</span>
+      </a>
+    </div>
+  </aside>
+
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-[260px] h-[64px] bg-white border-b border-outline-variant/50 shadow-sm flex items-center justify-between px-8 z-20">
+    <div class="flex items-center gap-4 flex-1">
+        <div class="relative w-full max-w-md hidden md:block">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-[20px]" data-icon="search">search</span>
+            <input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all" placeholder="Busca global (Ctrl+K)..." type="text"/>
+        </div>
+    </div>
+    <div class="flex items-center gap-5">
+        <button class="relative text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+            <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-white"></span>
+        </button>
+        <div class="w-[1px] h-6 bg-outline-variant"></div>
+        <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+            <div class="text-right hidden sm:block">
+                <p class="text-xs font-bold text-on-surface">Dr. Ricardo Silva</p>
+                <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+            </div>
+            <img src="https://ui-avatars.com/api/?name=Ricardo+Silva&background=7c3aed&color=fff&rounded=true&bold=true" alt="Avatar" class="w-9 h-9 rounded-full shadow-sm">
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Area -->
+<main class="ml-[260px] pt-[64px] min-h-screen">
+    <div class="p-8 max-w-[1600px] mx-auto flex flex-col gap-6">
+        
+        <!-- Page Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+                <h2 class="text-3xl font-bold text-on-surface mb-1 flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-[32px] bg-primary/10 p-1.5 rounded-lg">folder_special</span>
+                    Cadastros Base
+                </h2>
+                <p class="text-on-surface-variant text-sm mt-2">Gerenciamento centralizado de Hospitais, Médicos, Equipamentos e Procedimentos.</p>
+            </div>
+            <button onclick="window.location.href='06a_novo_cadastro.html'" class="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-primary-hover shadow-md shadow-primary/20 flex items-center gap-2 transition-all">
+                <span class="material-symbols-outlined text-[18px]">add</span> Novo Registro
+            </button>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-xl border border-outline-variant/50 shadow-sm flex items-center justify-between hover:border-primary/30 transition-colors cursor-pointer group">
+                <div>
+                    <p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-1">Hospitais Parceiros</p>
+                    <h3 class="text-3xl font-black text-on-surface group-hover:text-primary transition-colors">12</h3>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">local_hospital</span>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-outline-variant/50 shadow-sm flex items-center justify-between hover:border-primary/30 transition-colors cursor-pointer group">
+                <div>
+                    <p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-1">Equipe Médica</p>
+                    <h3 class="text-3xl font-black text-on-surface group-hover:text-primary transition-colors">45</h3>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">stethoscope</span>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-primary/30 shadow-sm flex items-center justify-between ring-2 ring-primary/10 cursor-pointer">
+                <div>
+                    <p class="text-[11px] font-bold text-primary uppercase tracking-wider mb-1">Equipamentos Ativos</p>
+                    <h3 class="text-3xl font-black text-primary">142</h3>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">biotech</span>
+                </div>
+            </div>
+            <div class="bg-error-container/30 p-5 rounded-xl border border-error/20 shadow-sm flex items-center justify-between hover:border-error/50 transition-colors cursor-pointer group">
+                <div>
+                    <p class="text-[11px] font-bold text-error uppercase tracking-wider mb-1">Manutenção Crítica</p>
+                    <h3 class="text-3xl font-black text-error">8</h3>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-error/10 text-error flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">build</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="flex flex-col rounded-xl border border-outline-variant/50 bg-white shadow-sm overflow-hidden">
+            
+            <!-- Modern Tabs -->
+            <div id="tabs-container" class="flex items-center gap-1 p-2 bg-surface-container-low border-b border-outline-variant/50 overflow-x-auto hide-scrollbar">
+                <button onclick="switchTab(this, 'hospitais')" class="tab-btn whitespace-nowrap px-5 py-2 text-sm font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-2">
+                    Hospitais <span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">7</span>
+                </button>
+                <button onclick="switchTab(this, 'medicos')" class="tab-btn whitespace-nowrap px-5 py-2 text-sm font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-2">
+                    Médicos <span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">7</span>
+                </button>
+                <button onclick="switchTab(this, 'equipamentos')" class="tab-btn active whitespace-nowrap px-5 py-2 text-sm font-bold rounded-lg bg-white text-primary shadow-sm border border-outline-variant/50 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">biotech</span> Equipamentos
+                    <span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full ml-1">7</span>
+                </button>
+                <button onclick="switchTab(this, 'procedimentos')" class="tab-btn whitespace-nowrap px-5 py-2 text-sm font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-2">
+                    Procedimentos <span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">7</span>
+                </button>
+                <button onclick="switchTab(this, 'planos')" class="tab-btn whitespace-nowrap px-5 py-2 text-sm font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-2">
+                    Planos de Saúde <span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">7</span>
+                </button>
+                <button onclick="switchTab(this, 'empresas')" class="tab-btn whitespace-nowrap px-5 py-2 text-sm font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-2">
+                    Empresas <span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">6</span>
+                </button>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="p-4 flex flex-col md:flex-row items-center justify-between gap-4 border-b border-outline-variant/50">
+                <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                    <div class="relative w-full sm:w-80">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-[20px]">search</span>
+                        <input id="tab-search" type="text" placeholder="Buscar..." class="w-full pl-10 pr-4 py-2.5 text-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
+                    </div>
+                    <button class="w-full sm:w-auto px-4 py-2.5 border border-outline-variant rounded-lg text-sm font-semibold text-on-surface-variant flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">filter_list</span> Filtros
+                    </button>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center bg-surface-container-low p-1 rounded-lg border border-outline-variant/50">
+                        <button class="p-1.5 rounded-md bg-white text-primary shadow-sm ring-1 ring-black/5" title="Visualização em Lista">
+                            <span class="material-symbols-outlined text-[20px] block">view_list</span>
+                        </button>
+                        <button class="p-1.5 rounded-md text-on-surface-variant hover:text-primary transition-colors" title="Visualização em Grade">
+                            <span class="material-symbols-outlined text-[20px] block">grid_view</span>
+                        </button>
+                    </div>
+                    <button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors border border-transparent hover:border-outline-variant/50" title="Exportar dados">
+                        <span class="material-symbols-outlined text-[20px] block">download</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modern Data Grid -->
+            <div class="overflow-x-auto min-h-[400px]">
+                <table class="w-full text-left border-collapse table-fixed" id="data-table">
+                    <thead class="bg-surface-container-low/30" id="table-head">
+                        <!-- Headers injected by JS -->
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant/30" id="table-body">
+                        <!-- Content injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Pagination Footer -->
+            <div class="px-6 py-4 border-t border-outline-variant/50 flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface-container-lowest">
+                <span id="pagination-info" class="text-sm text-on-surface-variant">Mostrando registros</span>
+                <div class="flex items-center gap-1">
+                    <button class="px-3 py-1.5 border border-outline-variant rounded-lg text-sm font-semibold text-outline hover:bg-surface-container transition-colors disabled:opacity-50 flex items-center gap-1" disabled>
+                        <span class="material-symbols-outlined text-[16px]">chevron_left</span> Anterior
+                    </button>
+                    <div class="hidden sm:flex gap-1 mx-2">
+                        <button class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-lg text-sm font-semibold shadow-sm">1</button>
+                    </div>
+                    <button class="px-3 py-1.5 border border-outline-variant rounded-lg text-sm font-semibold text-on-surface hover:bg-surface-container transition-colors flex items-center gap-1">
+                        Próximo <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script>
+    const tableData = {
+        hospitais: {
+            headers: ['ID', 'Hospital', 'Cidade/UF', 'Contato', 'Status'],
+            items: [
+                { id: 'H-001', name: 'Hospital Santa Luzia', location: 'Brasília/DF', contact: '(61) 3445-0000', status: 'Ativo', icon: 'local_hospital' },
+                { id: 'H-002', name: 'Hospital Sírio Libanês', location: 'São Paulo/SP', contact: '(11) 3332-0000', status: 'Ativo', icon: 'local_hospital' },
+                { id: 'H-003', name: 'Hospital Albert Einstein', location: 'São Paulo/SP', contact: '(11) 2151-0000', status: 'Ativo', icon: 'local_hospital' },
+                { id: 'H-004', name: 'Hospital Mater Dei', location: 'Belo Horizonte/MG', contact: '(31) 3339-9000', status: 'Inativo', icon: 'local_hospital' },
+                { id: 'H-005', name: 'Hospital de Base', location: 'Brasília/DF', contact: '(61) 3315-1200', status: 'Ativo', icon: 'local_hospital' },
+                { id: 'H-006', name: 'Hospital Santa Helena', location: 'Brasília/DF', contact: '(61) 3215-0000', status: 'Ativo', icon: 'local_hospital' },
+                { id: 'H-007', name: 'Hospital Anchieta', location: 'Taguatinga/DF', contact: '(61) 3353-9000', status: 'Ativo', icon: 'local_hospital' }
+            ]
+        },
+        medicos: {
+            headers: ['ID', 'Médico', 'Especialidade', 'CRM', 'Status'],
+            items: [
+                { id: 'M-102', name: 'Dr. Ricardo M. Santos', spec: 'Ortopedia', crm: '12345-DF', status: 'Ativo', icon: 'stethoscope' },
+                { id: 'M-145', name: 'Dra. Julia Ferreira', spec: 'Neurocirurgia', crm: '98765-SP', status: 'Ativo', icon: 'stethoscope' },
+                { id: 'M-082', name: 'Dr. Marcos Oliveira', spec: 'Cardiologia', crm: '55443-RJ', status: 'Férias', icon: 'stethoscope' },
+                { id: 'M-059', name: 'Dra. Ana Paula Luz', spec: 'Ginecologia', crm: '11223-MG', status: 'Ativo', icon: 'stethoscope' },
+                { id: 'M-210', name: 'Dr. André Lima', spec: 'Cardiologia', crm: '54321-DF', status: 'Ativo', icon: 'stethoscope' },
+                { id: 'M-198', name: 'Dra. Beatriz Rocha', spec: 'Ortopedia', crm: '88776-SP', status: 'Ativo', icon: 'stethoscope' },
+                { id: 'M-305', name: 'Dr. Fernando Souza', spec: 'Urologia', crm: '44332-RJ', status: 'Ativo', icon: 'stethoscope' }
+            ]
+        },
+        equipamentos: {
+            headers: ['ID', 'Equipamento', 'Categoria', 'Localização Base', 'Status'],
+            items: [
+                { id: 'EQ-1002', name: 'Torre de Vídeo 4K Storz', cat: 'Vídeo Cirurgia', loc: 'Almoxarifado Central', status: 'Disponível', icon: 'medical_services', sub: 'S/N: 88A923B • Modelo: Rubina' },
+                { id: 'EQ-1045', name: 'Microscópio Cirúrgico Zeiss', cat: 'Neurologia', loc: 'Hosp. Sírio Libanês', status: 'Em Uso', icon: 'biotech', sub: 'S/N: ZE-00921 • Modelo: Kinevo 900' },
+                { id: 'EQ-0822', name: 'Motor Perfuração Óssea', cat: 'Ortopedia', loc: 'Assistência Técnica', status: 'Manutenção', icon: 'settings_suggest', sub: 'S/N: MX-100 • Falha de Bateria' },
+                { id: 'EQ-0599', name: 'Monitor Multiparamétrico', cat: 'Suporte à Vida', loc: 'Depósito Secundário', status: 'Offline', icon: 'monitor_heart', sub: 'S/N: MM-449 • Desativado' },
+                { id: 'EQ-2010', name: 'Arco Cirúrgico Philips', cat: 'Radiologia', loc: 'Almoxarifado B', status: 'Disponível', icon: 'visibility', sub: 'S/N: PH-BV77 • Modelo: BV Endura' },
+                { id: 'EQ-3055', name: 'Kit Laparoscopia HD', cat: 'Vídeo Cirurgia', loc: 'Depósito A', status: 'Disponível', icon: 'precision_manufacturing', sub: 'S/N: KL-002 • Modelo: VisionPro' },
+                { id: 'EQ-4122', name: 'Autoclave Digital 54L', cat: 'Esterilização', loc: 'Setor Técnico', status: 'Manutenção', icon: 'cleaning_services', sub: 'S/N: AC-991 • Revisão Periódica' }
+            ]
+        },
+        procedimentos: {
+            headers: ['ID', 'Procedimento', 'Especialidade', 'Tempo Est.', 'Status'],
+            items: [
+                { id: 'P-001', name: 'Artroplastia de Quadril', spec: 'Ortopedia', time: '180 min', status: 'Ativo', icon: 'procedure' },
+                { id: 'P-002', name: 'Craniotomia', spec: 'Neurologia', time: '300 min', status: 'Ativo', icon: 'procedure' },
+                { id: 'P-003', name: 'Angioplastia Coroa.', spec: 'Cardiologia', time: '120 min', status: 'Ativo', icon: 'procedure' },
+                { id: 'P-004', name: 'Histerectomia', spec: 'Ginecologia', time: '150 min', status: 'Ativo', icon: 'procedure' },
+                { id: 'P-005', name: 'Laminectomia', spec: 'Neurologia', time: '120 min', status: 'Ativo', icon: 'procedure' },
+                { id: 'P-006', name: 'Colecistectomia', spec: 'Geral', time: '90 min', status: 'Ativo', icon: 'procedure' },
+                { id: 'P-007', name: 'Artrodese Lombar', spec: 'Ortopedia', time: '240 min', status: 'Ativo', icon: 'procedure' }
+            ]
+        },
+        planos: {
+            headers: ['ID', 'Plano de Saúde', 'Tipo', 'Abrangência', 'Status'],
+            items: [
+                { id: 'PS-01', name: 'Bradesco Saúde', type: 'Premium', cover: 'Nacional', status: 'Ativo', icon: 'health_and_safety' },
+                { id: 'PS-02', name: 'SulAmérica', type: 'Executivo', cover: 'Nacional', status: 'Ativo', icon: 'health_and_safety' },
+                { id: 'PS-03', name: 'Amil Blue', type: 'Básico', cover: 'Regional', status: 'Ativo', icon: 'health_and_safety' },
+                { id: 'PS-04', name: 'Unimed Central', type: 'Eletivo', cover: 'Estadual', status: 'Inativo', icon: 'health_and_safety' },
+                { id: 'PS-05', name: 'Saúde Caixa', type: 'Premium', cover: 'Nacional', status: 'Ativo', icon: 'health_and_safety' },
+                { id: 'PS-06', name: 'Cassi', type: 'Básico', cover: 'Regional', status: 'Ativo', icon: 'health_and_safety' },
+                { id: 'PS-07', name: 'Geap Autogestão', type: 'Eletivo', cover: 'Estadual', status: 'Ativo', icon: 'health_and_safety' }
+            ]
+        },
+        empresas: {
+            headers: ['ID', 'Razão Social', 'CNPJ', 'Cidade/UF', 'Status'],
+            items: [
+                { id: 'E-01', name: 'Previx Surgical Ltda', doc: '12.345.678/0001-90', city: 'Brasília/DF', status: 'Matriz', icon: 'business' },
+                { id: 'E-02', name: 'MedSupply Logistics', doc: '98.765.432/0001-21', city: 'São Paulo/SP', status: 'Filial', icon: 'business' },
+                { id: 'E-03', name: 'OrthoParts Ind.', doc: '55.444.333/0001-11', city: 'Curitiba/PR', status: 'Fornecedor', icon: 'business' },
+                { id: 'E-04', name: 'Surgical North', doc: '44.333.222/0001-00', city: 'Manaus/AM', status: 'Matriz', icon: 'business' },
+                { id: 'E-05', name: 'BioTech Dist.', doc: '33.222.111/0001-88', city: 'Curitiba/PR', status: 'Fornecedor', icon: 'business' },
+                { id: 'E-06', name: 'Previx SP', doc: '22.111.000/0001-77', city: 'São Paulo/SP', status: 'Filial', icon: 'business' }
+            ]
+        }
+    };
+
+    function renderTable(tab) {
+        const data = tableData[tab];
+        const head = document.getElementById('table-head');
+        const body = document.getElementById('table-body');
+        const searchInput = document.getElementById('tab-search');
+        
+        searchInput.placeholder = `Buscar em ${tab.charAt(0).toUpperCase() + tab.slice(1)}...`;
+
+        // Render Head
+        let headHtml = '<tr>';
+        const columnWidths = ['w-[100px]', 'w-[40%]', 'w-[20%]', 'w-[20%]', 'w-[10%]'];
+        data.headers.forEach((h, i) => {
+            const widthClass = columnWidths[i] || '';
+            const extraClass = i === data.headers.length - 1 ? 'text-right' : '';
+            headHtml += `<th class="px-6 py-3 border-b border-outline-variant/50 text-xs font-bold text-outline uppercase tracking-wider ${widthClass} ${extraClass}">${h}</th>`;
+        });
+        headHtml += '<th class="px-6 py-3 border-b border-outline-variant/50 text-xs font-bold text-outline uppercase tracking-wider text-right w-[100px]">Ações</th></tr>';
+        head.innerHTML = headHtml;
+
+        // Render Body
+        let bodyHtml = '';
+        data.items.forEach(item => {
+            bodyHtml += `
+                <tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer">
+                    <td class="px-6 py-4 text-xs font-mono text-on-surface-variant font-semibold truncate w-[100px]">${item.id}</td>
+                    <td class="px-6 py-4 truncate">
+                        <div class="flex items-center gap-4 overflow-hidden">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high border border-outline-variant/50 flex items-center justify-center shrink-0 group-hover:border-primary/30 transition-colors">
+                                <span class="material-symbols-outlined text-[20px] text-primary">${item.icon || 'folder'}</span>
+                            </div>
+                            <div class="truncate">
+                                <p class="font-bold text-on-surface text-sm group-hover:text-primary transition-colors truncate">${item.name}</p>
+                                ${item.sub ? `<p class="text-[10px] text-on-surface-variant mt-0.5 truncate">${item.sub}</p>` : ''}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-on-surface-variant truncate whitespace-nowrap">${item.location || item.spec || item.cat || item.type || item.doc}</td>
+                    <td class="px-6 py-4 text-sm text-on-surface-variant truncate whitespace-nowrap">${item.contact || item.crm || item.loc || item.time || item.cover || item.city}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2.5 py-1 ${getStatusClass(item.status)} rounded-full text-[10px] font-bold flex items-center gap-1.5 w-fit border">
+                            ${item.status}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity relative">
+                            <button onclick="window.location.href='06b_editar_cadastro.html?id=${item.id}&type=${tab}'" class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" title="Editar">
+                                <span class="material-symbols-outlined text-[18px] block">edit</span>
+                            </button>
+                            <button onclick="toggleActionMenu('${item.id}')" class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" title="Mais opções">
+                                <span class="material-symbols-outlined text-[18px] block">more_vert</span>
+                            </button>
+                            <!-- Context Menu -->
+                            <div id="menu-${item.id}" class="hidden absolute right-0 top-full mt-1 bg-white border border-outline-variant shadow-xl rounded-xl py-1 w-48 z-30 text-left overflow-hidden">
+                                <button onclick="toggleItemStatus('${item.id}', '${item.status}')" class="w-full px-4 py-2 text-xs text-on-surface hover:bg-surface-container flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px]">${item.status === 'Inativo' ? 'check_circle' : 'block'}</span>
+                                    ${item.status === 'Inativo' ? 'Ativar Registro' : 'Desativar Registro'}
+                                </button>
+                                <button onclick="deleteItem('${item.id}')" class="w-full px-4 py-2 text-xs text-error hover:bg-error/5 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                                    Excluir Registro
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        });
+        body.innerHTML = bodyHtml;
+        
+        document.getElementById('pagination-info').innerText = `Mostrando ${data.items.length} registros em ${tab.charAt(0).toUpperCase() + tab.slice(1)}`;
+    }
+
+    function toggleActionMenu(id) {
+        const menu = document.getElementById(`menu-${id}`);
+        const allMenus = document.querySelectorAll('[id^="menu-"]');
+        allMenus.forEach(m => { if(m.id !== `menu-${id}`) m.classList.add('hidden') });
+        menu.classList.toggle('hidden');
+    }
+
+    function toggleItemStatus(id, currentStatus) {
+        const newStatus = currentStatus === 'Inativo' ? 'Ativo' : 'Inativo';
+        alert(`O registro ${id} foi alterado para ${newStatus}`);
+        location.reload();
+    }
+
+    function deleteItem(id) {
+        if(confirm(`Deseja realmente excluir o registro ${id}?`)) {
+            alert('Registro excluído com sucesso.');
+            location.reload();
+        }
+    }
+
+    // Close menus on click outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('button')) {
+            document.querySelectorAll('[id^="menu-"]').forEach(m => m.classList.add('hidden'));
+        }
+    });
+
+    function getStatusClass(status) {
+        const s = status.toLowerCase();
+        if (s === 'ativo' || s === 'disponível' || s === 'matriz') return 'bg-green-50 text-green-700 border-green-200';
+        if (s === 'inativo' || s === 'manutenção' || s === 'offline') return 'bg-red-50 text-red-700 border-red-200';
+        if (s === 'em uso' || s === 'filial') return 'bg-blue-50 text-blue-700 border-blue-200';
+        if (s === 'férias' || s === 'pendente') return 'bg-amber-50 text-amber-700 border-amber-200';
+        return 'bg-surface-container-high text-on-surface-variant border-outline-variant/50';
+    }
+
+    function switchTab(btn, tab) {
+        // Reset all tabs to inactive state
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.className = 'tab-btn whitespace-nowrap px-5 py-2 text-sm font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-2';
+            
+            const badge = b.querySelector('span:not(.material-symbols-outlined)');
+            if (badge) {
+                badge.className = 'bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full';
+            }
+        });
+
+        // Set active tab state
+        btn.className = 'tab-btn active whitespace-nowrap px-5 py-2 text-sm font-bold rounded-lg bg-white text-primary shadow-sm border border-outline-variant/50 flex items-center gap-2';
+        
+        const activeBadge = btn.querySelector('span:not(.material-symbols-outlined)');
+        if (activeBadge) {
+            activeBadge.className = 'bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full ml-1';
+        }
+        
+        renderTable(tab);
+    }
+
+    // Initial render
+    window.onload = () => renderTable('equipamentos');
+</script>
+</body>
+</html>

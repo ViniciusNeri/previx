@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Previx - Cirúrgico Management Agenda</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#6a4fa0",
+                      "surface-container": "#f3ebfa",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#eaddff",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#7c3aed",
+                      "outline": "#7b7487",
+                      "outline-variant": "#ccc3d8",
+                      "secondary-fixed-dim": "#d2bbff",
+                      "surface-variant": "#e8dfee",
+                      "on-tertiary-container": "#ffe0cd",
+                      "tertiary-container": "#a15100",
+                      "surface": "#fef7ff",
+                      "on-primary": "#ffffff",
+                      "primary-fixed": "#eaddff",
+                      "surface-container-highest": "#e8dfee",
+                      "inverse-primary": "#d2bbff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#fef7ff",
+                      "tertiary": "#7d3d00",
+                      "surface-dim": "#dfd7e6",
+                      "on-tertiary-fixed": "#301400",
+                      "surface-tint": "#732ee4",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#332f39",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#d2bbff",
+                      "on-secondary-fixed": "#25005a",
+                      "on-primary-container": "#ede0ff",
+                      "on-primary-fixed": "#25005a",
+                      "on-surface-variant": "#4a4455",
+                      "on-tertiary-fixed-variant": "#713700",
+                      "on-primary-fixed-variant": "#5a00c6",
+                      "error": "#ba1a1a",
+                      "on-secondary-container": "#523787",
+                      "surface-container-low": "#f9f1ff",
+                      "inverse-on-surface": "#f6eefc",
+                      "tertiary-fixed-dim": "#ffb784",
+                      "tertiary-fixed": "#ffdcc6",
+                      "secondary-container": "#c4a7ff",
+                      "on-background": "#1d1a24",
+                      "on-surface": "#1d1a24",
+                      "on-secondary-fixed-variant": "#523787",
+                      "primary": "#630ed4",
+                      "background": "#fef7ff",
+                      "surface-container-high": "#ede5f4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sidebar-width": "260px",
+                      "container-padding": "2rem",
+                      "header-height": "64px",
+                      "table-cell-padding": "1rem 1.5rem",
+                      "stack-gap": "1rem"
+              },
+              "fontFamily": {
+                      "data-mono": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "label-bold": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "title-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+  <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity" title="Ir para Dashboard">
+    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+      <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+    </div>
+    <div>
+      <h1 class="text-title-sm font-black text-primary">Previx</h1>
+      <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+    </div>
+  </a>
+  <div class="px-4 mb-4">
+    <button onclick="window.location.href='05_novo_agendamento.html'" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+      <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+      Novo Procedimento
+    </button>
+  </div>
+  <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="../index.html">
+      <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+      <span class="text-label-bold font-label-bold">Dashboard</span>
+    </a>
+    <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-all" href="01_agenda.html">
+      <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+      <span class="text-label-bold font-label-bold">Agenda</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="10_relatorios.html">
+      <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+      <span class="text-label-bold font-label-bold">Relatórios</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="06_cadastros_base.html">
+      <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+      <span class="text-label-bold font-label-bold">Cadastros Base</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="07_gestao_usuarios.html">
+      <span class="material-symbols-outlined" data-icon="group">group</span>
+      <span class="text-label-bold font-label-bold">Usuários</span>
+    </a>
+  </nav>
+  <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="12_configuracoes.html">
+      <span class="material-symbols-outlined" data-icon="settings">settings</span>
+      <span class="text-label-bold font-label-bold">Configurações</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="#">
+      <span class="material-symbols-outlined" data-icon="help">help</span>
+      <span class="text-label-bold font-label-bold">Suporte</span>
+    </a>
+  </div>
+</aside>
+<!-- HEADER -->
+<header class="fixed top-0 right-0 left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-8 z-20">
+  <div class="flex items-center flex-1 max-w-xl">
+    <div class="relative w-full">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+      <input class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-md font-body-md focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Pesquisar pacientes, procedimentos ou hospitais..." type="text"/>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full relative">
+      <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+      <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+    </button>
+    <div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+    <div class="flex items-center gap-3">
+      <div class="text-right">
+        <p class="text-label-bold font-label-bold text-on-surface">Dr. Ricardo Silva</p>
+        <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+      </div>
+      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-sm">DR</div>
+    </div>
+    <button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" onclick="window.location.href='../html/02_login.html'" title="Sair">
+      <span class="material-symbols-outlined" data-icon="logout">logout</span>
+    </button>
+  </div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="ml-[260px] pt-[64px] min-h-screen">
+<div class="p-container-padding max-w-[1600px] mx-auto">
+<!-- TOOLBAR / FILTERS -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div class="space-y-4 flex-1">
+<h2 class="text-display-lg font-display-lg text-on-surface">Agenda Principal</h2>
+<div class="flex flex-wrap items-center gap-3">
+<div class="flex flex-col gap-1">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Período</label>
+<div class="flex items-center bg-white border border-outline-variant rounded-lg px-3 py-2">
+<span class="material-symbols-outlined text-outline text-sm mr-2" data-icon="calendar_month">calendar_month</span>
+<span class="text-body-sm font-body-sm">24 Out - 25 Out, 2023</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Hospital</label>
+<select class="bg-white border border-outline-variant rounded-lg px-3 py-2 text-body-sm font-body-sm focus:ring-primary min-w-[180px]">
+<option>Todos os Hospitais</option>
+<option>Hospital Santa Catarina</option>
+<option>Albert Einstein</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Representante</label>
+<select class="bg-white border border-outline-variant rounded-lg px-3 py-2 text-body-sm font-body-sm focus:ring-primary min-w-[150px]">
+<option>Toda a Equipe</option>
+<option>Marcos Lima</option>
+<option>Ana Costa</option>
+</select>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button onclick="document.getElementById('email-drawer').classList.remove('hidden')" class="flex items-center gap-2 px-4 py-2.5 border border-outline-variant text-on-surface bg-white rounded-lg font-label-bold text-label-bold hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+                        Importar E-mail
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-primary text-on-primary rounded-lg font-label-bold text-label-bold hover:opacity-90 transition-all shadow-md" onclick="window.location.href='05_novo_agendamento.html'">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                        Novo Agendamento
+                    </button>
+</div>
+</div>
+
+<!-- SELEÇÃO DE MATERIAIS — ATALHOS -->
+<div class="flex items-center gap-3 mb-6 p-4 bg-surface-container rounded-xl border border-outline-variant">
+  <div class="flex items-center gap-2 text-on-surface-variant mr-2">
+    <span class="material-symbols-outlined text-sm" data-icon="inventory_2">inventory_2</span>
+    <span class="text-label-bold font-label-bold uppercase">Seleção de Materiais:</span>
+  </div>
+  <button
+    onclick="window.location.href='08_selecao_step_wizard.html'"
+    class="flex items-center gap-2 px-4 py-2 bg-white border border-primary/40 text-primary rounded-lg font-label-bold text-label-bold hover:bg-primary hover:text-on-primary transition-all shadow-sm group">
+    <span class="material-symbols-outlined text-sm" data-icon="linear_scale">linear_scale</span>
+    Passo a Passo
+    <span class="ml-1 text-[10px] bg-primary/10 group-hover:bg-white/20 px-1.5 py-0.5 rounded font-bold">WIZARD</span>
+  </button>
+  <button
+    onclick="window.location.href='09_selecao_visual_grid.html'"
+    class="flex items-center gap-2 px-4 py-2 bg-white border border-secondary/40 text-secondary rounded-lg font-label-bold text-label-bold hover:bg-secondary hover:text-on-secondary transition-all shadow-sm group">
+    <span class="material-symbols-outlined text-sm" data-icon="grid_view">grid_view</span>
+    Grade Visual
+    <span class="ml-1 text-[10px] bg-secondary/10 group-hover:bg-white/20 px-1.5 py-0.5 rounded font-bold">GRID</span>
+  </button>
+</div>
+
+<!-- DATA TABLE -->
+<div class="space-y-8">
+<!-- Group: HOJE -->
+<section>
+<div class="flex items-center gap-3 mb-4">
+<h3 class="text-title-sm font-title-sm text-primary font-bold">HOJE</h3>
+<span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed text-[10px] font-bold rounded-full">4 PROCEDIMENTOS</span>
+<div class="flex-1 h-[1px] bg-outline-variant"></div>
+</div>
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm relative z-10">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<tr>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[10%]">Hora</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[18%]">Paciente &amp; Procedimento</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[12%]">Representante</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[12%]">Instrumentador</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[15%]">Hospital</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[12%]">Materiais</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[14%]">Status</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[7%]">Ações</th>
+</tr>
+</thead>
+<tbody id="tbody-hoje" class="divide-y divide-outline-variant">
+<!-- Row 1: Normal Confirmado -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 w-[10%]">
+<div class="flex flex-col">
+<span class="text-title-sm font-bold text-on-surface">08:30</span>
+<span class="text-[10px] text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span>
+                                Entrega: 07:30
+</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[18%]">
+<div class="flex flex-col">
+<span class="font-bold text-body-md text-on-surface">Maria Oliveira</span>
+<span class="text-body-sm text-on-surface-variant">Artroplastia de Quadril</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">Ricardo Gomes</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">Ana Paula</td>
+<td class="px-6 py-5 w-[15%]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-lg" data-icon="local_hospital">local_hospital</span>
+<span class="text-body-sm text-on-surface">Hosp. Santa Catarina</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[12%]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-[11px] mb-1">
+<span>Checklist de Materiais</span>
+<span class="font-bold">100%</span>
+</div>
+<div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full w-full"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 w-[15%]">
+<div class="relative" id="status-wrap-1">
+<button onclick="toggleStatusDrop(1)" class="flex items-center gap-1.5 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-[11px] font-bold hover:ring-2 transition-all">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Confirmado
+<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span></button>
+<div id="status-drop-1" class="hidden absolute right-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
+<button onclick="setStatus(1,'Confirmado','bg-green-100 text-green-700','bg-green-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
+<button onclick="setStatus(1,'Em Rota','bg-blue-100 text-blue-700','bg-blue-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
+<button onclick="setStatus(1,'Pendente','bg-amber-100 text-amber-700','bg-amber-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+<button onclick="setStatus(1,'Concluido','bg-purple-100 text-purple-700','bg-purple-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Concluído</button>
+<button onclick="setStatus(1,'Cancelado','bg-gray-100 text-gray-600','bg-gray-400')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gray-400"></span>Cancelado</button>
+<td class="px-6 py-5 text-right relative w-[10%]" id="action-wrap-1">
+<button onclick="toggleActionDrop(1)" class="p-2 hover:bg-surface-container-high rounded-lg text-outline">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+<div id="action-drop-1" class="hidden absolute right-6 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
+<button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
+<button onclick="window.location.href='03_detalhes_agendamento.html'" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">edit</span> Editar</button>
+<button onclick="deleteRow(1)" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-error"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: CONFLICT ALERT -->
+<tr class="bg-red-50 border-l-[6px] border-red-500 hover:bg-red-100/50 transition-colors">
+<td class="px-6 py-5 w-[10%]">
+<div class="flex flex-col">
+<span class="text-title-sm font-bold text-red-700">10:15</span>
+<span class="text-[10px] text-red-600 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span>
+                                Entrega: 09:15
+</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[18%]">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-bold text-body-md text-red-900">João dos Santos</span>
+<span class="material-symbols-outlined text-red-600 text-sm" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<span class="text-body-sm text-red-700">Cirurgia de Coluna (L4-L5)</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-red-700">Marcos Lima</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-red-700">Carlos Eduardo</td>
+<td class="px-6 py-5 text-red-700 w-[15%]">
+<span class="text-body-sm">Albert Einstein</span>
+</td>
+<td class="px-6 py-5 w-[12%]">
+<div class="flex items-center gap-2 text-error font-bold text-body-sm">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                                            Faltam: Kit Fixação 4.5
+                                        </div>
+</td>
+<td class="px-6 py-5 w-[15%]">
+<div class="relative" id="status-wrap-2">
+<button onclick="toggleStatusDrop(2)" class="flex items-center gap-1.5 px-3 py-1.5 bg-error-container text-on-error-container rounded-full text-[11px] font-bold hover:ring-2 transition-all">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>Pendente
+<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span></button>
+<div id="status-drop-2" class="hidden absolute right-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
+<button onclick="setStatus(2,'Confirmado','bg-green-100 text-green-700','bg-green-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
+<button onclick="setStatus(2,'Em Rota','bg-blue-100 text-blue-700','bg-blue-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
+<button onclick="setStatus(2,'Pendente','bg-amber-100 text-amber-700','bg-amber-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+<button onclick="setStatus(2,'Concluido','bg-purple-100 text-purple-700','bg-purple-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Concluído</button>
+<button onclick="setStatus(2,'Cancelado','bg-gray-100 text-gray-600','bg-gray-400')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gray-400"></span>Cancelado</button>
+</div></div></td><td class="px-6 py-5 text-right relative w-[10%]" id="action-wrap-2">
+<button onclick="toggleActionDrop(2)" class="p-2 hover:bg-surface-container-high rounded-lg text-outline">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+<div id="action-drop-2" class="hidden absolute right-6 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
+<button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
+<button onclick="window.location.href='03_detalhes_agendamento.html'" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">edit</span> Editar</button>
+<button onclick="deleteRow(2)" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-error"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Blue Status -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 w-[10%]">
+<div class="flex flex-col">
+<span class="text-title-sm font-bold text-on-surface">14:00</span>
+<span class="text-[10px] text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span>
+                                Entrega: 13:00
+</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[18%]">
+<div class="flex flex-col">
+<span class="font-bold text-body-md text-on-surface">Renato Albuquerque</span>
+<span class="text-body-sm text-on-surface-variant">Revisão de Joelho</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">Juliana Costa</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">Beto Silva</td>
+<td class="px-6 py-5 w-[15%]">
+<span class="text-body-sm text-on-surface">BP Mirante</span>
+</td>
+<td class="px-6 py-5 w-[12%]">
+<div class="flex items-center gap-2 text-blue-600 text-body-sm">
+<span class="material-symbols-outlined text-sm" data-icon="local_shipping">local_shipping</span>
+<span class="text-xs">Motorista: Carlos</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[15%]">
+<div class="relative" id="status-wrap-3">
+<button onclick="toggleStatusDrop(3)" class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[11px] font-bold hover:ring-2 transition-all">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Em Rota
+<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span></button>
+<div id="status-drop-3" class="hidden absolute right-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
+<button onclick="setStatus(3,'Confirmado','bg-green-100 text-green-700','bg-green-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
+<button onclick="setStatus(3,'Em Rota','bg-blue-100 text-blue-700','bg-blue-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
+<button onclick="setStatus(3,'Pendente','bg-amber-100 text-amber-700','bg-amber-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+<button onclick="setStatus(3,'Concluido','bg-purple-100 text-purple-700','bg-purple-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Concluído</button>
+<button onclick="setStatus(3,'Cancelado','bg-gray-100 text-gray-600','bg-gray-400')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gray-400"></span>Cancelado</button>
+</div></div></td><td class="px-6 py-5 text-right relative w-[10%]" id="action-wrap-3">
+<button onclick="toggleActionDrop(3)" class="p-2 hover:bg-surface-container-high rounded-lg text-outline">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+<div id="action-drop-3" class="hidden absolute right-6 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
+<button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
+<button onclick="window.location.href='03_detalhes_agendamento.html'" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">edit</span> Editar</button>
+<button onclick="deleteRow(3)" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-error"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Group: PRÓXIMOS DIAS -->
+<section>
+<div class="flex items-center gap-3 mb-4">
+<h3 class="text-title-sm font-title-sm text-on-surface-variant font-bold">PRÓXIMOS DIAS</h3>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded-full">2 PROCEDIMENTOS</span>
+<div class="flex-1 h-[1px] bg-outline-variant opacity-50"></div>
+</div>
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm opacity-90 relative z-0">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[10%]">Data/Hora</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[18%]">Paciente &amp; Procedimento</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[12%]">Representante</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[12%]">Instrumentador</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[15%]">Hospital</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[12%]">Materiais</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[14%]">Status</th>
+<th class="px-6 py-4 text-label-bold font-label-bold text-on-surface-variant uppercase w-[7%]">Ações</th>
+</tr>
+</thead>
+<tbody id="tbody-proximos" class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 w-[10%]">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-primary/60 uppercase tracking-tight mb-0.5">25 OUT</span>
+<span class="text-title-sm font-bold text-on-surface">07:00</span>
+<span class="text-[10px] text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span>
+                                Entrega: 06:00
+</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[18%]">
+<div class="flex flex-col">
+<span class="font-bold text-body-md text-on-surface">Beatriz Melos</span>
+<span class="text-body-sm text-on-surface-variant">Prótese Mamária</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">Felipe Amorim</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">Tânia Reys</td>
+<td class="px-6 py-5 w-[15%]">
+<span class="text-body-sm text-on-surface">Sirio Libanês</span>
+</td>
+<td class="px-6 py-5 w-[12%]">
+<span class="text-xs text-on-surface-variant italic">Aguardando validação...</span>
+</td>
+<td class="px-6 py-5 w-[15%]">
+<div class="relative" id="status-wrap-4">
+<button onclick="toggleStatusDrop(4)" class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 text-amber-700 rounded-full text-[11px] font-bold hover:ring-2 transition-all">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>Pendente
+<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span></button>
+<div id="status-drop-4" class="hidden absolute right-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
+<button onclick="setStatus(4,'Confirmado','bg-green-100 text-green-700','bg-green-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
+<button onclick="setStatus(4,'Em Rota','bg-blue-100 text-blue-700','bg-blue-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
+<button onclick="setStatus(4,'Pendente','bg-amber-100 text-amber-700','bg-amber-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+<button onclick="setStatus(4,'Concluido','bg-purple-100 text-purple-700','bg-purple-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Concluído</button>
+<button onclick="setStatus(4,'Cancelado','bg-gray-100 text-gray-600','bg-gray-400')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gray-400"></span>Cancelado</button>
+</div></div></td><td class="px-6 py-5 text-right relative w-[10%]" id="action-wrap-4">
+<button onclick="toggleActionDrop(4)" class="p-2 hover:bg-surface-container-high rounded-lg text-outline">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+<div id="action-drop-4" class="hidden absolute right-6 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
+<button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
+<button onclick="window.location.href='03_detalhes_agendamento.html'" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">edit</span> Editar</button>
+<button onclick="deleteRow(4)" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-error"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Another Next Day Item -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 w-[10%]">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-primary/60 uppercase tracking-tight mb-0.5">26 OUT</span>
+<span class="text-title-sm font-bold text-on-surface">11:30</span>
+<span class="text-[10px] text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_shipping</span>
+                                Entrega: 10:30
+</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[18%]">
+<div class="flex flex-col">
+<span class="font-bold text-body-md text-on-surface">Carlos Eduardo</span>
+<span class="text-body-sm text-on-surface-variant">Hernioplastia Inguinal</span>
+</div>
+</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">Patricia Luz</td>
+<td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">Renato Silva</td>
+<td class="px-6 py-5 w-[15%]">
+<span class="text-body-sm text-on-surface">Hosp. Oswaldo Cruz</span>
+</td>
+<td class="px-6 py-5 w-[12%]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-[11px] mb-1">
+<span>Materiais</span>
+<span class="font-bold">100%</span>
+</div>
+<div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full w-full"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 w-[15%]">
+<div class="relative" id="status-wrap-5">
+<button onclick="toggleStatusDrop(5)" class="flex items-center gap-1.5 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-[11px] font-bold hover:ring-2 transition-all">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Confirmado
+<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span></button>
+<div id="status-drop-5" class="hidden absolute right-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
+<button onclick="setStatus(5,'Confirmado','bg-green-100 text-green-700','bg-green-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
+<button onclick="setStatus(5,'Em Rota','bg-blue-100 text-blue-700','bg-blue-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
+<button onclick="setStatus(5,'Pendente','bg-amber-100 text-amber-700','bg-amber-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+<button onclick="setStatus(5,'Concluido','bg-purple-100 text-purple-700','bg-purple-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Concluído</button>
+<button onclick="setStatus(5,'Cancelado','bg-gray-100 text-gray-600','bg-gray-400')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gray-400"></span>Cancelado</button>
+</div></div></td><td class="px-6 py-5 text-right relative w-[10%]" id="action-wrap-5">
+<button onclick="toggleActionDrop(5)" class="p-2 hover:bg-surface-container-high rounded-lg text-outline">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+<div id="action-drop-5" class="hidden absolute right-6 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
+<button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
+<button onclick="window.location.href='03_detalhes_agendamento.html'" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">edit</span> Editar</button>
+<button onclick="deleteRow(5)" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-error"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- RIGHT DRAWER: IMPORTAR E-MAIL -->
+<div id="email-drawer" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex justify-end" onclick="if(event.target===this)closeEmailDrawer()">
+  <div class="w-full max-w-[600px] bg-surface h-full shadow-2xl flex flex-col border-l border-outline-variant">
+
+    <!-- Header -->
+    <div class="p-5 border-b border-outline-variant flex items-center justify-between bg-white shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-on-primary text-lg" style="font-variation-settings:'FILL' 1">forward_to_inbox</span>
+        </div>
+        <div>
+          <h2 class="text-title-sm font-bold text-on-surface leading-tight">Importar via E-mail</h2>
+          <p class="text-[11px] text-on-surface-variant">IA identifica e preenche os campos automaticamente</p>
+        </div>
+      </div>
+      <button onclick="closeEmailDrawer()" class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+
+    <!-- Steps indicator -->
+    <div class="px-5 py-3 bg-surface-container-low border-b border-outline-variant shrink-0">
+      <div class="flex items-center gap-2">
+        <div id="step-dot-1" class="flex items-center gap-1.5 text-primary font-bold text-[11px]">
+          <div class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-black">1</div>
+          Colar E-mail
+        </div>
+        <div class="flex-1 h-[1px] bg-outline-variant mx-1"></div>
+        <div id="step-dot-2" class="flex items-center gap-1.5 text-on-surface-variant text-[11px]">
+          <div id="step-dot-2-circle" class="w-5 h-5 rounded-full border-2 border-outline-variant text-on-surface-variant flex items-center justify-center text-[10px] font-black">2</div>
+          Análise IA
+        </div>
+        <div class="flex-1 h-[1px] bg-outline-variant mx-1"></div>
+        <div id="step-dot-3" class="flex items-center gap-1.5 text-on-surface-variant text-[11px]">
+          <div id="step-dot-3-circle" class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center text-[10px] font-black">3</div>
+          Confirmar
+        </div>
+      </div>
+    </div>
+
+    <!-- Scrollable Body -->
+    <div class="flex-1 overflow-y-auto">
+
+      <!-- STEP 1: Paste email -->
+      <div id="email-step-1" class="p-5 space-y-4">
+        <div>
+          <label class="text-label-bold font-label-bold text-on-surface-variant uppercase tracking-wider block mb-2">
+            Cole o texto do e-mail abaixo
+          </label>
+          <textarea
+            id="email-text-input"
+            rows="14"
+            placeholder="Cole aqui o conteúdo do e-mail recebido com as informações da cirurgia...
+
+Exemplo:
+De: Hospital Santa Catarina
+Assunto: Agendamento Cirurgia – Dr. Marcos Viana
+
+Data: 15/05/2025
+Horário: 08:30
+Hospital: Hospital Santa Catarina – Sala 3
+Cirurgião: Dr. Marcos Viana (CRM 98.234)
+Paciente: João dos Santos
+Procedimento: Artroscopia de Joelho
+Instrumentador: Ana Paula Rodrigues
+Observações: Paciente alérgico a látex. Solicitar kit artroscopia padrão."
+            class="w-full px-4 py-3 border-2 border-outline-variant rounded-xl text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-white text-on-surface placeholder:text-outline/60 leading-relaxed"
+          ></textarea>
+        </div>
+
+        <div class="flex items-center gap-3 p-3 bg-primary/5 border border-primary/20 rounded-lg">
+          <span class="material-symbols-outlined text-primary text-lg">tips_and_updates</span>
+          <p class="text-[12px] text-on-surface-variant leading-snug">
+            Nossa IA vai identificar <strong>data, horário, hospital, médico, paciente, procedimento</strong> e <strong>observações</strong> e preencher o formulário de agendamento automaticamente.
+          </p>
+        </div>
+
+        <button
+          onclick="runAiExtraction()"
+          class="w-full py-3.5 bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-md">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">auto_awesome</span>
+          Analisar com IA
+        </button>
+      </div>
+
+      <!-- STEP 2: AI Loading -->
+      <div id="email-step-2" class="hidden p-5">
+        <div class="flex flex-col items-center justify-center py-16 space-y-6 text-center">
+          <div class="relative w-20 h-20">
+            <div class="absolute inset-0 rounded-full border-4 border-primary/20 animate-ping"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-t-primary border-r-primary/40 border-b-primary/10 border-l-primary/40 animate-spin"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1">smart_toy</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-title-sm font-bold text-on-surface mb-1">Analisando o e-mail...</h3>
+            <p id="ai-status-msg" class="text-body-sm text-on-surface-variant">Lendo o conteúdo do e-mail</p>
+          </div>
+          <div class="w-full max-w-xs bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+            <div id="ai-progress-bar" class="h-full bg-primary rounded-full transition-all duration-500" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Results -->
+      <div id="email-step-3" class="hidden p-5 space-y-4">
+        <!-- AI confidence badge -->
+        <div class="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-xl">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-green-600 text-lg" style="font-variation-settings:'FILL' 1">verified</span>
+            <div>
+              <p class="text-[12px] font-bold text-green-800">IA extraiu os dados com sucesso</p>
+              <p class="text-[11px] text-green-700">Revise e ajuste os campos antes de confirmar</p>
+            </div>
+          </div>
+          <span class="px-2 py-1 bg-green-600 text-white text-[10px] font-black rounded-full">97% confiança</span>
+        </div>
+
+        <!-- Extracted fields form -->
+        <div class="space-y-3">
+          <h3 class="text-label-bold font-label-bold text-on-surface-variant uppercase tracking-wider">Dados Extraídos</h3>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-sm">calendar_today</span>Data
+              </label>
+              <input id="ext-date" type="date" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+            </div>
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-sm">schedule</span>Horário
+              </label>
+              <input id="ext-time" type="time" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+              <span class="material-symbols-outlined text-primary text-sm">local_hospital</span>Hospital
+            </label>
+            <input id="ext-hospital" type="text" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-sm">stethoscope</span>Médico
+              </label>
+              <input id="ext-doctor" type="text" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+            </div>
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-sm">person</span>Paciente
+              </label>
+              <input id="ext-patient" type="text" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+              <span class="material-symbols-outlined text-primary text-sm">medical_services</span>Procedimento
+            </label>
+            <input id="ext-procedure" type="text" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+              <span class="material-symbols-outlined text-primary text-sm">engineering</span>Instrumentador
+            </label>
+            <input id="ext-instrumentador" type="text" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+              <span class="material-symbols-outlined text-primary text-sm">notes</span>Observações
+            </label>
+            <textarea id="ext-notes" rows="3" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white resize-none"></textarea>
+          </div>
+        </div>
+
+        <!-- Fields not found warning -->
+        <div id="ext-missing-warning" class="hidden p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div class="flex items-start gap-2">
+            <span class="material-symbols-outlined text-yellow-600 text-sm mt-0.5">warning</span>
+            <div>
+              <p class="text-[12px] font-bold text-yellow-800">Alguns campos não foram identificados</p>
+              <p id="ext-missing-list" class="text-[11px] text-yellow-700 mt-0.5"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer actions -->
+    <div class="p-5 border-t border-outline-variant bg-white shrink-0">
+      <div id="footer-step-1" class="flex justify-between items-center">
+        <button onclick="closeEmailDrawer()" class="px-4 py-2 border border-outline-variant text-on-surface-variant rounded-lg text-label-bold font-label-bold hover:bg-surface-container transition-colors">
+          Cancelar
+        </button>
+        <p class="text-[11px] text-on-surface-variant">Cole o e-mail e clique em Analisar</p>
+      </div>
+      <div id="footer-step-2" class="hidden text-center">
+        <p class="text-[11px] text-on-surface-variant">Processando com inteligência artificial...</p>
+      </div>
+      <div id="footer-step-3" class="hidden flex gap-3">
+        <button onclick="resetEmailDrawer()" class="flex-1 py-2.5 border border-outline-variant text-on-surface-variant rounded-lg text-label-bold font-label-bold hover:bg-surface-container transition-colors">
+          Refazer
+        </button>
+        <button onclick="confirmEmailImport()" class="flex-2 flex-1 py-2.5 bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-md">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>
+          Criar Agendamento
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RIGHT DRAWER: REPLICAR PEDIDO -->
+<div id="replicate-drawer" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex justify-end" onclick="if(event.target===this)closeReplicateDrawer()">
+  <div class="w-full max-w-[600px] bg-surface h-full shadow-2xl flex flex-col border-l border-outline-variant animate-slide-in-right">
+    <!-- Header -->
+    <div class="p-5 border-b border-outline-variant flex items-center justify-between bg-white shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-on-primary text-lg" style="font-variation-settings:'FILL' 1">content_copy</span>
+        </div>
+        <div>
+          <h2 class="text-title-sm font-bold text-on-surface leading-tight">Replicar Pedido</h2>
+          <p class="text-[11px] text-on-surface-variant">Revise as informações antes de criar a cópia</p>
+        </div>
+      </div>
+      <button onclick="closeReplicateDrawer()" class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+
+    <!-- Scrollable Body -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-4">
+        <div class="space-y-3">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Data do Novo Pedido</label>
+              <input type="date" value="2023-10-30" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+            </div>
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Horário</label>
+              <input type="time" value="08:00" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Hospital</label>
+            <input type="text" value="Hospital Santa Catarina" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Médico</label>
+              <input type="text" value="Dr. Marcos Viana" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+            </div>
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Paciente</label>
+              <input type="text" value="João dos Santos" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Procedimento</label>
+            <input type="text" value="Artroscopia de Joelho" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white"/>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Observações</label>
+            <textarea rows="3" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary outline-none bg-white resize-none">Cópia do pedido original.</textarea>
+          </div>
+
+          <!-- Produtos Selecionados Section -->
+          <div class="pt-4 border-t border-outline-variant/50">
+            <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-3 block">Produtos do Pedido Original</label>
+            <div class="space-y-2">
+              <div class="flex items-center gap-3 p-3 bg-surface-container-low border border-outline-variant rounded-lg">
+                <div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-bold text-on-surface truncate">Kit Artroscopia Padrão</p>
+                  <p class="text-[11px] text-on-surface-variant truncate">Qtd: 1 • Consumível</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-surface-container-low border border-outline-variant rounded-lg">
+                <div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">biotech</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-bold text-on-surface truncate">Torre de Vídeo Storz</p>
+                  <p class="text-[11px] text-on-surface-variant truncate">Qtd: 1 • Equipamento</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Footer actions -->
+    <div class="p-5 border-t border-outline-variant bg-white shrink-0">
+      <div class="flex gap-3">
+        <button onclick="closeReplicateDrawer()" class="flex-1 py-2.5 border border-outline-variant text-on-surface-variant rounded-lg text-label-bold font-label-bold hover:bg-surface-container transition-colors">
+          Cancelar
+        </button>
+        <button onclick="confirmReplicate()" class="flex-2 flex-1 py-2.5 bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-md">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>
+          Confirmar Replicação
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// EMAIL IMPORT IA — Prototype logic
+// ═══════════════════════════════════════════════════════
+
+function closeEmailDrawer() {
+  document.getElementById('email-drawer').classList.add('hidden');
+  resetEmailDrawer();
+}
+
+function openReplicateDrawer() {
+  var d = document.getElementById('action-drop-1');
+  if(d) d.classList.add('hidden');
+  document.getElementById('replicate-drawer').classList.remove('hidden');
+}
+
+function closeReplicateDrawer() {
+  document.getElementById('replicate-drawer').classList.add('hidden');
+}
+
+function confirmReplicate() {
+  closeReplicateDrawer();
+  const toast = document.createElement('div');
+  toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-on-surface text-white px-5 py-3 rounded-xl shadow-xl text-body-sm font-bold animate-bounce';
+  toast.innerHTML = '<span class="material-symbols-outlined text-green-400" style="font-variation-settings:\\\'FILL\\\' 1">check_circle</span> Pedido replicado com sucesso!';
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity='0'; toast.style.transition='opacity 0.5s'; setTimeout(()=>toast.remove(),500); }, 3000);
+}
+
+function resetEmailDrawer() {
+  document.getElementById('email-text-input').value = '';
+  showEmailStep(1);
+}
+
+function showEmailStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('email-step-' + i).classList.toggle('hidden', i !== n);
+    document.getElementById('footer-step-' + i).classList.toggle('hidden', i !== n);
+  });
+  // Update step dots
+  const dots = [1,2,3];
+  dots.forEach(i => {
+    const circleEl = document.getElementById('step-dot-' + i + '-circle');
+    const dotEl = document.getElementById('step-dot-' + i);
+    if (!circleEl || !dotEl) return;
+    if (i < n) {
+      circleEl.className = 'w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-black';
+      circleEl.textContent = '✓';
+      dotEl.className = dotEl.className.replace('text-on-surface-variant','text-green-600 font-bold');
+    } else if (i === n) {
+      circleEl.className = 'w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-black';
+      circleEl.textContent = i;
+    } else {
+      circleEl.className = 'w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center text-[10px] font-black';
+      circleEl.textContent = i;
+    }
+  });
+}
+
+// ── Simulated AI extraction ──────────────────────────
+function extractFromText(text) {
+  const t = text;
+  const result = {};
+
+  // Date: DD/MM/YYYY or YYYY-MM-DD
+  const dateMatch = t.match(/\b(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})\b/) ||
+                    t.match(/Data[:\s]+(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/i);
+  if (dateMatch) {
+    let d, m, y;
+    if (dateMatch.length === 4) {
+      d = dateMatch[1].padStart(2,'0'); m = dateMatch[2].padStart(2,'0'); y = dateMatch[3].length===2?'20'+dateMatch[3]:dateMatch[3];
+    } else {
+      d = dateMatch[1].padStart(2,'0'); m = dateMatch[2].padStart(2,'0'); y = dateMatch[3].length===2?'20'+dateMatch[3]:dateMatch[3];
+    }
+    result.date = `${y}-${m}-${d}`;
+  }
+
+  // Time: HH:MM
+  const timeMatch = t.match(/Hor[aá]rio[:\s]+(\d{1,2}):(\d{2})/i) || t.match(/\b(\d{1,2}):(\d{2})\s*(h|hs)?\b/i);
+  if (timeMatch) result.time = `${timeMatch[1].padStart(2,'0')}:${timeMatch[2]}`;
+
+  // Hospital
+  const hospitalMatch = t.match(/Hospital[:\s]+([^\n\r]+)/i) ||
+                        t.match(/(Hospital\s+[\wÀ-ÿ\s]+)/i) ||
+                        t.match(/Clínica[:\s]+([^\n\r]+)/i);
+  if (hospitalMatch) result.hospital = hospitalMatch[1].trim().replace(/–.*$/,'').trim();
+
+  // Doctor
+  const drMatch = t.match(/Cirurgi[aã]o[:\s]+([^\n\r]+)/i) ||
+                  t.match(/M[eé]dico[:\s]+([^\n\r]+)/i) ||
+                  t.match(/(Dr[a]?\.\s+[\wÀ-ÿ\s]+?)(?:\s*\(|[\n\r]|CRM)/i);
+  if (drMatch) result.doctor = drMatch[1].trim();
+
+  // Patient
+  const patMatch = t.match(/Paciente[:\s]+([^\n\r]+)/i) ||
+                   t.match(/Nome[:\s]+([^\n\r]+)/i);
+  if (patMatch) result.patient = patMatch[1].trim();
+
+  // Procedure
+  const procMatch = t.match(/Procedimento[:\s]+([^\n\r]+)/i) ||
+                    t.match(/Cirurgia[:\s]+([^\n\r]+)/i) ||
+                    t.match(/Interven[çc][aã]o[:\s]+([^\n\r]+)/i);
+  if (procMatch) result.procedure = procMatch[1].trim();
+
+  // Instrumentador
+  const instrMatch = t.match(/Instrumentador[:\s]+([^\n\r]+)/i) ||
+                     t.match(/Enfermeira?[:\s]+([^\n\r]+)/i);
+  if (instrMatch) result.instrumentador = instrMatch[1].trim();
+
+  // Notes
+  const notesMatch = t.match(/Observa[çc][oõ]es?[:\s]+([^\n\r]+(?:\n[^\n\r]+)*)/i) ||
+                     t.match(/Obs[\.:\s]+([^\n\r]+)/i);
+  if (notesMatch) result.notes = notesMatch[1].trim();
+
+  return result;
+}
+
+function runAiExtraction() {
+  const text = document.getElementById('email-text-input').value.trim();
+  if (!text || text.length < 20) {
+    document.getElementById('email-text-input').classList.add('border-error','ring-2','ring-error');
+    setTimeout(() => document.getElementById('email-text-input').classList.remove('border-error','ring-2','ring-error'), 2000);
+    return;
+  }
+
+  showEmailStep(2);
+
+  const statusMessages = [
+    'Lendo o conteúdo do e-mail...',
+    'Identificando remetente e assunto...',
+    'Extraindo data e horário...',
+    'Identificando hospital e cirurgião...',
+    'Extraindo dados do paciente...',
+    'Verificando procedimento e materiais...',
+    'Consolidando informações...',
+  ];
+
+  let step = 0;
+  const progressBar = document.getElementById('ai-progress-bar');
+  const statusMsg   = document.getElementById('ai-status-msg');
+
+  const interval = setInterval(() => {
+    step++;
+    const pct = Math.min(100, Math.round((step / statusMessages.length) * 100));
+    progressBar.style.width = pct + '%';
+    if (statusMessages[step - 1]) statusMsg.textContent = statusMessages[step - 1];
+
+    if (step >= statusMessages.length) {
+      clearInterval(interval);
+      setTimeout(() => {
+        const extracted = extractFromText(text);
+        populateExtractedFields(extracted);
+        showEmailStep(3);
+      }, 600);
+    }
+  }, 380);
+}
+
+function populateExtractedFields(data) {
+  const fields = ['date','time','hospital','doctor','patient','procedure','instrumentador','notes'];
+  const missing = [];
+
+  fields.forEach(f => {
+    const el = document.getElementById('ext-' + f);
+    if (!el) return;
+    if (data[f]) {
+      el.value = data[f];
+      el.classList.add('border-green-400','bg-green-50');
+      setTimeout(() => el.classList.remove('border-green-400','bg-green-50'), 2000);
+    } else {
+      const labels = {date:'Data',time:'Horário',hospital:'Hospital',doctor:'Médico',patient:'Paciente',procedure:'Procedimento',instrumentador:'Instrumentador',notes:'Observações'};
+      missing.push(labels[f]);
+    }
+  });
+
+  const warn = document.getElementById('ext-missing-warning');
+  if (missing.length > 0) {
+    document.getElementById('ext-missing-list').textContent = 'Não encontrado: ' + missing.join(', ');
+    warn.classList.remove('hidden');
+  } else {
+    warn.classList.add('hidden');
+  }
+}
+
+function confirmEmailImport() {
+  const data = {
+    date:           document.getElementById('ext-date').value,
+    time:           document.getElementById('ext-time').value,
+    hospital:       document.getElementById('ext-hospital').value,
+    doctor:         document.getElementById('ext-doctor').value,
+    patient:        document.getElementById('ext-patient').value,
+    procedure:      document.getElementById('ext-procedure').value,
+    instrumentador: document.getElementById('ext-instrumentador').value,
+    notes:          document.getElementById('ext-notes').value,
+  };
+
+  // Build URL query params and redirect to scheduling form
+  const params = new URLSearchParams();
+  Object.entries(data).forEach(([k,v]) => { if(v) params.set(k, v); });
+  closeEmailDrawer();
+
+  // Show brief success toast
+  const toast = document.createElement('div');
+  toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-on-surface text-white px-5 py-3 rounded-xl shadow-xl text-body-sm font-bold animate-bounce';
+  toast.innerHTML = '<span class="material-symbols-outlined text-green-400" style="font-variation-settings:\'FILL\' 1">check_circle</span> Agendamento criado com sucesso!';
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity='0'; toast.style.transition='opacity 0.5s'; setTimeout(()=>toast.remove(),500); }, 3000);
+}
+</script>
+<script>
+function toggleStatusDrop(id){
+  var d=document.getElementById('status-drop-'+id);
+  document.querySelectorAll('[id^="status-drop-"]').forEach(function(x){if(x.id!=='status-drop-'+id)x.classList.add('hidden');});
+  document.querySelectorAll('[id^="action-drop-"]').forEach(function(x){x.classList.add('hidden');});
+  d.classList.toggle('hidden');
+}
+
+function toggleActionDrop(id){
+  var d=document.getElementById('action-drop-'+id);
+  document.querySelectorAll('[id^="action-drop-"]').forEach(function(x){if(x.id!=='action-drop-'+id)x.classList.add('hidden');});
+  document.querySelectorAll('[id^="status-drop-"]').forEach(function(x){x.classList.add('hidden');});
+  d.classList.toggle('hidden');
+}
+
+function setStatus(id,label,cls,dot){
+  if (!confirm('Deseja realmente alterar o status do pedido para "' + label + '"?')) return;
+  var wrap=document.getElementById('status-wrap-'+id);
+  var btn=wrap.querySelector('button');
+  
+  // Update button content
+  btn.innerHTML='<span class="w-1.5 h-1.5 rounded-full '+dot+'"></span>'+label+'<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span>';
+  
+  // Safely update Tailwind classes (keep layout/sizing, replace colors)
+  const baseClasses = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold hover:ring-2 transition-all';
+  btn.className = baseClasses + ' ' + cls;
+  
+  document.getElementById('status-drop-'+id).classList.add('hidden');
+  
+  // Visual feedback on the row
+  var row = wrap.closest('tr');
+  if(row) {
+      const originalBg = row.className.includes('bg-red-50') ? 'bg-red-50' : '';
+      row.classList.remove('bg-red-50');
+      row.classList.add('bg-primary/5', 'transition-colors', 'duration-500');
+      setTimeout(() => {
+          row.classList.remove('bg-primary/5');
+          if(originalBg) row.classList.add(originalBg);
+      }, 1000);
+  }
+
+  // Show Success Toast
+  const toast = document.createElement('div');
+  toast.className = 'fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-on-surface text-white px-5 py-3 rounded-xl shadow-xl text-body-sm font-bold animate-bounce';
+  toast.innerHTML = '<span class="material-symbols-outlined text-green-400" style="font-variation-settings:\'FILL\' 1">check_circle</span> Status atualizado: ' + label;
+  document.body.appendChild(toast);
+  setTimeout(() => { 
+      toast.style.opacity='0'; 
+      toast.style.transition='opacity 0.5s'; 
+      setTimeout(()=>toast.remove(),500); 
+  }, 3000);
+}
+
+document.addEventListener('click',function(e){
+  if(!e.target.closest('[id^="status-wrap-"]') && !e.target.closest('[id^="action-wrap-"]')) {
+      document.querySelectorAll('[id^="status-drop-"]').forEach(function(d){d.classList.add('hidden');});
+      document.querySelectorAll('[id^="action-drop-"]').forEach(function(d){d.classList.add('hidden');});
+  }
+});
+
+// CACHE SYSTEM LOGIC
+function loadCachedAppointments() {
+    const cache = localStorage.getItem('previx_appointments');
+    if (!cache) return;
+
+    const appointments = JSON.parse(cache);
+    const today = new Date().toISOString().split('T')[0];
+
+    appointments.forEach(app => {
+        const isToday = app.date === today;
+        const targetTbody = document.getElementById(isToday ? 'tbody-hoje' : 'tbody-proximos');
+        
+        if (!targetTbody) return;
+
+        const row = document.createElement('tr');
+        row.className = 'hover:bg-surface-container-low transition-colors animate-fade-in';
+        row.innerHTML = `
+            <td class="px-6 py-5 w-[10%]">
+<div class="flex flex-col">
+    ${!isToday ? `<span class="text-[10px] font-bold text-primary/60 uppercase tracking-tight mb-0.5">${formatDateString(app.date)}</span>` : ''}
+    <span class="text-title-sm font-bold text-on-surface">${app.time || '00:00'}</span>
+    <span class="text-[10px] text-primary font-medium flex items-center gap-1">
+        <span class="material-symbols-outlined text-[12px]">local_shipping</span>
+        Entrega: ${app.deliveryTime || '--:--'}
+    </span>
+</div>
+</td>
+            <td class="px-6 py-5 w-[18%]">
+                <div class="flex flex-col">
+                    <span class="font-bold text-body-md text-on-surface">${app.patient}</span>
+                    <span class="text-body-sm text-on-surface-variant">${app.procedure}</span>
+                </div>
+            </td>
+            <td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">${app.representative || 'Pedro Mendes'}</td>
+            <td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">${app.instrumentist || 'Fernanda Luz'}</td>
+            <td class="px-6 py-5 w-[15%]">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-outline text-lg" data-icon="local_hospital">local_hospital</span>
+                    <span class="text-body-sm text-on-surface">${app.hospital}</span>
+                </div>
+            </td>
+            <td class="px-6 py-5 w-[12%]">
+                <div class="flex flex-col gap-1">
+                    <div class="flex items-center justify-between text-[11px] mb-1">
+                        <span>Materiais</span>
+                        <span class="font-bold">${app.materialsProgress}%</span>
+                    </div>
+                    <div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-primary h-full w-[${app.materialsProgress}%]"></div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-5 w-[14%]">
+                <div class="relative" id="status-wrap-${app.id}">
+                    <button onclick="toggleStatusDrop('${app.id}')" class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 text-amber-700 rounded-full text-[11px] font-bold hover:ring-2 transition-all">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>${app.status}
+                        <span class="material-symbols-outlined text-[14px]">arrow_drop_down</span>
+                    </button>
+                    <div id="status-drop-${app.id}" class="hidden absolute right-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
+                        <button onclick="setStatus('${app.id}','Confirmado','bg-green-100 text-green-700','bg-green-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
+                        <button onclick="setStatus('${app.id}','Em Rota','bg-blue-100 text-blue-700','bg-blue-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
+                        <button onclick="setStatus('${app.id}','Pendente','bg-amber-100 text-amber-700','bg-amber-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-5 text-right relative w-[7%]" id="action-wrap-${app.id}">
+                <button onclick="toggleActionDrop('${app.id}')" class="p-2 hover:bg-surface-container-high rounded-lg text-outline">
+                    <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+                </button>
+                <div id="action-drop-${app.id}" class="hidden absolute right-6 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
+                    <button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
+                    <button class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface text-error" onclick="deleteAppointment('${app.id}')"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
+                </div>
+            </td>
+        `;
+        targetTbody.appendChild(row);
+    });
+}
+
+function formatDateString(dateStr) {
+    if (!dateStr) return '';
+    const [y, m, d] = dateStr.split('-');
+    const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+    return `${d} ${months[parseInt(m) - 1]}`;
+}
+
+function deleteRow(id) {
+    if(!confirm('Deseja realmente excluir este agendamento?')) return;
+    const row = document.getElementById('action-wrap-' + id).closest('tr');
+    row.style.opacity = '0';
+    row.style.transition = 'all 0.5s';
+    setTimeout(() => row.remove(), 500);
+}
+
+function deleteAppointment(id) {
+    if(!confirm('Deseja excluir este agendamento do cache?')) return;
+    const cache = localStorage.getItem('previx_appointments');
+    if (!cache) return;
+    const appointments = JSON.parse(cache).filter(a => a.id.toString() !== id.toString());
+    localStorage.setItem('previx_appointments', JSON.stringify(appointments));
+    location.reload();
+}
+
+window.onload = loadCachedAppointments;
+</script></body></html>

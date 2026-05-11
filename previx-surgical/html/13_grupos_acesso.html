@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#630ed4",
+                        "primary-hover": "#4e0baf",
+                        "surface-container": "#f3ebfa",
+                        "surface-container-low": "#f9f1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#ede5f4",
+                        "surface-container-highest": "#e8dfee",
+                        "on-surface": "#1d1a24",
+                        "on-surface-variant": "#4a4455",
+                        "outline-variant": "#ccc3d8",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#eaddff",
+                        "on-secondary-fixed": "#25005a",
+                        "error": "#ba1a1a",
+                        "primary-container": "#7c3aed",
+                        "on-primary-container": "#ede0ff",
+                        "outline": "#7b7487",
+                        "success": "#16a34a",
+                        "success-container": "#dcfce7",
+                        "on-success-container": "#166534"
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .sidebar-active {
+            background-color: #eaddff;
+            color: #25005a;
+            font-weight: 700;
+            border-left: 4px solid #630ed4;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+
+        /* Custom toggle switch style */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc3d8;
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #630ed4;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+
+<body class="text-on-surface">
+
+    <!-- SideNavBar -->
+    <aside
+        class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+        <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
+            title="Ir para Dashboard">
+            <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+                <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+            </div>
+            <div>
+                <h1 class="text-[18px] font-black text-primary">Previx</h1>
+                <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+            </div>
+        </a>
+        <div class="px-4 mb-4">
+            <button onclick="window.location.href='05_novo_agendamento.html'"
+                class="w-full bg-primary text-on-primary py-3 rounded-lg font-bold text-xs flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+                <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+                Novo Procedimento
+            </button>
+        </div>
+        <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="../index.html">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span class="text-xs font-bold">Dashboard</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="01_agenda.html">
+                <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                <span class="text-xs font-bold">Agenda</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="10_relatorios.html">
+                <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                <span class="text-xs font-bold">Relatórios</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="06_cadastros_base.html">
+                <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+                <span class="text-xs font-bold">Cadastros Base</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="07_gestao_usuarios.html">
+                <span class="material-symbols-outlined" data-icon="group">group</span>
+                <span class="text-xs font-bold">Usuários</span>
+            </a>
+        </nav>
+        <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+            <a class="sidebar-active flex items-center gap-3 px-4 py-3 transition-all" href="12_configuracoes.html">
+                <span class="material-symbols-outlined" data-icon="settings">settings</span>
+                <span class="text-xs font-bold">Configurações</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="help">help</span>
+                <span class="text-xs font-bold">Suporte</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- TopNavBar -->
+    <header
+        class="fixed top-0 right-0 left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-8 z-20">
+        <div class="flex items-center gap-4 flex-1">
+            <a href="12_configuracoes.html"
+                class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm font-semibold">
+                <span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+                Voltar para Configurações
+            </a>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="text-right">
+                    <p class="text-xs font-bold text-on-surface">Dr. Ricardo Silva</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+                </div>
+                <div
+                    class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-sm">
+                    DR</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="ml-[260px] pt-[64px] min-h-screen pb-12">
+        <div class="p-8 max-w-[1400px] mx-auto">
+
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-on-surface mb-1 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-[32px]"
+                            data-icon="admin_panel_settings">admin_panel_settings</span>
+                        Grupos de Acesso
+                    </h2>
+                    <p class="text-on-surface-variant text-sm">Gerencie o acesso às telas e ações permitidas para cada
+                        perfil da plataforma.</p>
+                </div>
+                <button
+                    class="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold text-sm shadow-sm hover:opacity-90 transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span> Criar Novo Grupo
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-220px)]">
+
+                <!-- Left Panel: Roles List -->
+                <div class="lg:col-span-3 flex flex-col gap-3">
+                    <div
+                        class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex-1 flex flex-col">
+                        <div
+                            class="p-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+                            <h3 class="font-bold text-on-surface">Grupos (Roles)</h3>
+                            <span
+                                class="text-xs font-bold bg-primary-container text-on-primary-container px-2 py-0.5 rounded-full">4</span>
+                        </div>
+
+                        <div class="flex-1 overflow-y-auto p-2 space-y-1">
+                            <!-- Active Role -->
+                            <div
+                                class="p-3 bg-primary/10 border border-primary/30 rounded-lg cursor-pointer transition-colors relative">
+                                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-md">
+                                </div>
+                                <div class="flex justify-between items-start pl-2">
+                                    <div>
+                                        <h4 class="font-bold text-primary text-sm mb-0.5">Instrumentador</h4>
+                                        <p class="text-[10px] text-on-surface-variant">12 usuários vinculados</p>
+                                    </div>
+                                    <span class="material-symbols-outlined text-[16px] text-primary"
+                                        data-icon="chevron_right">chevron_right</span>
+                                </div>
+                            </div>
+
+                            <!-- Inactive Roles -->
+                            <div
+                                class="p-3 border border-transparent hover:bg-surface-container-highest rounded-lg cursor-pointer transition-colors">
+                                <div class="flex justify-between items-start pl-2">
+                                    <div>
+                                        <h4 class="font-bold text-on-surface text-sm mb-0.5">Administrador</h4>
+                                        <p class="text-[10px] text-on-surface-variant">3 usuários vinculados</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-3 border border-transparent hover:bg-surface-container-highest rounded-lg cursor-pointer transition-colors">
+                                <div class="flex justify-between items-start pl-2">
+                                    <div>
+                                        <h4 class="font-bold text-on-surface text-sm mb-0.5">Médico Cirurgião</h4>
+                                        <p class="text-[10px] text-on-surface-variant">45 usuários vinculados</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-3 border border-transparent hover:bg-surface-container-highest rounded-lg cursor-pointer transition-colors">
+                                <div class="flex justify-between items-start pl-2">
+                                    <div>
+                                        <h4 class="font-bold text-on-surface text-sm mb-0.5">Recepção</h4>
+                                        <p class="text-[10px] text-on-surface-variant">8 usuários vinculados</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Permissions Matrix -->
+                <div class="lg:col-span-9 flex flex-col">
+                    <div
+                        class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex-1 flex flex-col">
+
+                        <!-- Role Info Header -->
+                        <div
+                            class="p-6 border-b border-outline-variant bg-surface-container-lowest flex items-start justify-between">
+                            <div>
+                                <div class="flex items-center gap-3 mb-2">
+                                    <h3 class="text-xl font-bold text-on-surface">Permissões: Instrumentador</h3>
+                                    <span
+                                        class="px-2.5 py-0.5 bg-success-container text-on-success-container text-[10px] font-bold uppercase tracking-wider rounded-md border border-success/20">Ativo</span>
+                                </div>
+                                <p class="text-sm text-on-surface-variant max-w-2xl">Equipe técnica responsável por
+                                    separar materiais cirúrgicos e visualizar as agendas de cirurgias. Não possuem
+                                    permissão para criar agendamentos ou alterar configurações de custo.</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button
+                                    class="px-4 py-2 border border-outline-variant text-on-surface-variant rounded-lg font-semibold text-sm hover:bg-surface-container transition-colors">Duplicar</button>
+                                <button
+                                    class="px-4 py-2 bg-primary text-white rounded-lg font-semibold text-sm shadow-sm hover:opacity-90 transition-opacity">Salvar
+                                    Regras</button>
+                            </div>
+                        </div>
+
+                        <!-- Permissions List -->
+                        <div class="flex-1 overflow-y-auto bg-surface/30">
+                            <div class="p-6 space-y-8">
+
+                                <!-- Module: Agenda & Dashboard -->
+                                <div>
+                                    <h4
+                                        class="text-sm font-bold text-primary uppercase tracking-wider mb-4 border-b border-outline-variant/50 pb-2 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-[18px]"
+                                            data-icon="calendar_month">calendar_month</span> Módulos: Agenda & Dashboard
+                                    </h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Visualizar Agenda Completa
+                                                </p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Acesso de leitura ao
+                                                    calendário de cirurgias.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Criar / Editar Agendamento
+                                                </p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Permite iniciar um
+                                                    novo agendamento de cirurgia.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Visualizar Dashboard</p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Acesso aos indicadores
+                                                    de uso de equipamentos.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Module: Gestão Cirúrgica (Wizard & Visual Grid) -->
+                                <div>
+                                    <h4
+                                        class="text-sm font-bold text-primary uppercase tracking-wider mb-4 border-b border-outline-variant/50 pb-2 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-[18px]"
+                                            data-icon="biotech">biotech</span> Módulo: Seleção e Fluxo Cirúrgico
+                                    </h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Acesso ao Grid Visual de
+                                                    Materiais</p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Pode navegar pela
+                                                    galeria visual de produtos.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Aprovar Saída de Materiais
+                                                </p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Permite fechar o
+                                                    carrinho (bundle) para uso.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Visualizar Custos/Valores
+                                                </p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Exibe informações
+                                                    financeiras dos kits e consumíveis.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm opacity-60">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Forçar Conflito de Agenda
+                                                </p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Permite ignorar o
+                                                    alerta de conflito de equipamento.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" disabled>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Module: Admin -->
+                                <div>
+                                    <h4
+                                        class="text-sm font-bold text-primary uppercase tracking-wider mb-4 border-b border-outline-variant/50 pb-2 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-[18px]"
+                                            data-icon="settings">settings</span> Módulos: Administrativo
+                                    </h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Acesso ao Cadastro Base</p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Hospitais, Médicos e
+                                                    Equipamentos.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="bg-white border border-outline-variant rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                            <div>
+                                                <p class="font-bold text-on-surface text-sm">Gestão de Usuários</p>
+                                                <p class="text-xs text-on-surface-variant mt-0.5">Criar, editar e
+                                                    suspender usuários.</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Previx – Seleção Visual de Materiais</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary":"#630ed4","on-primary":"#ffffff","secondary":"#6a4fa0","on-secondary":"#ffffff","secondary-fixed":"#eaddff","on-secondary-fixed":"#25005a","surface":"#fef7ff","surface-container-low":"#f9f1ff","surface-container":"#f3ebfa","surface-container-high":"#ede5f4","surface-container-highest":"#e8dfee","surface-container-lowest":"#ffffff","on-surface":"#1d1a24","on-surface-variant":"#4a4455","outline":"#7b7487","outline-variant":"#ccc3d8","error":"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a"},"fontSize":{"title-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"body-sm":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-bold":["12px",{"lineHeight":"16px","letterSpacing":"0.05em","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}]}}}}
+</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+body{font-family:'Inter',sans-serif;background:#fef7ff}
+.cat-active{background:#630ed4;color:#fff;border-color:#630ed4}
+.card-selected{border:2px solid #630ed4;background:#f3ebfa}
+.fade-in { animation: fadeIn 0.3s ease-in; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body class="text-on-surface">
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+  <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity">
+    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm">
+      <span class="material-symbols-outlined">clinical_notes</span>
+    </div>
+    <div><h1 class="text-title-sm font-black text-primary">Previx</h1><p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p></div>
+  </a>
+  <div class="px-4 mb-4">
+    <button onclick="location.href='05_novo_agendamento.html'" class="w-full bg-primary text-on-primary py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 shadow-sm transition-all">
+      <span class="material-symbols-outlined text-sm">add_circle</span>Novo Procedimento
+    </button>
+  </div>
+  <nav class="flex-1 px-2 space-y-1">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-colors" href="../index.html"><span class="material-symbols-outlined">dashboard</span><span class="text-sm font-bold">Dashboard</span></a>
+    <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-colors" href="01_agenda.html"><span class="material-symbols-outlined">calendar_today</span><span class="text-sm font-bold">Agenda</span></a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-colors" href="10_relatorios.html"><span class="material-symbols-outlined">assessment</span><span class="text-sm font-bold">Relatórios</span></a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-colors" href="06_cadastros_base.html"><span class="material-symbols-outlined">app_registration</span><span class="text-sm font-bold">Cadastros Base</span></a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-colors" href="07_gestao_usuarios.html"><span class="material-symbols-outlined">group</span><span class="text-sm font-bold">Usuários</span></a>
+  </nav>
+  <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-colors" href="06_cadastros_base.html"><span class="material-symbols-outlined">settings</span><span class="text-sm font-bold">Configurações</span></a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-colors" href="#"><span class="material-symbols-outlined">help</span><span class="text-sm font-bold">Suporte</span></a>
+  </div>
+</aside>
+
+<!-- Header -->
+<header class="fixed top-0 right-0 left-[260px] h-16 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-8 z-10 shadow-sm">
+  <div class="flex items-center gap-3">
+    <button onclick="location.href='01_agenda.html'" class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant transition-colors"><span class="material-symbols-outlined">arrow_back</span></button>
+    <div class="relative flex items-center">
+      <span class="material-symbols-outlined text-outline absolute left-3">search</span>
+      <input id="search-input" oninput="filterItems()" class="pl-10 pr-4 py-2 bg-surface-container border-none rounded-full focus:ring-2 focus:ring-primary text-body-sm w-80 transition-all" placeholder="Buscar materiais, kits ou equipamentos..." type="text"/>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full relative transition-colors">
+      <span class="material-symbols-outlined">notifications</span>
+      <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+    </button>
+    <div class="flex items-center gap-3 pl-6 border-l border-outline-variant">
+      <div class="text-right">
+        <p class="text-body-sm font-bold text-on-surface">Ricardo Silva</p>
+        <p class="text-[10px] text-on-surface-variant">Administrador</p>
+      </div>
+      <img alt="User" class="w-10 h-10 rounded-full object-cover border-2 border-primary/20" src="https://ui-avatars.com/api/?name=Ricardo+Silva&background=630ed4&color=fff"/>
+    </div>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="ml-[260px] mt-16">
+<div class="max-w-[1600px] mx-auto flex h-[calc(100vh-64px)]">
+
+  <!-- Left: Catalog -->
+  <div class="flex-1 overflow-y-auto p-8 space-y-8 bg-surface-container-lowest">
+    <!-- Header -->
+    <div class="flex justify-between items-start mb-2">
+      <div>
+        <h2 class="text-display-lg font-bold text-on-surface">Seleção Visual</h2>
+        <p class="text-body-md text-on-surface-variant mt-1">Configure o agendamento e selecione os recursos necessários.</p>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="location.href='08_selecao_step_wizard.html'" class="flex items-center gap-2 px-5 py-2.5 border-2 border-primary/20 text-primary rounded-xl text-sm font-bold hover:bg-primary/5 transition-all">
+          <span class="material-symbols-outlined text-[20px]">linear_scale</span>Modo Wizard
+        </button>
+      </div>
+    </div>
+
+    <!-- Dados Gerais Compactos -->
+    <div class="bg-white border border-outline-variant rounded-2xl p-5 shadow-sm">
+      <div class="flex items-center justify-between cursor-pointer" onclick="document.getElementById('dados-gerais-form').classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+         <h3 class="font-bold text-sm text-on-surface flex items-center gap-2">
+           <span class="material-symbols-outlined text-primary">calendar_clock</span>
+           Dados Básicos do Agendamento
+         </h3>
+         <span class="material-symbols-outlined text-outline-variant transition-transform chevron">expand_more</span>
+      </div>
+      
+      <div id="dados-gerais-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
+          <div class="space-y-1">
+              <label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Data</label>
+              <input type="date" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm bg-surface-container-lowest focus:ring-1 focus:ring-primary outline-none">
+          </div>
+          <div class="space-y-1">
+              <label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Horário</label>
+              <input type="time" class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm bg-surface-container-lowest focus:ring-1 focus:ring-primary outline-none">
+          </div>
+          <div class="space-y-1 lg:col-span-2 xl:col-span-1">
+              <label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Hospital</label>
+              <select class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm bg-surface-container-lowest focus:ring-1 focus:ring-primary outline-none">
+                  <option>Selecione...</option>
+                  <option>Hospital Santa Catarina</option>
+                  <option>Hospital Albert Einstein</option>
+                  <option>Hospital Sírio-Libanês</option>
+              </select>
+          </div>
+          <div class="space-y-1">
+              <label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Médico</label>
+              <input type="text" placeholder="Dr. Nome..." class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm bg-surface-container-lowest focus:ring-1 focus:ring-primary outline-none">
+          </div>
+          <div class="space-y-1 lg:col-span-2 xl:col-span-1">
+              <label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Paciente</label>
+              <input type="text" placeholder="Nome do paciente..." class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm bg-surface-container-lowest focus:ring-1 focus:ring-primary outline-none">
+          </div>
+      </div>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="flex gap-2 flex-wrap">
+      <button onclick="setCategory('todos',this)" class="cat-active px-5 py-2.5 rounded-full text-sm font-bold border transition-all shadow-sm">Todos</button>
+      <button onclick="setCategory('procedimentos',this)" class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-all bg-white">Procedimentos</button>
+      <button onclick="setCategory('kits',this)" class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-all bg-white">Kits Cirúrgicos</button>
+      <button onclick="setCategory('equipamentos',this)" class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-all bg-white">Equipamentos</button>
+      <button onclick="setCategory('consumiveis',this)" class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-all bg-white">Consumíveis</button>
+    </div>
+
+    <div class="space-y-12">
+      <!-- Section: Procedimentos -->
+      <section id="sec-procedimentos" class="catalog-section">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700">
+            <span class="material-symbols-outlined text-[18px]">medical_services</span>
+          </div>
+          <h3 class="text-sm font-black text-on-surface uppercase tracking-widest">Procedimentos</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="grid-procedimentos"></div>
+      </section>
+
+      <!-- Section: Kits -->
+      <section id="sec-kits" class="catalog-section">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center text-purple-700">
+            <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+          </div>
+          <h3 class="text-sm font-black text-on-surface uppercase tracking-widest">Kits Cirúrgicos</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="grid-kits"></div>
+      </section>
+
+      <!-- Section: Equipamentos -->
+      <section id="sec-equipamentos" class="catalog-section">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-700">
+            <span class="material-symbols-outlined text-[18px]">devices</span>
+          </div>
+          <h3 class="text-sm font-black text-on-surface uppercase tracking-widest">Equipamentos</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="grid-equipamentos"></div>
+      </section>
+
+      <!-- Section: Consumiveis -->
+      <section id="sec-consumiveis" class="catalog-section">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-700">
+            <span class="material-symbols-outlined text-[18px]">healing</span>
+          </div>
+          <h3 class="text-sm font-black text-on-surface uppercase tracking-widest">Consumíveis</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="grid-consumiveis"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Right: Cart panel -->
+  <div class="w-[360px] bg-surface-container-lowest border-l border-outline-variant flex flex-col shadow-[-4px_0_15px_rgba(0,0,0,0.03)] z-10">
+    <div class="p-6 border-b border-outline-variant bg-surface-container-low/50">
+      <h3 class="font-bold text-title-sm flex items-center gap-3 text-on-surface">
+        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined">shopping_cart</span>
+        </div>
+        Recursos Selecionados
+        <span id="cart-count" class="ml-auto bg-primary text-on-primary text-xs font-black px-2.5 py-1 rounded-full shadow-sm transition-all">0</span>
+      </h3>
+    </div>
+    
+    <div id="cart-body" class="flex-1 overflow-y-auto p-6 space-y-6">
+      <div class="flex flex-col items-center justify-center h-full opacity-50 text-center space-y-4">
+        <span class="material-symbols-outlined text-6xl text-outline-variant" style="font-variation-settings: 'wght' 200">add_shopping_cart</span>
+        <p class="text-sm font-medium">Nenhum item selecionado.<br/>Clique nos cards para adicionar.</p>
+      </div>
+    </div>
+
+    <div class="p-6 border-t border-outline-variant bg-surface-container-lowest space-y-4 shadow-[0_-4px_15px_rgba(0,0,0,0.02)]">
+      <div class="flex justify-between items-center text-sm mb-2">
+        <span class="text-on-surface-variant font-bold uppercase tracking-wider text-[10px]">Total Estimado</span>
+        <span id="cart-total" class="font-black text-primary text-title-sm">0 itens</span>
+      </div>
+      <button id="btn-confirm" onclick="confirmSelection()" class="w-full py-4 bg-primary text-on-primary rounded-xl font-black flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-md opacity-50 cursor-not-allowed group" disabled>
+        <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="font-variation-settings:'FILL' 1">check_circle</span>
+        Confirmar Seleção
+      </button>
+      <button onclick="location.href='01_agenda.html'" class="w-full py-3 border border-outline-variant rounded-xl font-bold text-on-surface-variant text-sm hover:bg-surface-container-high hover:text-on-surface transition-all">Cancelar</button>
+    </div>
+  </div>
+</div>
+</main>
+
+<script>
+const CATALOG = {
+  procedimentos:[
+    {id:'p1',name:'Artrodese Cervical',desc:'Fixação com placa e parafusos',icon:'medical_services',tag:'procedimentos', color:'blue'},
+    {id:'p2',name:'Herniorrafia Inguinal',desc:'Correção de hérnia inguinal',icon:'health_and_safety',tag:'procedimentos', color:'blue'},
+    {id:'p3',name:'Artroscopia de Joelho',desc:'Videoartroscopia com ótica HD',icon:'visibility',tag:'procedimentos', color:'blue'},
+    {id:'p4',name:'Artroplastia de Quadril',desc:'Prótese total de quadril',icon:'accessibility_new',tag:'procedimentos', color:'blue'},
+  ],
+  kits:[
+    {id:'k1',name:'Kit Artrodese',desc:'Placas + parafusos + cage',icon:'architecture',tag:'kits', color:'purple'},
+    {id:'k2',name:'Kit Trauma Universal',desc:'Configuração emergências',icon:'home_repair_service',tag:'kits', color:'purple'},
+    {id:'k3',name:'Kit Artroscopia',desc:'Instrumental joelho/ombro',icon:'sports_handball',tag:'kits', color:'purple'},
+    {id:'k4',name:'Kit Laparoscopia',desc:'Trocateres e vídeo',icon:'videocam',tag:'kits', color:'purple'},
+  ],
+  equipamentos:[
+    {id:'eq1',name:'Motor Cirúrgico',desc:'Equipamento de perfuração',icon:'settings_input_component',tag:'equipamentos', color:'orange', allowQty: true, options: [
+      {id:'opt_m1', name:'DrillMaster 600 rpm'},
+      {id:'opt_m2', name:'Stryker Core High Speed'}
+    ]},
+    {id:'eq2',name:'Piezoelétrico',desc:'Corte ósseo ultrassônico',icon:'electrical_services',tag:'equipamentos', color:'orange', allowQty: true, options: [
+      {id:'opt_p1', name:'Piezo X Mod. 2023'},
+      {id:'opt_p2', name:'Piezosurgery Touch'}
+    ]},
+    {id:'eq3',name:'Ótica / Câmera',desc:'Videocirurgia',icon:'visibility',tag:'equipamentos', color:'orange', allowQty: true, options: [
+      {id:'opt_v1', name:'Ótica HD 30°'},
+      {id:'opt_v2', name:'Ótica 4K 0°'}
+    ]},
+  ],
+  consumiveis:[
+    {id:'c1',name:'Placa Cervical',desc:'Código: PL-9920',icon:'view_module',tag:'consumiveis', color:'green', allowQty: true},
+    {id:'c2',name:'Parafuso Titânio',desc:'Código: PT-1102',icon:'construction',tag:'consumiveis', color:'green', allowQty: true},
+    {id:'c3',name:'Dreno Hemovac',desc:'Drenagem pós-operatória',icon:'water_drop',tag:'consumiveis', color:'green', allowQty: true},
+    {id:'c4',name:'Fio Absorvível 2-0',desc:'Sutura interna',icon:'linear_scale',tag:'consumiveis', color:'green', allowQty: true},
+    {id:'c5',name:'Esponja Hemostática',desc:'Controle de sangramento',icon:'healing',tag:'consumiveis', color:'green', allowQty: true},
+    {id:'c6',name:'Cimento Ósseo',desc:'Fixação prótese',icon:'science',tag:'consumiveis', color:'green', allowQty: true},
+  ]
+};
+
+const COLOR_CLASSES = {
+  blue: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+  purple: { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+  orange: { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' },
+  green: { bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200' }
+};
+
+let cart={};
+let activeCat='todos';
+
+function buildGrid(section, items){
+  const el=document.getElementById('grid-'+section);
+  el.innerHTML=items.map(it=>{
+    const c = COLOR_CLASSES[it.color];
+    const qtyControls = it.allowQty ? `
+      <div class="mt-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity" onclick="event.stopPropagation()">
+        <div class="flex items-center gap-2">
+            <button onclick="updateQty('${it.id}', -1)" class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-highest flex items-center justify-center transition-colors"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+            <span id="qty-grid-${it.id}" class="text-sm font-bold w-6 text-center">0</span>
+            <button onclick="updateQty('${it.id}', 1)" class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-highest flex items-center justify-center transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+        </div>
+      </div>
+    ` : '';
+
+    const optionsDropdown = it.options ? `
+      <div class="mt-3" onclick="event.stopPropagation()">
+        <select id="sel-${it.id}" onchange="updateOption('${it.id}', this.value)" class="w-full text-xs font-bold border border-outline-variant rounded-lg px-2 py-2 bg-surface-container-lowest focus:ring-1 focus:ring-primary outline-none text-on-surface">
+          ${it.options.map(opt => `<option value="${opt.id}">${opt.name}</option>`).join('')}
+        </select>
+      </div>
+    ` : '';
+
+    return `
+    <div id="card-${it.id}" onclick="toggleItem('${it.id}')" data-name="${it.name}" data-tag="${it.tag}"
+      class="fade-in relative p-6 rounded-2xl bg-white border border-outline-variant hover:border-primary hover:shadow-lg cursor-pointer transition-all group flex flex-col h-full">
+      <div id="check-${it.id}" class="hidden absolute top-4 right-4 w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-md z-10">
+        <span class="material-symbols-outlined text-white text-[14px]" style="font-variation-settings:'FILL' 1">check</span>
+      </div>
+      <div class="w-14 h-14 rounded-2xl ${c.bg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border border-white shadow-sm">
+        <span class="material-symbols-outlined ${c.text} text-[28px]">${it.icon}</span>
+      </div>
+      <p class="font-bold text-[15px] text-on-surface mb-1 leading-tight">${it.name}</p>
+      <p class="text-[12px] text-on-surface-variant flex-1">${it.desc}</p>
+      ${optionsDropdown}
+      ${qtyControls}
+    </div>
+  `}).join('');
+}
+
+function init(){
+  buildGrid('procedimentos',CATALOG.procedimentos);
+  buildGrid('kits',CATALOG.kits);
+  buildGrid('equipamentos',CATALOG.equipamentos);
+  buildGrid('consumiveis',CATALOG.consumiveis);
+}
+
+function getItemInfo(id) {
+  const all=[...CATALOG.procedimentos,...CATALOG.kits,...CATALOG.equipamentos,...CATALOG.consumiveis];
+  return all.find(x=>x.id===id);
+}
+
+function updateOption(itemId, optionId) {
+    if (cart[itemId]) {
+        cart[itemId].selectedOptionId = optionId;
+        renderCart();
+    }
+}
+
+function getSelectedOptionId(itemId) {
+    const sel = document.getElementById('sel-' + itemId);
+    if (sel) return sel.value;
+    return null;
+}
+
+function updateQty(id, delta) {
+  const it = getItemInfo(id);
+  if (!it) return;
+
+  if (!cart[id]) {
+    if (delta > 0) {
+      cart[id] = { ...it, qty: 1 };
+      const selOpt = getSelectedOptionId(id);
+      if(selOpt) cart[id].selectedOptionId = selOpt;
+      
+      document.getElementById('card-'+id).classList.add('card-selected');
+      document.getElementById('check-'+id).classList.remove('hidden');
+    }
+  } else {
+    cart[id].qty += delta;
+    if (cart[id].qty <= 0) {
+      delete cart[id];
+      document.getElementById('card-'+id).classList.remove('card-selected');
+      document.getElementById('check-'+id).classList.add('hidden');
+      const gridQty = document.getElementById('qty-grid-'+id);
+      if(gridQty) gridQty.textContent = '0';
+    }
+  }
+  
+  if (cart[id]) {
+    const gridQty = document.getElementById('qty-grid-'+id);
+    if(gridQty) gridQty.textContent = cart[id].qty;
+  }
+  renderCart();
+}
+
+function toggleItem(id){
+  const it = getItemInfo(id);
+  if(!it)return;
+
+  if (it.allowQty) {
+     if (cart[id]) {
+         updateQty(id, -cart[id].qty); // remove it completely
+     } else {
+         updateQty(id, 1);
+     }
+     return;
+  }
+
+  if(cart[id]){
+    delete cart[id];
+    document.getElementById('card-'+id).classList.remove('card-selected');
+    document.getElementById('check-'+id).classList.add('hidden');
+  } else {
+    cart[id]={...it, qty: 1};
+    const selOpt = getSelectedOptionId(id);
+    if(selOpt) cart[id].selectedOptionId = selOpt;
+    document.getElementById('card-'+id).classList.add('card-selected');
+    document.getElementById('check-'+id).classList.remove('hidden');
+  }
+  renderCart();
+}
+
+function renderCart(){
+  const items=Object.values(cart);
+  const el=document.getElementById('cart-body');
+  
+  const totalQty = items.reduce((sum, item) => sum + (item.qty || 1), 0);
+  
+  const countBadge = document.getElementById('cart-count');
+  countBadge.textContent = totalQty;
+  
+  // Animate badge
+  countBadge.classList.add('scale-125');
+  setTimeout(() => countBadge.classList.remove('scale-125'), 200);
+
+  document.getElementById('cart-total').textContent = totalQty + (totalQty === 1 ? ' item' : ' itens');
+  
+  if(!items.length){
+    el.innerHTML=`
+      <div class="flex flex-col items-center justify-center h-full opacity-50 text-center space-y-4 fade-in">
+        <span class="material-symbols-outlined text-6xl text-outline-variant" style="font-variation-settings: 'wght' 200">add_shopping_cart</span>
+        <p class="text-sm font-medium">Nenhum item selecionado.<br/>Clique nos cards para adicionar.</p>
+      </div>`;
+    const btn=document.getElementById('btn-confirm');
+    btn.disabled=true;btn.classList.add('opacity-50','cursor-not-allowed');
+    return;
+  }
+
+  // Group by category
+  const groups = {
+    procedimentos: items.filter(i => i.tag === 'procedimentos'),
+    kits: items.filter(i => i.tag === 'kits'),
+    equipamentos: items.filter(i => i.tag === 'equipamentos'),
+    consumiveis: items.filter(i => i.tag === 'consumiveis')
+  };
+
+  let html = '';
+  const labels = { procedimentos: 'Procedimentos', kits: 'Kits Cirúrgicos', equipamentos: 'Equipamentos', consumiveis: 'Consumíveis' };
+
+  for (const [key, groupItems] of Object.entries(groups)) {
+    if (groupItems.length === 0) continue;
+    
+    html += `
+      <div class="mb-6 fade-in">
+        <h4 class="text-[10px] font-black text-on-surface-variant uppercase tracking-widest mb-3 pb-1 border-b border-outline-variant/50">${labels[key]}</h4>
+        <div class="space-y-2">
+    `;
+
+    html += groupItems.map(it => {
+      const c = COLOR_CLASSES[it.color];
+      const qtyBadge = it.allowQty && it.qty > 1 ? `<span class="bg-surface-container-high text-on-surface text-[10px] font-bold px-1.5 py-0.5 rounded ml-2">x${it.qty}</span>` : '';
+      
+      let displayDesc = it.desc;
+      if (it.options && it.selectedOptionId) {
+          const opt = it.options.find(o => o.id === it.selectedOptionId);
+          if (opt) displayDesc = opt.name;
+      }
+      
+      return `
+      <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-outline-variant shadow-sm hover:border-primary/30 transition-colors group">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <div class="w-9 h-9 rounded-lg ${c.bg} flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined ${c.text} text-[18px]">${it.icon}</span>
+          </div>
+          <div class="truncate">
+            <div class="text-xs font-bold text-on-surface flex items-center truncate">
+              <span class="truncate">${it.name}</span>
+              ${qtyBadge}
+            </div>
+            <div class="text-[10px] text-on-surface-variant truncate font-medium ${it.options ? 'text-primary' : ''}">${displayDesc}</div>
+          </div>
+        </div>
+        <button onclick="toggleItem('${it.id}')" class="text-outline hover:text-error p-1.5 rounded-lg hover:bg-error/10 transition-colors opacity-0 group-hover:opacity-100">
+          <span class="material-symbols-outlined text-[16px]">delete</span>
+        </button>
+      </div>
+      `
+    }).join('');
+
+    html += `</div></div>`;
+  }
+
+  el.innerHTML = html;
+  
+  const btn=document.getElementById('btn-confirm');
+  btn.disabled=false;btn.classList.remove('opacity-50','cursor-not-allowed');
+}
+
+function setCategory(cat,btn){
+  activeCat=cat;
+  document.querySelectorAll('[onclick^="setCategory"]').forEach(b=>{
+    b.classList.remove('cat-active','text-white');
+    b.classList.add('bg-white', 'text-on-surface-variant');
+  });
+  
+  btn.classList.remove('bg-white', 'text-on-surface-variant');
+  btn.classList.add('cat-active');
+  
+  document.querySelectorAll('.catalog-section').forEach(s=>{
+    if(cat==='todos'){
+      s.style.display='';
+      setTimeout(() => s.classList.add('fade-in'), 10);
+    }
+    else {
+      if(s.id==='sec-'+cat) {
+        s.style.display='';
+        s.classList.remove('fade-in');
+        // trigger reflow
+        void s.offsetWidth;
+        s.classList.add('fade-in');
+      } else {
+        s.style.display='none';
+      }
+    }
+  });
+}
+
+function filterItems(){
+  const q=document.getElementById('search-input').value.toLowerCase();
+  
+  document.querySelectorAll('.catalog-section').forEach(section => {
+      let hasVisibleCards = false;
+      section.querySelectorAll('[id^="card-"]').forEach(card=>{
+        const matches = !q || card.dataset.name.toLowerCase().includes(q) || card.querySelector('p:last-of-type').textContent.toLowerCase().includes(q);
+        card.style.display= matches ? '' : 'none';
+        if (matches) hasVisibleCards = true;
+      });
+      
+      // Hide the entire section header if no cards match within it
+      const header = section.querySelector('div.flex');
+      if(header) {
+          header.style.display = hasVisibleCards ? '' : 'none';
+      }
+      section.style.display = hasVisibleCards ? '' : 'none';
+  });
+  
+  // Re-apply category filter if needed
+  if (activeCat !== 'todos') {
+      document.querySelectorAll('.catalog-section').forEach(s=>{
+        if(s.id !== 'sec-'+activeCat) {
+            s.style.display='none';
+        }
+      });
+  }
+}
+
+function confirmSelection(){
+  const items=Object.values(cart);
+  const total = items.reduce((sum, item) => sum + (item.qty || 1), 0);
+  alert('Seleção confirmada! '+total+' recurso(s) adicionado(s) ao agendamento.');
+  location.href='01_agenda.html'; // Assuming it returns to agenda or a details page
+}
+
+init();
+</script>
+</body>
+</html>

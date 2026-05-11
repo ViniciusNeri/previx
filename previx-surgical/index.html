@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Previx - Dashboard</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#ffdcc6",
+            "secondary-container": "#c4a7ff",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#332f39",
+            "surface-container-high": "#ede5f4",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#d2bbff",
+            "primary-fixed": "#eaddff",
+            "primary": "#630ed4",
+            "error": "#ba1a1a",
+            "on-surface": "#1d1a24",
+            "tertiary-fixed-dim": "#ffb784",
+            "on-secondary-fixed-variant": "#523787",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#25005a",
+            "secondary": "#6a4fa0",
+            "surface-variant": "#e8dfee",
+            "outline-variant": "#ccc3d8",
+            "on-tertiary-container": "#ffe0cd",
+            "on-error-container": "#93000a",
+            "surface-container": "#f3ebfa",
+            "secondary-fixed-dim": "#d2bbff",
+            "surface-container-low": "#f9f1ff",
+            "on-tertiary-fixed-variant": "#713700",
+            "inverse-on-surface": "#f6eefc",
+            "on-primary-fixed-variant": "#5a00c6",
+            "on-primary-fixed": "#25005a",
+            "primary-container": "#7c3aed",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#523787",
+            "on-tertiary-fixed": "#301400",
+            "on-error": "#ffffff",
+            "surface-bright": "#fef7ff",
+            "on-secondary": "#ffffff",
+            "surface-dim": "#dfd7e6",
+            "on-primary-container": "#ede0ff",
+            "secondary-fixed": "#eaddff",
+            "surface": "#fef7ff",
+            "surface-tint": "#732ee4",
+            "inverse-primary": "#d2bbff",
+            "surface-container-highest": "#e8dfee",
+            "on-background": "#1d1a24",
+            "background": "#fef7ff",
+            "tertiary-container": "#a15100",
+            "outline": "#7b7487",
+            "on-surface-variant": "#4a4455",
+            "tertiary": "#7d3d00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-padding": "2rem",
+            "header-height": "64px",
+            "table-cell-padding": "1rem 1.5rem",
+            "stack-gap": "1rem",
+            "sidebar-width": "260px"
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "data-mono": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-background text-on-background">
+  <!-- SideNavBar (Authority: JSON) -->
+  <aside
+    class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+    <a href="index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
+      title="Ir para Dashboard">
+      <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+        <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+      </div>
+      <div>
+        <h1 class="text-title-sm font-black text-primary">Previx</h1>
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+      </div>
+    </a>
+    <div class="px-4 mb-4">
+      <button onclick="window.location.href='html/05_novo_agendamento.html'"
+        class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+        <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+        Novo Procedimento
+      </button>
+    </div>
+    <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+      <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-all"
+        href="index.html">
+        <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+        <span class="text-label-bold font-label-bold">Dashboard</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="html/01_agenda.html">
+        <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+        <span class="text-label-bold font-label-bold">Agenda</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="html/10_relatorios.html">
+        <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+        <span class="text-label-bold font-label-bold">Relatórios</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="html/06_cadastros_base.html">
+        <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+        <span class="text-label-bold font-label-bold">Cadastros Base</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="html/07_gestao_usuarios.html">
+        <span class="material-symbols-outlined" data-icon="group">group</span>
+        <span class="text-label-bold font-label-bold">Usuários</span>
+      </a>
+    </nav>
+    <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="html/12_configuracoes.html">
+        <span class="material-symbols-outlined" data-icon="settings">settings</span>
+        <span class="text-label-bold font-label-bold">Configurações</span>
+      </a>
+      <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+        href="#">
+        <span class="material-symbols-outlined" data-icon="help">help</span>
+        <span class="text-label-bold font-label-bold">Suporte</span>
+      </a>
+    </div>
+  </aside>
+  <!-- TopAppBar (Authority: JSON) -->
+  <header
+    class="fixed top-0 right-0 left-[260px] h-header-height bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-container-padding z-10">
+    <div class="flex items-center gap-4 flex-1">
+      <div class="relative w-full max-w-md">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
+          data-icon="search">search</span>
+        <input
+          class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-full text-body-sm focus:ring-2 focus:ring-primary"
+          placeholder="Pesquisar procedimentos, equipamentos ou hospitais..." type="text" />
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <button
+        class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
+        <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+      </button>
+      <div class="flex items-center gap-3 pl-6 border-l border-outline-variant">
+        <div class="text-right">
+          <p class="text-body-sm font-bold text-on-surface">Ricardo Silva</p>
+          <p class="text-[10px] text-on-surface-variant">Administrador</p>
+        </div>
+        <img alt="Administrator prdeile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container"
+          data-alt="A prdeessional headshot de a mature male doctor with short dark hair and a kind, focused expression. He is wearing a clean white medical coat and a subtle violet tie, set against a blurred, high-end medical clinic background with sdet, natural lighting that emphasizes a trustworthy and efficient surgical management prdeessional aesthetic."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3OFVaNY__kALjNc3ES4-9yNBtmlYLbJ9w97XMyvaVa-WCqPeZkaOs5VsLD_tLdVy-M0jW_81sOrFCjiD9zim3-GRVtuk5M1tmO9t9rmOzGAVAZIqEAc7vAeRoqh6vhKRlvGIna6GAx0DVSespDYE6Rq4EIK4PDDbxdVkbwv2dNc2rGGNZJD_0tsvgjS0EtQsqpvELv3eWJvVGh0ugZcAyA3bON3v8OYoHF3x6PPFI5QV7DiG22jERgxYK4aA_Y59aS3XxIufXLnw" />
+      </div>
+      <button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors"
+        onclick="window.location.href='html/02_login.html'" title="Sair">
+        <span class="material-symbols-outlined" data-icon="logout">logout</span>
+      </button>
+    </div>
+  </header>
+  <!-- Main Content -->
+  <main class="ml-[260px] pt-[64px] min-h-screen">
+    <div class="p-container-padding max-w-[1600px] mx-auto">
+      <!-- Welcome Section -->
+      <section class="mb-8">
+        <div class="flex justify-between items-end">
+          <div>
+            <h2 class="text-display-lg font-display-lg text-on-surface">Olá, Ricardo</h2>
+            <p class="text-body-md font-body-md text-on-surface-variant">Bem-vindo ao centro de operações da Previx.
+              Aqui está o resumo de hoje.</p>
+          </div>
+          <div class="flex gap-2">
+            <div
+              class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-lg text-on-surface-variant text-body-sm">
+              <span class="material-symbols-outlined text-[20px]" data-icon="event">event</span>
+              24 de Outubro, 2024
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- System Alert -->
+      <div
+        class="mb-8 p-4 bg-error-container text-on-error-container rounded-xl flex items-center justify-between border-l-8 border-error shadow-sm">
+        <div class="flex items-center gap-4">
+          <span class="material-symbols-outlined text-[32px]" data-icon="warning">warning</span>
+          <div>
+            <p class="font-bold">Alerta Crítico: Manutenção Pendente</p>
+            <p class="text-sm opacity-90">O Kit de Laparoscopia G3 (ID: 0892) ultrapassou a data limite de manutenção. 3
+              procedimentos agendados podem ser afetados.</p>
+          </div>
+        </div>
+        <button
+          class="bg-error text-on-error px-4 py-2 rounded-lg text-label-bold font-label-bold hover:opacity-90 transition-opacity">Resolver
+          Agora</button>
+      </div>
+      <!-- KPI Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack-gap mb-8">
+        <!-- Card 1 -->
+        <div
+          class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-3 bg-primary-container rounded-lg text-on-primary-container">
+              <span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+            </div>
+            <span class="text-green-600 bg-green-100 px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[12px]" data-icon="trending_up">trending_up</span> +12%
+            </span>
+          </div>
+          <p class="text-on-surface-variant text-label-bold font-label-bold uppercase">Agendamentos no Mês</p>
+          <h3 class="text-display-lg font-display-lg text-primary mt-1">142</h3>
+        </div>
+        <!-- Card 2 -->
+        <div
+          class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-3 bg-secondary-container rounded-lg text-on-secondary-container">
+              <span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+            </div>
+            <span class="text-on-surface-variant bg-surface-container px-2 py-1 rounded text-[10px] font-bold">Total
+              Acumulado</span>
+          </div>
+          <p class="text-on-surface-variant text-label-bold font-label-bold uppercase">Cirurgias Realizadas</p>
+          <h3 class="text-display-lg font-display-lg text-secondary mt-1">89</h3>
+        </div>
+        <!-- Card 3 -->
+        <div
+          class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-error">
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-3 bg-error-container rounded-lg text-on-error-container">
+              <span class="material-symbols-outlined" data-icon="error">error</span>
+            </div>
+            <span class="text-error bg-error-container px-2 py-1 rounded text-[10px] font-bold">Ação Necessária</span>
+          </div>
+          <p class="text-on-surface-variant text-label-bold font-label-bold uppercase">Conflitos Pendentes</p>
+          <h3 class="text-display-lg font-display-lg text-error mt-1">04</h3>
+        </div>
+        <!-- Card 4 -->
+        <div
+          class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-3 bg-tertiary-fixed rounded-lg text-on-tertiary-fixed-variant">
+              <span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+            </div>
+            <div class="w-16 h-2 bg-surface-container-high rounded-full mt-2 relative overflow-hidden">
+              <div class="absolute inset-0 bg-tertiary-container w-[78%]"></div>
+            </div>
+          </div>
+          <p class="text-on-surface-variant text-label-bold font-label-bold uppercase">Taxa de Utilização</p>
+          <h3 class="text-display-lg font-display-lg text-tertiary mt-1">78.4%</h3>
+        </div>
+      </div>
+      <!-- Charts and Table Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-gap">
+        <!-- Central Chart Section -->
+        <div class="lg:col-span-2 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm">
+          <div class="flex justify-between items-center mb-6">
+            <h4 class="text-title-sm font-title-sm text-on-surface">Volume de Agendamentos (Últimos 30 dias)</h4>
+            <select class="bg-surface-container border-none text-body-sm rounded-lg focus:ring-primary">
+              <option>Últimos 30 dias</option>
+              <option>Últimos 7 dias</option>
+            </select>
+          </div>
+          <!-- Simulated Chart Area -->
+          <div class="h-[320px] flex items-end gap-2 w-full pt-4">
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[40%] group relative">
+              <div
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                12 Ag.</div>
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[55%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[35%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[65%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[80%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/20 rounded-t-lg transition-all hover:bg-primary/40 h-[95%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[45%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[30%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[50%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[60%] group relative">
+            </div>
+            <div class="flex-1 bg-primary/10 rounded-t-lg transition-all hover:bg-primary/30 h-[85%] group relative">
+            </div>
+            <div
+              class="flex-1 bg-primary/40 rounded-t-lg h-[100%] group relative shadow-[0_0_15px_rgba(99,14,212,0.2)]">
+              <div
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded">
+                Hoje: 24</div>
+            </div>
+          </div>
+          <div class="flex justify-between mt-4 text-[10px] font-bold text-outline uppercase tracking-tighter">
+            <span>01 Out</span>
+            <span>07 Out</span>
+            <span>14 Out</span>
+            <span>21 Out</span>
+            <span>Hoje</span>
+          </div>
+        </div>
+        <!-- Fleet Status -->
+        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col">
+          <h4 class="text-title-sm font-title-sm text-on-surface mb-6">Status da Frota</h4>
+          <div class="space-y-6 flex-1">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-full border-4 border-primary border-t-outline-variant flex items-center justify-center">
+                <span class="text-xs font-bold">64%</span>
+              </div>
+              <div class="flex-1">
+                <div class="flex justify-between text-body-sm mb-1">
+                  <span class="font-bold">Equipamentos Ativos</span>
+                  <span class="text-on-surface-variant">42/65</span>
+                </div>
+                <div class="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                  <div class="h-full bg-primary w-[64%]"></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-full border-4 border-tertiary border-t-outline-variant flex items-center justify-center">
+                <span class="text-xs font-bold">22%</span>
+              </div>
+              <div class="flex-1">
+                <div class="flex justify-between text-body-sm mb-1">
+                  <span class="font-bold">Em Manutenção</span>
+                  <span class="text-on-surface-variant">14/65</span>
+                </div>
+                <div class="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                  <div class="h-full bg-tertiary w-[22%]"></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-full border-4 border-error border-t-outline-variant flex items-center justify-center">
+                <span class="text-xs font-bold">14%</span>
+              </div>
+              <div class="flex-1">
+                <div class="flex justify-between text-body-sm mb-1">
+                  <span class="font-bold">Em Uso Operacional</span>
+                  <span class="text-on-surface-variant">09/65</span>
+                </div>
+                <div class="h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                  <div class="h-full bg-error w-[14%]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="mt-8 w-full py-3 border border-outline-variant rounded-lg text-body-sm font-bold text-on-surface-variant hover:bg-surface-container transition-colors">
+            Gerenciar Inventário Completo
+          </button>
+        </div>
+      </div>
+      <!-- Next Surgeries Table -->
+      <section
+        class="mt-8 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-outline-variant flex justify-between items-center">
+          <h4 class="text-title-sm font-title-sm text-on-surface">Próximas Cirurgias Agendadas</h4>
+          <button class="text-primary font-label-bold text-label-bold flex items-center gap-1 hover:underline">
+            Ver Agenda Completa <span class="material-symbols-outlined text-[14px]"
+              data-icon="chevron_right">chevron_right</span>
+          </button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead class="bg-surface-container-low text-on-surface-variant text-label-bold uppercase tracking-wider">
+              <tr>
+                <th class="px-6 py-4">Data/Hora</th>
+                <th class="px-6 py-4">Procedimento</th>
+                <th class="px-6 py-4">Hospital</th>
+                <th class="px-6 py-4">Médico Resp.</th>
+                <th class="px-6 py-4">Status Material</th>
+                <th class="px-6 py-4"></th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant">
+              <tr class="hover:bg-surface-container-low/50 transition-colors">
+                <td class="px-6 py-4">
+                  <div class="text-body-sm font-bold">Hoje, 14:30</div>
+                  <div class="text-[10px] text-on-surface-variant">Agendado há 2d</div>
+                </td>
+                <td class="px-6 py-4 text-body-sm">Artroplastia de Quadril</td>
+                <td class="px-6 py-4 text-body-sm">Hospital Santa Helena</td>
+                <td class="px-6 py-4 text-body-sm">Dr. Marcos Viana</td>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold flex items-center w-fit gap-1">
+                    <span class="material-symbols-outlined text-[12px]" data-icon="check"
+                      data-weight="fill">check</span> Pronto
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <button class="text-outline hover:text-primary transition-colors"><span
+                      class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+                </td>
+              </tr>
+              <tr class="hover:bg-surface-container-low/50 transition-colors border-l-4 border-l-primary">
+                <td class="px-6 py-4">
+                  <div class="text-body-sm font-bold">Hoje, 17:00</div>
+                  <div class="text-[10px] text-on-surface-variant">Agendado há 1w</div>
+                </td>
+                <td class="px-6 py-4 text-body-sm">Colecistectomia Vídeo</td>
+                <td class="px-6 py-4 text-body-sm">Clínica Mater Dei</td>
+                <td class="px-6 py-4 text-body-sm">Dra. Clara Luz</td>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-[10px] font-bold flex items-center w-fit gap-1">
+                    <span class="material-symbols-outlined text-[12px]" data-icon="local_shipping">local_shipping</span>
+                    Em Rota
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <button class="text-outline hover:text-primary transition-colors"><span
+                      class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+                </td>
+              </tr>
+              <tr class="hover:bg-surface-container-low/50 transition-colors">
+                <td class="px-6 py-4">
+                  <div class="text-body-sm font-bold">Amanhã, 08:00</div>
+                  <div class="text-[10px] text-on-surface-variant">Agendado há 3d</div>
+                </td>
+                <td class="px-6 py-4 text-body-sm">Reconstrução de LCA</td>
+                <td class="px-6 py-4 text-body-sm">Hospital da Bahia</td>
+                <td class="px-6 py-4 text-body-sm">Dr. Ricardo Silva</td>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-[10px] font-bold flex items-center w-fit gap-1">
+                    <span class="material-symbols-outlined text-[12px]" data-icon="inventory_2">inventory_2</span>
+                    Separando
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <button class="text-outline hover:text-primary transition-colors"><span
+                      class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+                </td>
+              </tr>
+              <tr class="hover:bg-surface-container-low/50 transition-colors">
+                <td class="px-6 py-4">
+                  <div class="text-body-sm font-bold">Amanhã, 11:30</div>
+                  <div class="text-[10px] text-on-surface-variant">Agendado há 4d</div>
+                </td>
+                <td class="px-6 py-4 text-body-sm">Hernioplastia Inguinal</td>
+                <td class="px-6 py-4 text-body-sm">Hospital Aliança</td>
+                <td class="px-6 py-4 text-body-sm">Dr. Pedro Santos</td>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-3 py-1 bg-error-container text-error rounded-full text-[10px] font-bold flex items-center w-fit gap-1">
+                    <span class="material-symbols-outlined text-[12px]" data-icon="priority_high">priority_high</span>
+                    Pendente
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <button class="text-outline hover:text-primary transition-colors"><span
+                      class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+                </td>
+              </tr>
+              <tr class="hover:bg-surface-container-low/50 transition-colors">
+                <td class="px-6 py-4">
+                  <div class="text-body-sm font-bold">26 Out, 09:00</div>
+                  <div class="text-[10px] text-on-surface-variant">Agendado há 2d</div>
+                </td>
+                <td class="px-6 py-4 text-body-sm">Sutura de Menisco</td>
+                <td class="px-6 py-4 text-body-sm">Clínica OrtoCenter</td>
+                <td class="px-6 py-4 text-body-sm">Dr. André Costa</td>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold flex items-center w-fit gap-1">
+                    <span class="material-symbols-outlined text-[12px]" data-icon="check"
+                      data-weight="fill">check</span> Pronto
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <button class="text-outline hover:text-primary transition-colors"><span
+                      class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>

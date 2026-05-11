@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#25005a",
+                        "tertiary-container": "#a15100",
+                        "surface-variant": "#e8dfee",
+                        "on-tertiary-container": "#ffe0cd",
+                        "inverse-primary": "#d2bbff",
+                        "on-secondary-container": "#523787",
+                        "on-surface": "#1d1a24",
+                        "surface-container-low": "#f9f1ff",
+                        "surface-container": "#f3ebfa",
+                        "on-tertiary-fixed": "#301400",
+                        "inverse-on-surface": "#f6eefc",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#25005a",
+                        "on-primary-container": "#ede0ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#fef7ff",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "surface": "#fef7ff",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#ccc3d8",
+                        "primary-container": "#7c3aed",
+                        "outline": "#7b7487",
+                        "surface-dim": "#dfd7e6",
+                        "on-error": "#ffffff",
+                        "secondary": "#6a4fa0",
+                        "tertiary-fixed": "#ffdcc6",
+                        "secondary-container": "#c4a7ff",
+                        "primary-fixed-dim": "#d2bbff",
+                        "background": "#fef7ff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#630ed4",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#eaddff",
+                        "tertiary": "#7d3d00",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "on-surface-variant": "#4a4455",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1d1a24",
+                        "inverse-surface": "#332f39",
+                        "surface-container-highest": "#e8dfee",
+                        "primary-fixed": "#eaddff",
+                        "surface-tint": "#732ee4",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "surface-container-high": "#ede5f4",
+                        "on-secondary-fixed-variant": "#523787",
+                        "on-primary-fixed-variant": "#5a00c6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "header-height": "64px",
+                        "stack-gap": "1rem",
+                        "container-padding": "2rem",
+                        "table-cell-padding": "1rem 1.5rem"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; }
+        .sidebar-active { background-color: #eaddff; color: #25005a; font-weight: 700; border-left: 4px solid #630ed4; border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+    </style>
+</head>
+<body class="text-on-surface">
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-on-surface/40 backdrop-blur-sm" id="success-animation">
+<div class="bg-surface-container-lowest p-10 rounded-2xl shadow-2xl flex flex-col items-center gap-6 border-4 border-primary">
+<div class="w-24 h-24 bg-primary text-on-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl animate-bounce" data-icon="check_circle">check_circle</span>
+</div>
+<h2 class="text-headline-md font-black">Adicionado ao Agendamento!</h2>
+<p class="text-body-md text-on-surface-variant">O pacote e os itens foram reservados com sucesso.</p>
+</div>
+</div>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 gap-4">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+</div>
+<div>
+<h1 class="text-title-sm font-title-sm font-black text-primary">Previx</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Gestão Cirúrgica</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="sidebar-active flex items-center gap-3 px-4 py-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="text-label-bold font-label-bold">Agenda</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all" href="01_agenda.html">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="text-label-bold font-label-bold">Relatórios</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+<span class="text-label-bold font-label-bold">Cadastros Base</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-label-bold font-label-bold">Usuários</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all" href="12_configuracoes.html">
+<span class="material-symbols-outlined" data-icon="settings">Configurações</span>
+<span class="text-label-bold font-label-bold">Configurações</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-label-bold font-label-bold">Suporte</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-[260px] h-16 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-8 z-10 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md w-64" placeholder="Buscar cirurgia ou materiais..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors" data-icon="account_circle">account_circle</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors" data-icon="logout">logout</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] mt-16 p-8">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-display-lg font-display-lg text-on-surface">Novo Agendamento</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Preencha os detalhes para reservar materiais e equipe.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-lg border border-outline-variant text-on-surface-variant font-label-bold hover:bg-surface-container-high transition-all">Descartar</button>
+<button class="px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-bold shadow-md hover:opacity-90 transition-all border-b-4 border-primary-fixed-dim active:border-b-0 active:translate-y-[2px]">Salvar Agendamento</button>
+</div>
+</div>
+<!-- Conflict Alert -->
+<div class="flex items-center gap-4 p-4 bg-error-container border-l-4 border-error rounded-r-lg shadow-sm">
+<span class="material-symbols-outlined text-error" data-icon="warning" data-weight="fill" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="text-body-md font-body-md text-on-error-container"><strong>Conflito Detectado:</strong> Piezo X já alocado para Hospital Santa Catarina no horário selecionado.</span>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Dados da Cirurgia Card -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="stethoscope">stethoscope</span>
+<h3 class="text-title-sm font-title-sm">Dados da Cirurgia</h3>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Data da Cirurgia</label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Horário</label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" type="time"/>
+</div>
+<div class="col-span-2 space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Hospital</label>
+<select class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option>Selecione o hospital...</option>
+<option>Hospital Santa Catarina</option>
+<option>Hospital Albert Einstein</option>
+<option>Hospital Sírio-Libanês</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Médico Cirurgião</label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Nome do médico" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Paciente</label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Nome completo do paciente" type="text"/>
+</div>
+</div>
+</div>
+<!-- Equipe e Empresa Card -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+<h3 class="text-title-sm font-title-sm">Equipe e Empresa</h3>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Empresa Fornecedora</label>
+<select class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option>MedTech Solutions</option>
+<option>Cirúrgico Plus</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Instrumentador</label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Nome do prdeissional" type="text"/>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant">
+<p class="text-label-bold font-label-bold text-on-surface-variant mb-3">Status da Equipe</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-body-sm font-body-sm">Aguardando confirmação do hospital</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pacotes Rápidos Card -->
+<div class="col-span-12 bg-surface-container-lowest border-2 border-primary rounded-xl p-6 shadow-md">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="package_2">package_2</span>
+<h3 class="text-headline-md font-display-lg">Pacotes Rápidos (Quick Bundles)</h3>
+</div>
+<button class="text-primary font-label-bold flex items-center gap-1 hover:underline">
+                            Ver todos os pacotes <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Bundle Card 1 -->
+<div class="border-2 border-outline-variant hover:border-primary rounded-xl overflow-hidden transition-all group flex flex-col">
+<div class="h-48 bg-surface-container flex items-center justify-center relative overflow-hidden">
+<img alt="Kit Artroplastia Quadril" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOzQuhF1D95H-2_UCIdSweWzVGIFmg_-0eR_mI1z01gvojzLpejZEiPLMF2JFJt5YVAaRKtGV9SLiEDqMtUUVwB2nOif4DQl2h2Agys0aYMpVKhKiSLIQ_jx31FxnyTrrhvxynL-RCL0YnqVLpiFOtxI-X1Dg79AR9fdXCyBSKhUhRQGd0vif5eiUmgukhBcVBK4EHrrhM3T8O4vrx_8sK5saEF9D_4Fq_MQZfBPSQnSOCgzEjmaFUckeLw5nv00jFVMEEfxAiPd8"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-3 py-1 rounded-full text-label-bold shadow-lg">MAIS USADO</div>
+</div>
+<div class="p-4 flex-1 flex flex-col">
+<h4 class="text-title-sm font-black mb-2">Kit Padrão Artroplastia de Quadril</h4>
+<p class="text-body-sm text-on-surface-variant mb-4 flex-1">Inclui: Prótese completa, cimento ósseo, drenos e campos cirúrgicos estéreis.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-3 rounded-lg font-black hover:bg-primary-container transition-all uppercase tracking-widest text-xs border-b-4 border-primary-fixed-dim active:border-b-0 active:translate-y-[2px]">Selecionar</button>
+<button class="px-4 border-2 border-primary text-primary rounded-lg hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bundle Card 2 -->
+<div class="border-2 border-outline-variant hover:border-primary rounded-xl overflow-hidden transition-all group flex flex-col">
+<div class="h-48 bg-surface-container flex items-center justify-center relative overflow-hidden">
+<img alt="Kit Artrodese Coluna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1I5q1rFz03_gJQTOirutwalgBTvPZBK65Dp49BkOH7GiUJlC2PvcmvUtL_zSphoW0DSWVkjNTPmOo5xmDbw8QihK7C-RDUnpX8iTYxy7ZNY7vi0LHF5ivFs3OtMat7nU9Ab5EyHEsgP4CXipKtsqUmOEYCmuiLKGqlQlSoVfKDGxARDqTzUG6P3hg6lUS5xlueWWCy9YL5ichFMn9OT3DaRj_is1QYjLerkN_A0QfNLJAlkJUjkf7D12E20lJ4-FQRi4ug6V4XLw"/>
+</div>
+<div class="p-4 flex-1 flex flex-col">
+<h4 class="text-title-sm font-black mb-2">Kit Artrodese de Coluna L4-L5</h4>
+<p class="text-body-sm text-on-surface-variant mb-4 flex-1">Inclui: Parafusos pediculares, hastes, cages e enxerto ósseo sintético.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-3 rounded-lg font-black hover:bg-primary-container transition-all uppercase tracking-widest text-xs border-b-4 border-primary-fixed-dim active:border-b-0 active:translate-y-[2px]">Selecionar</button>
+<button class="px-4 border-2 border-primary text-primary rounded-lg hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bundle Card 3 -->
+<div class="border-2 border-outline-variant hover:border-primary rounded-xl overflow-hidden transition-all group flex flex-col">
+<div class="h-48 bg-surface-container flex items-center justify-center relative overflow-hidden">
+<img alt="Kit Manguito Rotador" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU0xrpZ9bOLGCodjnlR3WzbAjiF3GXlNi4jGxaJsv1QLPc6ockJfUwfuthswdJqpedf-uZ_fewHqItYxXic-pEA-sSYxLAxM4pnMexLHgbScB31iY_ve9y8xEuhC7Gf5kFnO3I4IUHZOQg6t3gFojaIbkjWmrury2sFTU6a91PpxZk9e4OjVC9WPl53dXucHBUx76zpzvTFc_aLZTfOdBM4mHNgamj1dE941033pQH1kYQTe0q9FqZwGuJEiYZPdH6hAjMQ08VoTA"/>
+</div>
+<div class="p-4 flex-1 flex flex-col">
+<h4 class="text-title-sm font-black mb-2">Kit Reparo de Manguito Rotador</h4>
+<p class="text-body-sm text-on-surface-variant mb-4 flex-1">Inclui: Âncoras de titânio, fios de alta resistência e cânulas de artroscopia.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-3 rounded-lg font-black hover:bg-primary-container transition-all uppercase tracking-widest text-xs border-b-4 border-primary-fixed-dim active:border-b-0 active:translate-y-[2px]">Selecionar</button>
+<button class="px-4 border-2 border-primary text-primary rounded-lg hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Procedimento e Materiais Card -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="inventory_2">inventory_2</span>
+<h3 class="text-title-sm font-title-sm">Procedimento e Materiais <span class="ml-2 text-xs bg-primary-container text-on-primary-container px-2 py-0.5 rounded-full uppercase tracking-tighter font-black">Bundle Ativo</span></h3>
+</div>
+<button class="text-primary font-label-bold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span> Adicionar Procedimento
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">Procedimento Principal</label>
+<select class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option>Artrodese Cervical Anterior</option>
+<option>Herniorrafia Inguinal</option>
+<option>Colecistectomia</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-bold font-label-bold text-on-surface-variant">CIDs Relacionados</label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Ex: M50.1, M51.0" type="text"/>
+</div>
+</div>
+<!-- Materials Checklist Table -->
+<div class="mt-8 overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-on-surface-variant">
+<tr>
+<th class="p-table-cell-padding text-label-bold font-label-bold">Item</th>
+<th class="p-table-cell-padding text-label-bold font-label-bold">Código</th>
+<th class="p-table-cell-padding text-label-bold font-label-bold text-center">Quantidade</th>
+<th class="p-table-cell-padding text-label-bold font-label-bold text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="p-table-cell-padding text-body-sm font-body-sm">Placa Cervical 2 Níveis</td>
+<td class="p-table-cell-padding text-data-mono font-data-mono">PL-9920</td>
+<td class="p-table-cell-padding text-body-sm font-body-sm text-center">01</td>
+<td class="p-table-cell-padding text-right">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-label-bold">Disponível</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-high transition-colors">
+<td class="p-table-cell-padding text-body-sm font-body-sm">Parafuso de Titânio 14mm</td>
+<td class="p-table-cell-padding text-data-mono font-data-mono">PT-1102</td>
+<td class="p-table-cell-padding text-body-sm font-body-sm text-center">04</td>
+<td class="p-table-cell-padding text-right">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-label-bold">Disponível</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Equipamentos Section -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h3 class="text-title-sm font-title-sm">Equipamentos e Caixas</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Piezo Card -->
+<div class="p-4 border border-error bg-error-container/10 rounded-xl relative">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-error" data-icon="electrical_services">electrical_services</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<h4 class="font-label-bold text-on-surface">Piezo</h4>
+<select class="mt-2 w-full text-body-sm p-1.5 border-none bg-surface-container rounded focus:ring-1 focus:ring-primary">
+<option>Piezo X - Mod. 2023</option>
+<option>Piezo Y - Compact</option>
+</select>
+<p class="mt-2 text-[10px] text-error font-bold uppercase tracking-wider">⚠️ Conflito de agenda</p>
+</div>
+<!-- Motor Card -->
+<div class="p-4 border border-outline-variant hover:border-primary transition-all rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings_input_component">settings_input_component</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<h4 class="font-label-bold text-on-surface">Motor</h4>
+<select class="mt-2 w-full text-body-sm p-1.5 border-none bg-surface-container rounded focus:ring-1 focus:ring-primary">
+<option>DrillMaster Pro</option>
+<option>Motor Padrão</option>
+</select>
+</div>
+<!-- Ótica Card -->
+<div class="p-4 border border-outline-variant hover:border-primary transition-all rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="visibility">visibility</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<h4 class="font-label-bold text-on-surface">Ótica</h4>
+<select class="mt-2 w-full text-body-sm p-1.5 border-none bg-surface-container rounded focus:ring-1 focus:ring-primary">
+<option>HD Scope 30°</option>
+<option>Full HD Scope 0°</option>
+</select>
+</div>
+<!-- CX Apoio Card -->
+<div class="p-4 border border-outline-variant hover:border-primary transition-all rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="inventory">inventory</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<h4 class="font-label-bold text-on-surface">CX Apoio</h4>
+<select class="mt-2 w-full text-body-sm p-1.5 border-none bg-surface-container rounded focus:ring-1 focus:ring-primary">
+<option>Caixa Instrumental #04</option>
+<option>Caixa Instrumental #09</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Observações -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="notes">notes</span>
+<h3 class="text-title-sm font-title-sm">Observações</h3>
+</div>
+<textarea class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md" placeholder="Insira aqui observações críticas sobre a cirurgia, restrições do paciente ou solicitações especiais..." rows="4"></textarea>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="flex justify-end gap-3 pb-12">
+<button class="px-8 py-3 rounded-lg border border-outline-variant text-on-surface-variant font-label-bold hover:bg-surface-container-high transition-all"onclick="window.location.href='05_novo_agendamento.html'" >Cancelar</button>
+<button class="px-10 py-4 rounded-xl bg-primary text-on-primary font-black shadow-2xl hover:opacity-90 transition-all flex items-center gap-3 text-lg border-b-4 border-primary-fixed-dim active:border-b-0 active:translate-y-[2px]">
+<span class="material-symbols-outlined" data-icon="save">save</span> Finalizar Agendamento
+                </button>
+</div>
+</div>
+</main>
+</body></html>

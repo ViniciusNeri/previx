@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Previx – Editar Cadastro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary":"#630ed4","on-primary":"#ffffff","primary-container":"#7c3aed","on-primary-container":"#ede0ff","secondary":"#6a4fa0","on-secondary":"#ffffff","secondary-fixed":"#eaddff","on-secondary-fixed":"#25005a","surface":"#fef7ff","surface-container-low":"#f9f1ff","surface-container":"#f3ebfa","surface-container-high":"#ede5f4","surface-container-highest":"#e8dfee","surface-container-lowest":"#ffffff","on-surface":"#1d1a24","on-surface-variant":"#4a4455","outline":"#7b7487","outline-variant":"#ccc3d8","error":"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a","success":"#16a34a"},"fontFamily":{"sans":['Inter','sans-serif'],"label-bold":["Inter","sans-serif"],"title-sm":["Inter","sans-serif"],"body-md":["Inter","sans-serif"]},"fontSize":{"label-bold":["12px",{"lineHeight":"16px","fontWeight":"700"}],"label":["12px",{"lineHeight":"16px","fontWeight":"500"}],"body-sm":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"title-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}]}}}}
+</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+body{font-family:'Inter',sans-serif;background:#f8f9fc}
+.step-active{background:#630ed4;color:#fff; box-shadow: 0 4px 12px rgba(99, 14, 212, 0.3);}
+.step-done{background:#16a34a;color:#fff}
+.step-idle{background:#e8dfee;color:#4a4455}
+.card-sel{border:2px solid #630ed4;background:#f3ebfa}
+.card-idle{border:1px solid #ccc3d8}
+.card-idle:hover{border-color:#630ed4; background-color:#f9f1ff;}
+.upload-area{border:2px dashed #ccc3d8; transition:all 0.2s ease;}
+.upload-area:hover{border-color:#630ed4; background-color:#f9f1ff;}
+</style>
+</head>
+<body class="text-on-surface">
+
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30 shadow-sm">
+  <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity" title="Ir para Dashboard">
+    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+      <span class="material-symbols-outlined">clinical_notes</span>
+    </div>
+    <div>
+      <h1 class="text-title-sm font-black text-primary">Previx</h1>
+      <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+    </div>
+  </a>
+  
+  <div class="px-4 mb-4">
+    <button onclick="window.location.href='05_novo_agendamento.html'" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+      <span class="material-symbols-outlined text-sm">add_circle</span>
+      Novo Procedimento
+    </button>
+  </div>
+  
+  <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="../index.html">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span class="text-label-bold font-label-bold">Dashboard</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="01_agenda.html">
+      <span class="material-symbols-outlined">calendar_today</span>
+      <span class="text-label-bold font-label-bold">Agenda</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="10_relatorios.html">
+      <span class="material-symbols-outlined">assessment</span>
+      <span class="text-label-bold font-label-bold">Relatórios</span>
+    </a>
+    <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-all" href="06_cadastros_base.html">
+      <span class="material-symbols-outlined">app_registration</span>
+      <span class="text-label-bold font-label-bold">Cadastros Base</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="07_gestao_usuarios.html">
+      <span class="material-symbols-outlined">group</span>
+      <span class="text-label-bold font-label-bold">Usuários</span>
+    </a>
+  </nav>
+</aside>
+
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-[260px] h-[64px] bg-white border-b border-outline-variant/50 shadow-sm flex items-center justify-between px-8 z-20">
+  <div class="flex items-center gap-4">
+      <a href="06_cadastros_base.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm font-semibold">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          Voltar para Cadastros
+      </a>
+  </div>
+  <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3 border-l border-outline-variant/50 pl-4 ml-2">
+          <div class="text-right hidden sm:block">
+              <p class="text-xs font-bold text-on-surface">Dr. Ricardo Silva</p>
+              <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+          </div>
+          <button class="w-9 h-9 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center">DR</button>
+      </div>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="ml-[260px] mt-[64px] p-8">
+<div class="max-w-[1400px] mx-auto">
+
+  <!-- Page header -->
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-display-lg font-bold text-on-surface flex items-center gap-3">
+          <span class="material-symbols-outlined text-[32px] text-primary">edit_note</span>
+          Editar Cadastro Base
+      </h2>
+      <p class="text-body-md text-on-surface-variant">Atualize as informações do registro selecionado.</p>
+    </div>
+    <div class="flex gap-3">
+      <button onclick="location.href='06_cadastros_base.html'" class="px-6 py-2.5 border border-outline-variant rounded-lg text-on-surface-variant font-bold hover:bg-surface-container-high bg-white transition-colors">Cancelar Alterações</button>
+      <button onclick="finish()" class="px-8 py-2.5 bg-primary text-on-primary rounded-lg font-bold shadow-md hover:bg-primary/90 transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px]">check</span>
+          Salvar Alterações
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-8">
+    <!-- Form area -->
+    <div class="col-span-12 lg:col-span-8 space-y-6">
+      
+      <!-- Basic Info Card -->
+      <div class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm">
+          <h3 class="text-title-sm font-bold text-on-surface mb-6 flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">badge</span>
+              Informações Básicas
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-1">
+                  <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Nome / Identificação *</label>
+                  <input id="nome" type="text" value="" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest text-body-sm transition-all" oninput="updatePreview()"/>
+              </div>
+              <div class="space-y-1">
+                  <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">ID do Registro</label>
+                  <input id="id-display" type="text" value="" disabled class="w-full px-4 py-2.5 border border-outline-variant rounded-xl bg-surface-container text-on-surface-variant text-body-sm font-mono"/>
+              </div>
+              <div class="space-y-1">
+                  <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Status Atual</label>
+                  <select id="status" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest text-body-sm transition-all" onchange="updatePreview()">
+                      <option>Ativo</option>
+                      <option>Inativo</option>
+                      <option>Manutenção</option>
+                      <option>Férias</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+
+      <!-- Specific Details Card -->
+      <div class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm">
+          <h3 class="text-title-sm font-bold text-on-surface mb-6 flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">tune</span>
+              Detalhes Específicos
+          </h3>
+          <div id="dynamic-fields" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Fields injected based on type -->
+          </div>
+      </div>
+
+    </div>
+
+    <!-- Preview / Sidebar -->
+    <div class="col-span-12 lg:col-span-4">
+      <div class="sticky top-24 bg-white border border-outline-variant rounded-2xl p-6 shadow-sm">
+        <h3 class="text-title-sm font-bold flex items-center gap-2 pb-4 border-b border-outline-variant mb-4">
+          <span class="material-symbols-outlined text-primary">visibility</span>Visualização
+        </h3>
+        
+        <div class="flex items-center gap-4 mb-6" id="preview-header">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[28px]" id="preview-icon">folder</span>
+            </div>
+            <div>
+                <p class="text-xs text-on-surface-variant font-bold uppercase tracking-wider" id="preview-type">Carregando...</p>
+                <p class="text-body-md font-bold text-on-surface" id="preview-name">Carregando...</p>
+            </div>
+        </div>
+
+        <div id="preview-details" class="space-y-4 text-body-sm bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+            <!-- Dynamic preview details -->
+        </div>
+        
+        <div class="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-200 flex items-start gap-3">
+            <span class="material-symbols-outlined text-amber-600 text-[20px]">info</span>
+            <p class="text-xs text-amber-800 leading-relaxed">As alterações feitas aqui serão aplicadas globalmente em todos os módulos que utilizam este registro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<script>
+// Mock data recovery from URL
+const urlParams = new URLSearchParams(window.location.search);
+const itemType = urlParams.get('type') || 'hospitais';
+const itemId = urlParams.get('id') || 'REG-001';
+
+const typeConfig = {
+    hospitais: { name: 'Hospital', icon: 'local_hospital', fields: [
+        { label: 'Cidade/UF', key: 'location' },
+        { label: 'Contato', key: 'contact' }
+    ]},
+    medicos: { name: 'Médico', icon: 'stethoscope', fields: [
+        { label: 'Especialidade', key: 'spec' },
+        { label: 'CRM', key: 'crm' },
+        { label: 'Telefone', key: 'phone' }
+    ]},
+    equipamentos: { name: 'Equipamento', icon: 'biotech', fields: [
+        { label: 'Categoria', key: 'cat', type: 'select', options: ['Vídeo Cirurgia', 'Neurologia', 'Ortopedia', 'Cardiologia', 'Suporte à Vida', 'Radiologia', 'Esterilização'] },
+        { label: 'Modelo / Fabricante', key: 'model' },
+        { label: 'Número de Série (S/N)', key: 'sn' },
+        { label: 'Localização Base', key: 'loc' }
+    ]},
+    procedimentos: { name: 'Procedimento', icon: 'medical_services', fields: [
+        { label: 'Especialidade', key: 'spec' },
+        { label: 'Tempo Est.', key: 'time' }
+    ]},
+    planos: { name: 'Plano de Saúde', icon: 'health_and_safety', fields: [
+        { label: 'Tipo', key: 'type' },
+        { label: 'Abrangência', key: 'cover' },
+        { label: 'Registro ANS', key: 'ans' }
+    ]},
+    empresas: { name: 'Empresa', icon: 'business', fields: [
+        { label: 'Razão Social', key: 'name' },
+        { label: 'CNPJ', key: 'doc' },
+        { label: 'Cidade/UF', key: 'city' }
+    ] }
+};
+
+const mockData = {
+    // Hospitais
+    'H-001': { name: 'Hospital Santa Luzia', location: 'Brasília/DF', contact: '(61) 3445-0000', status: 'Ativo' },
+    'H-002': { name: 'Hospital Sírio Libanês', location: 'São Paulo/SP', contact: '(11) 3332-0000', status: 'Ativo' },
+    'H-003': { name: 'Hospital Albert Einstein', location: 'São Paulo/SP', contact: '(11) 2151-0000', status: 'Ativo' },
+    'H-004': { name: 'Hospital Mater Dei', location: 'Belo Horizonte/MG', contact: '(31) 3339-9000', status: 'Inativo' },
+    'H-005': { name: 'Hospital de Base', location: 'Brasília/DF', contact: '(61) 3315-1200', status: 'Ativo' },
+    'H-006': { name: 'Hospital Santa Helena', location: 'Brasília/DF', contact: '(61) 3215-0000', status: 'Ativo' },
+    'H-007': { name: 'Hospital Anchieta', location: 'Taguatinga/DF', contact: '(61) 3353-9000', status: 'Ativo' },
+
+    // Médicos
+    'M-102': { name: 'Dr. Ricardo M. Santos', spec: 'Ortopedia', crm: '12345-DF', phone: '(61) 99988-7766', status: 'Ativo' },
+    'M-145': { name: 'Dra. Julia Ferreira', spec: 'Neurocirurgia', crm: '98765-SP', phone: '(11) 98877-6655', status: 'Ativo' },
+    'M-082': { name: 'Dr. Marcos Oliveira', spec: 'Cardiologia', crm: '55443-RJ', phone: '(21) 97766-5544', status: 'Férias' },
+    'M-059': { name: 'Dra. Ana Paula Luz', spec: 'Ginecologia', crm: '11223-MG', phone: '(31) 96655-4433', status: 'Ativo' },
+    'M-210': { name: 'Dr. André Lima', spec: 'Cardiologia', crm: '54321-DF', phone: '(61) 95544-3322', status: 'Ativo' },
+    'M-198': { name: 'Dra. Beatriz Rocha', spec: 'Ortopedia', crm: '88776-SP', phone: '(11) 94433-2211', status: 'Ativo' },
+    'M-305': { name: 'Dr. Fernando Souza', spec: 'Urologia', crm: '44332-RJ', phone: '(21) 93322-1100', status: 'Ativo' },
+
+    // Equipamentos
+    'EQ-1002': { name: 'Torre de Vídeo 4K Storz', cat: 'Vídeo Cirurgia', model: 'Storz Rubina', sn: '88A923B', loc: 'Almoxarifado Central', status: 'Disponível' },
+    'EQ-1045': { name: 'Microscópio Cirúrgico Zeiss', cat: 'Neurologia', model: 'Zeiss Kinevo 900', sn: 'ZE-00921', loc: 'Hosp. Sírio Libanês', status: 'Em Uso' },
+    'EQ-0822': { name: 'Motor Perfuração Óssea', cat: 'Ortopedia', model: 'MedTech MX-100', sn: 'MX-100-22', loc: 'Assistência Técnica', status: 'Manutenção' },
+    'EQ-0599': { name: 'Monitor Multiparamétrico', cat: 'Suporte à Vida', model: 'Mindray MM-449', sn: 'MM-449-01', loc: 'Depósito Secundário', status: 'Offline' },
+    'EQ-2010': { name: 'Arco Cirúrgico Philips', cat: 'Radiologia', model: 'Philips BV Endura', sn: 'PH-BV77', loc: 'Almoxarifado B', status: 'Disponível' },
+    'EQ-3055': { name: 'Kit Laparoscopia HD', cat: 'Vídeo Cirurgia', model: 'VisionPro HD', sn: 'KL-002', loc: 'Depósito A', status: 'Disponível' },
+    'EQ-4122': { name: 'Autoclave Digital 54L', cat: 'Esterilização', model: 'Cristófoli AC-991', sn: 'AC-991-X', loc: 'Setor Técnico', status: 'Manutenção' }
+};
+
+function init() {
+    console.log('Iniciando edição:', { itemType, itemId });
+    
+    const config = typeConfig[itemType];
+    if (!config) {
+        console.error('Tipo de cadastro inválido:', itemType);
+        alert('Erro: Tipo de cadastro não reconhecido.');
+        return;
+    }
+
+    const data = mockData[itemId];
+    const finalData = data || { name: 'Novo Registro', status: 'Ativo' };
+
+    // Fill basic fields
+    document.getElementById('nome').value = finalData.name || '';
+    document.getElementById('id-display').value = itemId;
+    
+    // Custom status options based on type
+    const statusSelect = document.getElementById('status');
+    let statusOptions = ['Ativo', 'Inativo'];
+    if (itemType === 'equipamentos') {
+        statusOptions = ['Disponível', 'Em Uso', 'Manutenção', 'Offline'];
+    } else if (itemType === 'medicos') {
+        statusOptions = ['Ativo', 'Inativo', 'Férias', 'Afastado'];
+    }
+    
+    statusSelect.innerHTML = statusOptions.map(s => `<option ${s === (finalData.status || statusOptions[0]) ? 'selected' : ''}>${s}</option>`).join('');
+
+    // Build dynamic fields
+    renderDynamicFields(finalData);
+    updatePreview();
+}
+
+function renderDynamicFields(data) {
+    const fieldsContainer = document.getElementById('dynamic-fields');
+    const config = typeConfig[itemType];
+    
+    let fieldsHtml = '';
+
+    // Special logic for equipment/products
+    if (itemType === 'equipamentos') {
+        const classification = data.pd_tipo || 'Equipamento';
+        fieldsHtml += `
+            <div class="col-span-1 md:col-span-2 space-y-1 bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 mb-2">
+                <label class="text-[11px] font-bold text-primary uppercase tracking-wider">Classificação do Produto</label>
+                <select id="pd_tipo" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-white text-body-sm transition-all" onchange="toggleEquipmentFields(this.value)">
+                    <option ${classification === 'Kit' ? 'selected' : ''}>Kit</option>
+                    <option ${classification === 'Consumíveis' ? 'selected' : ''}>Consumíveis</option>
+                    <option ${classification === 'Equipamento' ? 'selected' : ''}>Equipamento</option>
+                </select>
+            </div>
+        `;
+        fieldsHtml += `<div id="extra-fields" class="grid grid-cols-1 md:grid-cols-2 gap-6 col-span-1 md:col-span-2 ${classification !== 'Equipamento' ? 'opacity-50 pointer-events-none' : ''}">`;
+    }
+
+    config.fields.forEach(f => {
+        const val = data[f.key] || '';
+        if (f.type === 'select') {
+            fieldsHtml += `
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">${f.label}</label>
+                    <select class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest text-body-sm transition-all" onchange="updatePreview()">
+                        ${f.options.map(o => `<option ${o === val ? 'selected' : ''}>${o}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+        } else {
+            fieldsHtml += `
+                <div class="space-y-1">
+                    <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">${f.label}</label>
+                    <input type="text" value="${val}" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest text-body-sm transition-all" oninput="updatePreview()"/>
+                </div>
+            `;
+        }
+    });
+
+    if (itemType === 'equipamentos') {
+        fieldsHtml += '</div>'; 
+        fieldsHtml += `
+            <div class="col-span-1 md:col-span-2 mt-2 space-y-1">
+                <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Descrição / Observações Técnicas</label>
+                <textarea id="obs" rows="3" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest text-body-sm transition-all resize-none" oninput="updatePreview()">${data.obs || 'Equipamento em plenas condições de uso.'}</textarea>
+            </div>
+        `;
+    }
+
+    fieldsContainer.innerHTML = fieldsHtml;
+}
+
+function toggleEquipmentFields(val) {
+    const extra = document.getElementById('extra-fields');
+    if (val === 'Equipamento') {
+        extra.classList.remove('opacity-50', 'pointer-events-none');
+    } else {
+        extra.classList.add('opacity-50', 'pointer-events-none');
+    }
+    updatePreview();
+}
+
+function updatePreview() {
+    const config = typeConfig[itemType] || typeConfig.hospitais;
+    const nome = document.getElementById('nome').value;
+    const status = document.getElementById('status').value;
+    const inputs = document.getElementById('dynamic-fields').querySelectorAll('input, select, textarea');
+
+    document.getElementById('preview-icon').innerText = config.icon;
+    document.getElementById('preview-type').innerText = config.name;
+    document.getElementById('preview-name').innerText = nome || 'Sem Nome';
+
+    let html = `
+        <div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="text-on-surface-variant">ID</span><span class="font-mono font-bold">${itemId}</span></div>
+        <div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="text-on-surface-variant">Status</span><span class="font-bold text-primary">${status}</span></div>
+    `;
+
+    if (itemType === 'equipamentos') {
+        const pdTipo = document.getElementById('pd_tipo').value;
+        html += `<div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="text-on-surface-variant">Classe</span><span class="font-bold text-secondary">${pdTipo}</span></div>`;
+    }
+
+    let inputIndex = (itemType === 'equipamentos') ? 1 : 0;
+    config.fields.forEach((f, i) => {
+        const inp = inputs[inputIndex + i];
+        if (inp) {
+            html += `<div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="text-on-surface-variant">${f.label}</span><span class="font-bold">${inp.value}</span></div>`;
+        }
+    });
+
+    const obs = document.getElementById('obs');
+    if (obs) {
+        html += `<div class="flex flex-col py-2 border-b border-outline-variant/20"><span class="text-on-surface-variant">Observações</span><span class="text-xs mt-1 text-on-surface">${obs.value}</span></div>`;
+    }
+
+    document.getElementById('preview-details').innerHTML = html;
+}
+
+function finish() {
+    const btn = event.currentTarget;
+    btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Salvando...';
+    btn.disabled = true;
+    setTimeout(() => {
+        alert('Alterações salvas com sucesso!');
+        window.location.href = '06_cadastros_base.html';
+    }, 800);
+}
+
+init();
+</script>
+</body>
+</html>

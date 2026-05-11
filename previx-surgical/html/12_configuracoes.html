@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#630ed4",
+                        "primary-hover": "#4e0baf",
+                        "surface-container": "#f3ebfa",
+                        "surface-container-low": "#f9f1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#ede5f4",
+                        "surface-container-highest": "#e8dfee",
+                        "on-surface": "#1d1a24",
+                        "on-surface-variant": "#4a4455",
+                        "outline-variant": "#ccc3d8",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#eaddff",
+                        "on-secondary-fixed": "#25005a",
+                        "error": "#ba1a1a",
+                        "primary-container": "#7c3aed",
+                        "on-primary-container": "#ede0ff",
+                        "outline": "#7b7487"
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .sidebar-active {
+            background-color: #eaddff;
+            color: #25005a;
+            font-weight: 700;
+            border-left: 4px solid #630ed4;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="text-on-surface">
+
+    <!-- SideNavBar -->
+    <aside
+        class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+        <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
+            title="Ir para Dashboard">
+            <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+                <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+            </div>
+            <div>
+                <h1 class="text-[18px] font-black text-primary">Previx</h1>
+                <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+            </div>
+        </a>
+        <div class="px-4 mb-4">
+            <button onclick="window.location.href='05_novo_agendamento.html'"
+                class="w-full bg-primary text-on-primary py-3 rounded-lg font-bold text-xs flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+                <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+                Novo Procedimento
+            </button>
+        </div>
+        <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="../index.html">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span class="text-xs font-bold">Dashboard</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="01_agenda.html">
+                <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                <span class="text-xs font-bold">Agenda</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="10_relatorios.html">
+                <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                <span class="text-xs font-bold">Relatórios</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="06_cadastros_base.html">
+                <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+                <span class="text-xs font-bold">Cadastros Base</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="07_gestao_usuarios.html">
+                <span class="material-symbols-outlined" data-icon="group">group</span>
+                <span class="text-xs font-bold">Usuários</span>
+            </a>
+        </nav>
+        <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+            <a class="sidebar-active flex items-center gap-3 px-4 py-3 transition-all" href="12_configuracoes.html">
+                <span class="material-symbols-outlined" data-icon="settings">settings</span>
+                <span class="text-xs font-bold">Configurações</span>
+            </a>
+            <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="help">help</span>
+                <span class="text-xs font-bold">Suporte</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- TopNavBar -->
+    <header
+        class="fixed top-0 right-0 left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-8 z-20">
+        <div class="flex items-center flex-1 max-w-xl">
+            <div class="relative w-full">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
+                    data-icon="search">search</span>
+                <input
+                    class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-full text-sm focus:ring-2 focus:ring-primary focus:outline-none"
+                    placeholder="Pesquisar configurações..." type="text" />
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button
+                class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full relative">
+                <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+            </button>
+            <div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+            <div class="flex items-center gap-3">
+                <div class="text-right">
+                    <p class="text-xs font-bold text-on-surface">Dr. Ricardo Silva</p>
+                    <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+                </div>
+                <div
+                    class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-sm">
+                    DR</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="ml-[260px] pt-[64px] min-h-screen pb-12">
+        <div class="p-8 max-w-[1200px] mx-auto">
+
+            <!-- Header -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-on-surface mb-1">Configurações</h2>
+                <p class="text-on-surface-variant text-sm">Gerencie suas preferências, segurança e controle de acesso da
+                    plataforma.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                <!-- Left Sidebar Navigation -->
+                <div class="md:col-span-3">
+                    <div
+                        class="bg-surface-container-lowest border border-outline-variant rounded-xl p-2 sticky top-[88px]">
+                        <nav class="space-y-1">
+                            <a href="#perfil"
+                                class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container-high text-primary font-semibold text-sm transition-colors">
+                                <span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
+                                Perfil do Usuário
+                            </a>
+                            <a href="#seguranca"
+                                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium text-sm transition-colors">
+                                <span class="material-symbols-outlined text-[20px]" data-icon="lock">lock</span>
+                                Segurança
+                            </a>
+                            <a href="#notificacoes"
+                                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium text-sm transition-colors">
+                                <span class="material-symbols-outlined text-[20px]"
+                                    data-icon="notifications">notifications</span> Notificações
+                            </a>
+                            <div class="my-2 border-t border-outline-variant/50"></div>
+                            <a href="13_grupos_acesso.html"
+                                class="flex items-center justify-between px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium text-sm transition-colors group">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-[20px]"
+                                        data-icon="admin_panel_settings">admin_panel_settings</span> Grupos de Acesso
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-[18px] opacity-0 group-hover:opacity-100 transition-opacity"
+                                    data-icon="open_in_new">open_in_new</span>
+                            </a>
+                            <a href="#parametros"
+                                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-medium text-sm transition-colors">
+                                <span class="material-symbols-outlined text-[20px]" data-icon="tune">tune</span>
+                                Parâmetros Globais
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Right Content Area -->
+                <div class="md:col-span-9 space-y-6">
+
+                    <!-- Perfil Card -->
+                    <section id="perfil"
+                        class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+                        <div class="p-6 border-b border-outline-variant bg-surface/50">
+                            <h3 class="text-lg font-bold text-on-surface">Configuração de Perfil</h3>
+                            <p class="text-sm text-on-surface-variant">Atualize suas informações pessoais e foto de
+                                perfil.</p>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-6 mb-8">
+                                <div class="relative">
+                                    <div
+                                        class="w-24 h-24 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-3xl">
+                                        DR</div>
+                                    <button
+                                        class="absolute bottom-0 right-0 bg-white border border-outline-variant rounded-full p-1.5 shadow-sm hover:text-primary transition-colors">
+                                        <span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface mb-1">Foto do Perfil</h4>
+                                    <p class="text-xs text-on-surface-variant mb-3">JPG, GIF ou PNG. Tamanho máximo de
+                                        2MB.</p>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="text-xs font-semibold px-3 py-1.5 border border-outline-variant rounded hover:bg-surface-container transition-colors">Alterar</button>
+                                        <button
+                                            class="text-xs font-semibold px-3 py-1.5 text-error hover:bg-error-container/20 rounded transition-colors">Remover</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-on-surface-variant">Nome Completo</label>
+                                    <input type="text" value="Ricardo Silva"
+                                        class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-on-surface-variant">E-mail Profissional</label>
+                                    <input type="email" value="ricardo.silva@previx.com"
+                                        class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-on-surface-variant">Cargo/Especialidade</label>
+                                    <input type="text" value="Médico Cirurgião / Administrador"
+                                        class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-on-surface-variant">Telefone</label>
+                                    <input type="text" value="(11) 99999-9999"
+                                        class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-surface-container p-4 border-t border-outline-variant flex justify-end gap-3">
+                            <button
+                                class="px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:bg-outline-variant/30 transition-colors">Cancelar</button>
+                            <button
+                                class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity shadow-sm">Salvar
+                                Alterações</button>
+                        </div>
+                    </section>
+
+                    <!-- Access Groups Quick Link Card -->
+                    <section
+                        class="bg-primary/5 border border-primary/20 rounded-xl overflow-hidden shadow-sm flex flex-col sm:flex-row items-center justify-between p-6">
+                        <div class="flex items-center gap-4 mb-4 sm:mb-0">
+                            <div
+                                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-[24px]"
+                                    data-icon="admin_panel_settings">admin_panel_settings</span>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-on-surface">Gestão de Grupos de Acesso</h3>
+                                <p class="text-sm text-on-surface-variant">Configure quais telas e botões cada perfil
+                                    pode acessar.</p>
+                            </div>
+                        </div>
+                        <button onclick="window.location.href='13_grupos_acesso.html'"
+                            class="w-full sm:w-auto px-5 py-2.5 bg-primary text-white font-semibold text-sm rounded-lg shadow-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                            Gerenciar Permissões <span
+                                class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                        </button>
+                    </section>
+
+                    <!-- Segurança Card -->
+                    <section id="seguranca"
+                        class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+                        <div class="p-6 border-b border-outline-variant bg-surface/50">
+                            <h3 class="text-lg font-bold text-on-surface">Segurança</h3>
+                            <p class="text-sm text-on-surface-variant">Gerencie sua senha e autenticação de dois
+                                fatores.</p>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <div class="flex items-center justify-between border-b border-outline-variant pb-6">
+                                <div>
+                                    <h4 class="font-bold text-on-surface mb-1">Senha de Acesso</h4>
+                                    <p class="text-sm text-on-surface-variant">Sua senha foi alterada pela última vez há
+                                        3 meses.</p>
+                                </div>
+                                <button
+                                    class="px-4 py-2 border border-outline-variant rounded-lg text-sm font-semibold hover:bg-surface-container transition-colors">Alterar
+                                    Senha</button>
+                            </div>
+                            <!-- <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-on-surface mb-1">Autenticação de Dois Fatores (2FA)</h4>
+                                <p class="text-sm text-on-surface-variant max-w-md">Adicione uma camada extra de segurança à sua conta. Recomendado para administradores.</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer">
+                                <div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                            </label>
+                        </div> -->
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

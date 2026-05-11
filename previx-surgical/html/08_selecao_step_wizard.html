@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Previx – Seleção Passo a Passo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary":"#630ed4","on-primary":"#ffffff","primary-container":"#7c3aed","on-primary-container":"#ede0ff","secondary":"#6a4fa0","on-secondary":"#ffffff","secondary-fixed":"#eaddff","on-secondary-fixed":"#25005a","surface":"#fef7ff","surface-container-low":"#f9f1ff","surface-container":"#f3ebfa","surface-container-high":"#ede5f4","surface-container-highest":"#e8dfee","surface-container-lowest":"#ffffff","on-surface":"#1d1a24","on-surface-variant":"#4a4455","outline":"#7b7487","outline-variant":"#ccc3d8","error":"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a","tertiary":"#7d3d00","tertiary-fixed":"#ffdcc6"},"fontSize":{"title-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"body-sm":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-bold":["12px",{"lineHeight":"16px","letterSpacing":"0.05em","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}]}}}}
+</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+body{font-family:'Inter',sans-serif;background:#fef7ff}
+.step-active{background:#630ed4;color:#fff}
+.step-done{background:#22c55e;color:#fff}
+.step-idle{background:#e8dfee;color:#4a4455}
+.card-sel{border:2px solid #630ed4;background:#f3ebfa}
+.card-idle{border:1px solid #ccc3d8}
+.toggle-cb:checked+.toggle-track{background:#630ed4}
+</style>
+</head>
+<body class="text-on-surface">
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+  <a href="../index.html" class="px-6 mb-4 flex items-center gap-3">
+    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+      <span class="material-symbols-outlined">clinical_notes</span>
+    </div>
+    <div><h1 class="text-title-sm font-black text-primary">Previx</h1><p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p></div>
+  </a>
+  <div class="px-4 mb-4">
+    <button onclick="location.href='05_novo_agendamento.html'" class="w-full bg-primary text-on-primary py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2">
+      <span class="material-symbols-outlined text-sm">add_circle</span>Novo Procedimento
+    </button>
+  </div>
+  <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg" href="../index.html"><span class="material-symbols-outlined">dashboard</span><span class="text-sm font-bold">Dashboard</span></a>
+    <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3" href="01_agenda.html"><span class="material-symbols-outlined">calendar_today</span><span class="text-sm font-bold">Agenda</span></a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg" href="10_relatorios.html"><span class="material-symbols-outlined">assessment</span><span class="text-sm font-bold">Relatórios</span></a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg" href="06_cadastros_base.html"><span class="material-symbols-outlined">app_registration</span><span class="text-sm font-bold">Cadastros Base</span></a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg" href="07_gestao_usuarios.html"><span class="material-symbols-outlined">group</span><span class="text-sm font-bold">Usuários</span></a>
+  </nav>
+  <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg" href="06_cadastros_base.html"><span class="material-symbols-outlined">settings</span><span class="text-sm font-bold">Configurações</span></a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg" href="#"><span class="material-symbols-outlined">help</span><span class="text-sm font-bold">Suporte</span></a>
+  </div>
+</aside>
+<!-- Header -->
+<header class="fixed top-0 right-0 left-[260px] h-16 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-8 z-10 shadow-sm">
+  <div class="flex items-center gap-4">
+    <span class="material-symbols-outlined text-outline">search</span>
+    <input class="bg-transparent border-none focus:ring-0 text-body-md w-64" placeholder="Pesquisar procedimentos ou materiais..." type="text"/>
+  </div>
+  <div class="flex items-center gap-4">
+    <button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full"><span class="material-symbols-outlined">notifications</span></button>
+    <button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full" onclick="location.href='../index.html'"><span class="material-symbols-outlined">logout</span></button>
+  </div>
+</header>
+<!-- Main -->
+<main class="ml-[260px] mt-16 p-8">
+<div class="max-w-[1400px] mx-auto">
+
+  <!-- Page header -->
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-display-lg font-bold text-on-surface">Novo Agendamento</h2>
+      <p class="text-body-md text-on-surface-variant">Siga os passos para configurar todos os detalhes da cirurgia.</p>
+    </div>
+    <div class="flex gap-3">
+      <button onclick="location.href='01_agenda.html'" class="px-6 py-2.5 border border-outline-variant rounded-lg text-on-surface-variant font-bold hover:bg-surface-container-high">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Step bar -->
+  <div id="step-bar" class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-2xl px-6 py-4 mb-8 gap-2 overflow-x-auto">
+  </div>
+
+  <div class="grid grid-cols-12 gap-8">
+    <!-- Wizard area -->
+    <div class="col-span-12 lg:col-span-8">
+      <div id="wizard-content" class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-8 shadow-sm min-h-[500px]"></div>
+      <!-- Nav buttons -->
+      <div class="flex justify-between mt-6">
+        <button id="btn-back" onclick="goStep(-1)" class="px-8 py-3 border border-outline-variant rounded-xl font-bold text-on-surface-variant hover:bg-surface-container-high">← Anterior</button>
+        <button id="btn-next" onclick="goStep(1)" class="px-10 py-3 bg-primary text-on-primary rounded-xl font-bold shadow-md hover:opacity-90">Próximo →</button>
+      </div>
+    </div>
+
+    <!-- Summary panel -->
+    <div class="col-span-12 lg:col-span-4">
+      <div class="sticky top-24 bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 shadow-sm">
+        <h3 class="text-title-sm font-bold flex items-center gap-2 pb-4 border-b border-outline-variant mb-4">
+          <span class="material-symbols-outlined text-primary">receipt_long</span>Resumo do Agendamento
+        </h3>
+        <div id="summary-body" class="space-y-3 text-body-sm"></div>
+        <div class="mt-6 pt-4 border-t border-outline-variant">
+          <button id="btn-finish" onclick="finish()" class="w-full py-4 bg-primary text-on-primary rounded-xl font-black flex items-center justify-center gap-2 opacity-50 cursor-not-allowed" disabled>
+            <span class="material-symbols-outlined">check_circle</span>Finalizar Agendamento
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<script>
+const STEPS=[
+  {id:1,icon:'stethoscope',label:'Dados da Cirurgia'},
+  {id:2,icon:'medical_services',label:'Procedimento'},
+  {id:3,icon:'inventory_2',label:'Kits e Materiais'},
+  {id:4,icon:'precision_manufacturing',label:'Equipamentos'},
+  {id:5,icon:'groups',label:'Equipe'},
+  {id:6,icon:'fact_check',label:'Revisão'}
+];
+
+const DATA={date:'',time:'',hospital:'',medico:'',paciente:'',cid:'',procedimento:'Artrodese Cervical Anterior',kit:'',piezo:true,motor:false,otica:true,cxapoio:false,empresa:'MedTech Solutions',instrumentador:'',obs:''};
+
+let cur=1;
+
+function buildStepBar(){
+  const bar=document.getElementById('step-bar');
+  bar.innerHTML=STEPS.map((s,i)=>{
+    const done=cur>s.id, active=cur===s.id;
+    const cls=done?'step-done':active?'step-active':'step-idle';
+    const sep=i<STEPS.length-1?'<div class="flex-1 h-0.5 bg-outline-variant mx-2"></div>':'';
+    return `<div class="flex items-center gap-2 shrink-0 cursor-pointer" onclick="jumpStep(${s.id})">
+      <div class="w-9 h-9 rounded-full ${cls} flex items-center justify-center font-black text-sm">${done?'✓':s.id}</div>
+      <span class="text-sm font-bold ${active?'text-primary':done?'text-green-600':'text-on-surface-variant'}">${s.label}</span>
+    </div>${sep}`;
+  }).join('');
+}
+
+function buildContent(){
+  const el=document.getElementById('wizard-content');
+  const s=STEPS[cur-1];
+  el.innerHTML='<div class="flex items-center gap-3 mb-8"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary"><span class="material-symbols-outlined">'+s.icon+'</span></div><div><h3 class="text-title-sm font-bold">Passo '+cur+' de '+STEPS.length+': '+s.label+'</h3><p class="text-body-sm text-on-surface-variant">'+stepDesc(cur)+'</p></div></div>'+stepBody(cur);
+}
+
+function stepDesc(n){
+  return ['Informe a data, horário, hospital, médico e paciente.','Selecione o procedimento principal e CIDs relacionados.','Escolha o kit cirúrgico principal e materiais adicionais.','Selecione os equipamentos necessários para a cirurgia.','Defina a empresa fornecedora e o instrumentador.','Revise todas as informações antes de finalizar.'][n-1];
+}
+
+function inp(id,label,type,val,ph){return `<div class="space-y-1"><label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">${label}</label><input id="${id}" type="${type}" value="${val}" placeholder="${ph||''}" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-white text-body-sm" oninput="DATA['${id}']=this.value;updateSummary()"/></div>`;}
+function sel(id,label,opts,val){return `<div class="space-y-1"><label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">${label}</label><select id="${id}" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-white text-body-sm" onchange="DATA['${id}']=this.value;updateSummary()">${opts.map(o=>`<option ${o===val?'selected':''}>${o}</option>`).join('')}</select></div>`;}
+
+function stepBody(n){
+  if(n===1) return `<div class="grid grid-cols-2 gap-5">
+    ${inp('date','Data da Cirurgia','date',DATA.date,'')}
+    ${inp('time','Horário','time',DATA.time,'')}
+    ${sel('hospital','Hospital',['Selecione...','Hospital Santa Catarina','Hospital Albert Einstein','Hospital Sírio-Libanês','BP Mirante','Sirio Libanês'],DATA.hospital)}
+    ${inp('medico','Médico Cirurgião','text',DATA.medico,'Dr. Nome Sobrenome')}
+    <div class="col-span-2">${inp('paciente','Nome do Paciente','text',DATA.paciente,'Nome completo do paciente')}</div>
+  </div>`;
+
+  if(n===2) return `<div class="space-y-6">
+    <div class="grid grid-cols-2 gap-5">
+      ${sel('procedimento','Procedimento Principal',['Artrodese Cervical Anterior','Herniorrafia Inguinal','Colecistectomia','Artroplastia de Quadril','Artroscopia de Joelho','Reconstrução de LCA'],DATA.procedimento)}
+      ${inp('cid','CIDs Relacionados','text',DATA.cid,'Ex: M50.1, M51.0')}
+    </div>
+    <div class="grid grid-cols-3 gap-4 mt-4">
+      ${['Artrodese Cervical Anterior','Herniorrafia Inguinal','Colecistectomia','Artroplastia de Quadril','Artroscopia de Joelho','Reconstrução de LCA'].map(p=>`
+      <div onclick="selectProc(this,'${p}')" class="p-5 rounded-2xl cursor-pointer border-2 transition-all ${DATA.procedimento===p?'border-primary bg-primary/5':'border-outline-variant hover:border-primary/50'}">
+        <span class="material-symbols-outlined text-primary mb-2">stethoscope</span>
+        <p class="font-bold text-sm">${p}</p>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  if(n===3) return `<div class="space-y-6">
+    <div class="flex items-center justify-between mb-4">
+      <h4 class="font-bold text-on-surface-variant uppercase text-xs tracking-wider">Kits Cirúrgicos</h4>
+      <span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded-md">Passo 1 de 2</span>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      ${[['Kit Artrodese Cervical','Placas e parafusos padrão','architecture','bg-purple-100 text-purple-700','purple'],['Kit Trauma Universal','Configuração básica emergências','home_repair_service','bg-blue-100 text-blue-700','blue'],['Kit Artroscopia','Instrumental para joelho e ombro','sports_handball','bg-teal-100 text-teal-700','teal'],['Kit Laparoscopia','Trocateres e instrumental','videocam','bg-orange-100 text-orange-700','orange']].map(([n,d,ic,bg,col])=>`
+      <div onclick="selectKit(this,'${n}')" class="p-4 rounded-2xl cursor-pointer border-2 transition-all flex flex-col gap-3 relative overflow-hidden group ${DATA.kit===n?`border-${col}-500 bg-${col}-50`:'border-outline-variant hover:border-primary/40'}">
+        <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-transparent to-${col}-200/50 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl ${bg} flex items-center justify-center shrink-0 shadow-sm"><span class="material-symbols-outlined">${ic}</span></div>
+            <div class="flex-1"><p class="font-bold text-sm text-on-surface leading-tight">${n}</p></div>
+        </div>
+        <div>
+            <p class="text-xs text-on-surface-variant line-clamp-2">${d}</p>
+        </div>
+        ${DATA.kit===n?`<div class="absolute top-3 right-3"><span class="material-symbols-outlined text-${col}-600" style="font-variation-settings:'FILL' 1">check_circle</span></div>`:''}
+      </div>`).join('')}
+    </div>
+
+    <div class="flex items-center justify-between mt-8 mb-4">
+      <h4 class="font-bold text-on-surface-variant uppercase text-xs tracking-wider">Consumíveis e Adicionais</h4>
+      <div class="relative">
+          <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-outline text-[16px]">search</span>
+          <input type="text" placeholder="Buscar material..." class="pl-8 pr-3 py-1.5 border border-outline-variant rounded-full text-xs outline-none focus:ring-2 focus:ring-primary bg-surface-container-lowest w-48">
+      </div>
+    </div>
+    
+    <div class="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+      ${[['Dreno Hemovac 3.2mm','Drenagem','water_drop',2],['Fio Absorvível 2-0 c/ Agulha','Sutura','content_cut',5],['Esponja Hemostática 5x5','Controle Sangramento','layers',3],['Seringa 20ml','Injeção','vaccines',10],['Compressa Cirúrgica (Pacote)','Limpeza','healing',5]].map(([n,cat,ic,q], idx)=>`
+      <div class="flex items-center justify-between p-3 bg-surface-container-lowest border border-outline-variant rounded-xl hover:shadow-md transition-shadow group">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-green-100 text-green-700 flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[20px]">${ic}</span></div>
+            <div>
+                <p class="font-bold text-sm text-on-surface">${n}</p>
+                <span class="text-[10px] uppercase font-bold text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">${cat}</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="flex items-center bg-surface-container rounded-lg p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button class="w-6 h-6 flex items-center justify-center text-on-surface-variant hover:bg-white rounded-md transition-colors"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+                <span class="w-6 text-center text-xs font-bold">1</span>
+                <button class="w-6 h-6 flex items-center justify-center text-on-surface-variant hover:bg-white rounded-md transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+            </div>
+            <button class="px-4 py-1.5 border border-outline-variant text-on-surface-variant text-xs font-bold rounded-lg hover:border-primary hover:text-primary transition-colors flex items-center gap-1">Adicionar</button>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  if(n===4) return `<div class="grid grid-cols-2 gap-5">
+    ${[['piezo','Piezo','electrical_services','Piezo X – Mod. 2023','Piezo Y – Compact',true],
+       ['motor','Motor','settings_input_component','DrillMaster Pro','Standard Motor',false],
+       ['otica','Ótica','visibility','HD Scope 30°','Full HD Scope 0°',true],
+       ['cxapoio','CX Apoio','inventory','Caixa Instrumental #04','Caixa Instrumental #09',false]].map(([key,lbl,ic,o1,o2,conflict])=>`
+    <div class="p-5 border-2 ${DATA[key]?'border-primary':'border-outline-variant'} rounded-2xl">
+      <div class="flex justify-between items-start mb-3">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined ${DATA[key]?'text-primary':'text-on-surface-variant'}">${ic}</span><span class="font-bold">${lbl}</span></div>
+        <label class="relative inline-flex cursor-pointer"><input type="checkbox" class="sr-only peer" ${DATA[key]?'checked':''} onchange="DATA['${key}']=this.checked;buildContent();updateSummary()"/><div class="w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div></label>
+      </div>
+      <select class="w-full px-3 py-2 border border-outline-variant rounded-lg text-sm bg-surface-container focus:ring-1 focus:ring-primary outline-none ${!DATA[key]?'opacity-50':''}" ${!DATA[key]?'disabled':''}>
+        <option>${o1}</option><option>${o2}</option>
+      </select>
+      ${conflict&&key==='piezo'?'<p class="mt-2 text-[10px] text-error font-bold">⚠️ Conflito de agenda detectado</p>':''}
+    </div>`).join('')}
+  </div>`;
+
+  if(n===5) return `<div class="space-y-5">
+    ${sel('empresa','Empresa Fornecedora',['MedTech Solutions','Cirúrgico Plus','OrthoMed','BioImplant'],DATA.empresa)}
+    ${inp('instrumentador','Instrumentador','text',DATA.instrumentador,'Nome do profissional')}
+    <div class="p-4 bg-surface-container rounded-xl border border-outline-variant">
+      <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-3">Status da Equipe</p>
+      <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-400"></span><span class="text-sm">Aguardando confirmação do hospital</span></div>
+    </div>
+    <div class="space-y-1"><label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Observações</label>
+    <textarea id="obs" rows="4" placeholder="Restrições do paciente, solicitações especiais..." class="w-full px-4 py-3 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none text-sm bg-white resize-none" oninput="DATA.obs=this.value">${DATA.obs}</textarea></div>
+  </div>`;
+
+  if(n===6){
+    const rows=[['Data',DATA.date||'—'],['Horário',DATA.time||'—'],['Hospital',DATA.hospital||'—'],['Médico',DATA.medico||'—'],['Paciente',DATA.paciente||'—'],['Procedimento',DATA.procedimento],['Kit',DATA.kit||'—'],['Empresa',DATA.empresa],['Instrumentador',DATA.instrumentador||'—']];
+    return `<div class="space-y-4">
+      <div class="p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
+        <span class="material-symbols-outlined text-green-600" style="font-variation-settings:'FILL' 1">verified</span>
+        <p class="text-sm font-bold text-green-800">Revise os dados antes de confirmar o agendamento.</p>
+      </div>
+      <table class="w-full text-sm">
+        <tbody class="divide-y divide-outline-variant">
+          ${rows.map(([k,v])=>`<tr><td class="py-3 pr-4 font-bold text-on-surface-variant w-40">${k}</td><td class="py-3 text-on-surface">${v}</td></tr>`).join('')}
+        </tbody>
+      </table>
+      <div class="p-4 bg-surface-container rounded-xl border border-outline-variant mt-4">
+        <p class="text-xs font-bold text-on-surface-variant uppercase mb-2">Equipamentos</p>
+        <div class="flex gap-2 flex-wrap">
+          ${DATA.piezo?'<span class="px-2 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">Piezo</span>':''}
+          ${DATA.motor?'<span class="px-2 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">Motor</span>':''}
+          ${DATA.otica?'<span class="px-2 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">Ótica</span>':''}
+          ${DATA.cxapoio?'<span class="px-2 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">CX Apoio</span>':''}
+        </div>
+      </div>
+    </div>`;
+  }
+}
+
+function updateSummary(){
+  const el=document.getElementById('summary-body');
+  const rows=[['📅 Data',DATA.date||'—'],['⏰ Horário',DATA.time||'—'],['🏥 Hospital',DATA.hospital||'—'],['🩺 Médico',DATA.medico||'—'],['👤 Paciente',DATA.paciente||'—'],['💊 Procedimento',DATA.procedimento],['📦 Kit',DATA.kit||'—'],['🏢 Empresa',DATA.empresa]];
+  el.innerHTML=rows.map(([k,v])=>`<div class="flex justify-between gap-2"><span class="text-on-surface-variant text-xs">${k}</span><span class="font-bold text-xs text-right">${v}</span></div>`).join('');
+  const fin=document.getElementById('btn-finish');
+  if(cur===6){fin.disabled=false;fin.classList.remove('opacity-50','cursor-not-allowed');}
+}
+
+function render(){
+  buildStepBar();
+  buildContent();
+  updateSummary();
+  document.getElementById('btn-back').classList.toggle('invisible',cur===1);
+  const nb=document.getElementById('btn-next');
+  if(cur===6){nb.textContent='Confirmar ✓';nb.onclick=finish;}
+  else{nb.textContent='Próximo →';nb.onclick=function(){goStep(1);};}
+}
+
+function goStep(d){cur=Math.max(1,Math.min(6,cur+d));render();}
+function jumpStep(n){if(n<=cur)cur=n;render();}
+
+function selectProc(el,p){DATA.procedimento=p;document.getElementById('procedimento').value=p;buildContent();updateSummary();}
+function selectKit(el,k){DATA.kit=k;buildContent();updateSummary();}
+
+function finish(){
+  alert('Agendamento registrado com sucesso!');
+  location.href='01_agenda.html';
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Previx – Novo Cadastro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary":"#630ed4","on-primary":"#ffffff","primary-container":"#7c3aed","on-primary-container":"#ede0ff","secondary":"#6a4fa0","on-secondary":"#ffffff","secondary-fixed":"#eaddff","on-secondary-fixed":"#25005a","surface":"#fef7ff","surface-container-low":"#f9f1ff","surface-container":"#f3ebfa","surface-container-high":"#ede5f4","surface-container-highest":"#e8dfee","surface-container-lowest":"#ffffff","on-surface":"#1d1a24","on-surface-variant":"#4a4455","outline":"#7b7487","outline-variant":"#ccc3d8","error":"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a","success":"#16a34a"},"fontFamily":{"sans":['Inter','sans-serif'],"label-bold":["Inter","sans-serif"],"title-sm":["Inter","sans-serif"],"body-md":["Inter","sans-serif"]},"fontSize":{"label-bold":["12px",{"lineHeight":"16px","fontWeight":"700"}],"label":["12px",{"lineHeight":"16px","fontWeight":"500"}],"body-sm":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"title-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}]}}}}
+</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+body{font-family:'Inter',sans-serif;background:#f8f9fc}
+.step-active{background:#630ed4;color:#fff; box-shadow: 0 4px 12px rgba(99, 14, 212, 0.3);}
+.step-done{background:#16a34a;color:#fff}
+.step-idle{background:#e8dfee;color:#4a4455}
+.card-sel{border:2px solid #630ed4;background:#f3ebfa}
+.card-idle{border:1px solid #ccc3d8}
+.card-idle:hover{border-color:#630ed4; background-color:#f9f1ff;}
+.upload-area{border:2px dashed #ccc3d8; transition:all 0.2s ease;}
+.upload-area:hover{border-color:#630ed4; background-color:#f9f1ff;}
+</style>
+</head>
+<body class="text-on-surface">
+
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30 shadow-sm">
+  <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity" title="Ir para Dashboard">
+    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+      <span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+    </div>
+    <div>
+      <h1 class="text-title-sm font-black text-primary">Previx</h1>
+      <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Gestão Cirúrgica</p>
+    </div>
+  </a>
+  
+  <div class="px-4 mb-4">
+    <button onclick="window.location.href='05_novo_agendamento.html'" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+      <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+      Novo Procedimento
+    </button>
+  </div>
+  
+  <nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="../index.html">
+      <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+      <span class="text-label-bold font-label-bold">Dashboard</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="01_agenda.html">
+      <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+      <span class="text-label-bold font-label-bold">Agenda</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="10_relatorios.html">
+      <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+      <span class="text-label-bold font-label-bold">Relatórios</span>
+    </a>
+    <a class="bg-secondary-fixed text-on-secondary-fixed font-bold border-l-4 border-primary rounded-r-lg flex items-center gap-3 px-4 py-3 transition-all" href="06_cadastros_base.html">
+      <span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+      <span class="text-label-bold font-label-bold">Cadastros Base</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="07_gestao_usuarios.html">
+      <span class="material-symbols-outlined" data-icon="group">group</span>
+      <span class="text-label-bold font-label-bold">Usuários</span>
+    </a>
+  </nav>
+  
+  <div class="px-2 mt-auto border-t border-outline-variant pt-4 space-y-1">
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="12_configuracoes.html">
+      <span class="material-symbols-outlined" data-icon="settings">settings</span>
+      <span class="text-label-bold font-label-bold">Configurações</span>
+    </a>
+    <a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container-highest rounded-lg transition-all" href="#">
+      <span class="material-symbols-outlined" data-icon="help">help</span>
+      <span class="text-label-bold font-label-bold">Suporte</span>
+    </a>
+  </div>
+</aside>
+
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-[260px] h-[64px] bg-white border-b border-outline-variant/50 shadow-sm flex items-center justify-between px-8 z-20">
+  <div class="flex items-center gap-4">
+      <a href="06_cadastros_base.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm font-semibold">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          Voltar para Cadastros
+      </a>
+  </div>
+  <div class="flex items-center gap-4">
+      <button class="w-10 h-10 rounded-full flex items-center justify-center text-outline hover:bg-surface-container-high transition-colors relative">
+          <span class="material-symbols-outlined text-[22px]">notifications</span>
+          <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-white"></span>
+      </button>
+      <div class="flex items-center gap-3 border-l border-outline-variant/50 pl-4 ml-2">
+          <div class="text-right hidden sm:block">
+              <p class="text-xs font-bold text-on-surface">Dr. Ricardo Silva</p>
+              <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
+          </div>
+          <button class="w-9 h-9 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center">DR</button>
+      </div>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="ml-[260px] mt-[64px] p-8">
+<div class="max-w-[1400px] mx-auto">
+
+  <!-- Page header -->
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-display-lg font-bold text-on-surface">Novo Cadastro Base</h2>
+      <p class="text-body-md text-on-surface-variant">Siga o passo a passo para registrar um novo item no sistema.</p>
+    </div>
+    <div class="flex gap-3">
+      <button onclick="location.href='06_cadastros_base.html'" class="px-6 py-2.5 border border-outline-variant rounded-lg text-on-surface-variant font-bold hover:bg-surface-container-high">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Step bar -->
+  <div id="step-bar" class="flex items-center bg-white border border-outline-variant rounded-2xl px-6 py-4 mb-8 gap-2 overflow-x-auto shadow-sm">
+  </div>
+
+  <div class="grid grid-cols-12 gap-8">
+    <!-- Wizard area -->
+    <div class="col-span-12 lg:col-span-8">
+      <div id="wizard-content" class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm min-h-[450px]"></div>
+      <!-- Nav buttons -->
+      <div class="flex justify-between mt-6">
+        <button id="btn-back" onclick="goStep(-1)" class="px-8 py-3 border border-outline-variant rounded-xl font-bold text-on-surface-variant hover:bg-surface-container-high bg-white">← Anterior</button>
+        <button id="btn-next" onclick="goStep(1)" class="px-10 py-3 bg-primary text-on-primary rounded-xl font-bold shadow-md hover:opacity-90">Próximo →</button>
+      </div>
+    </div>
+
+    <!-- Summary panel -->
+    <div class="col-span-12 lg:col-span-4">
+      <div class="sticky top-24 bg-white border border-outline-variant rounded-2xl p-6 shadow-sm">
+        <h3 class="text-title-sm font-bold flex items-center gap-2 pb-4 border-b border-outline-variant mb-4">
+          <span class="material-symbols-outlined text-primary">feed</span>Resumo do Cadastro
+        </h3>
+        
+        <!-- Summary Avatar/Icon -->
+        <div class="flex items-center gap-4 mb-6" id="summary-header">
+            <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-outline">
+                <span class="material-symbols-outlined text-[24px]">question_mark</span>
+            </div>
+            <div>
+                <p class="text-xs text-on-surface-variant font-bold uppercase tracking-wider" id="sum-cat-label">Não definido</p>
+                <p class="text-body-md font-bold text-on-surface" id="sum-name-label">Novo Registro</p>
+            </div>
+        </div>
+
+        <div id="summary-body" class="space-y-4 text-body-sm bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+            <!-- Dynamic items go here -->
+            <p class="text-on-surface-variant italic text-center py-4 text-xs">Preencha as informações para visualizar o resumo.</p>
+        </div>
+        
+        <div class="mt-6 pt-4 border-t border-outline-variant">
+          <button id="btn-finish" onclick="finish()" class="w-full py-4 bg-primary text-on-primary rounded-xl font-black flex items-center justify-center gap-2 opacity-50 cursor-not-allowed transition-all" disabled>
+            <span class="material-symbols-outlined">save</span>Salvar Registro
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<script>
+// Logic for Wizard
+const STEPS=[
+  {id:1,icon:'category',label:'Tipo de Cadastro'},
+  {id:2,icon:'badge',label:'Identificação'},
+  {id:3,icon:'tune',label:'Detalhes Específicos'},
+  {id:4,icon:'fact_check',label:'Revisão Final'}
+];
+
+// Available categories
+const CATEGORIES = [
+    {id:'produto', name:'Produto Médicos', icon:'inventory_2', desc:'Kits, Consumíveis e Equipamentos'},
+    {id:'medico', name:'Médico', icon:'stethoscope', desc:'Cirurgiões e especialistas'},
+    {id:'plano_saude', name:'Plano de Saúde', icon:'health_and_safety', desc:'Convênios e operadoras'},
+    {id:'hospital', name:'Hospital', icon:'local_hospital', desc:'Hospitais e clínicas parceiras'},
+    {id:'procedimento', name:'Procedimento', icon:'medical_services', desc:'Cirurgias e intervenções'},
+    {id:'empresa', name:'Empresa', icon:'business', desc:'Fornecedores e distribuidores'}
+];
+
+const DATA={
+    tipo:'',
+    nome:'',
+    foto:'Sem foto',
+    
+    // Produto
+    pd_tipo:'Kit',
+    pd_equip_tipo:'Piezo',
+    pd_modelo:'',
+    pd_serial:'',
+    pd_descricao:'',
+    pd_fornecedor:'',
+
+    // Medico
+    md_especialidade:'Cirurgia Geral',
+    md_crm:'',
+    md_tel:'',
+
+    // Plano de Saude
+    ps_ans:'',
+    ps_tabela:'CBHPM',
+    ps_url:''
+};
+
+let cur=1;
+
+function buildStepBar(){
+  const bar=document.getElementById('step-bar');
+  bar.innerHTML=STEPS.map((s,i)=>{
+    const done=cur>s.id, active=cur===s.id;
+    const cls=done?'step-done':active?'step-active':'step-idle';
+    const sep=i<STEPS.length-1?'<div class="flex-1 h-0.5 bg-outline-variant mx-2 min-w-[20px]"></div>':'';
+    return `<div class="flex items-center gap-2 shrink-0 ${cur>=s.id?'cursor-pointer':''}" onclick="${cur>=s.id?'jumpStep('+s.id+')':''}">
+      <div class="w-9 h-9 rounded-full ${cls} flex items-center justify-center font-black text-sm transition-all">${done?'✓':s.id}</div>
+      <span class="text-sm font-bold ${active?'text-primary':done?'text-green-600':'text-on-surface-variant'}">${s.label}</span>
+    </div>${sep}`;
+  }).join('');
+}
+
+function buildContent(){
+  const el=document.getElementById('wizard-content');
+  const s=STEPS[cur-1];
+  
+  let desc = ['Escolha qual tipo de registro você deseja criar no sistema.','Forneça o nome principal e se desejar, adicione uma foto ou logotipo.','Preencha os campos obrigatórios correspondentes à categoria escolhida.','Verifique se todas as informações estão corretas antes de finalizar.'][cur-1];
+
+  let headerHtml = `<div class="flex items-center gap-3 mb-8 pb-4 border-b border-outline-variant/50">
+      <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm shadow-primary/30">
+          <span class="material-symbols-outlined">${s.icon}</span>
+      </div>
+      <div>
+          <h3 class="text-title-sm font-bold text-on-surface">Passo ${cur} de ${STEPS.length}: ${s.label}</h3>
+          <p class="text-body-sm text-on-surface-variant">${desc}</p>
+      </div>
+  </div>`;
+
+  el.innerHTML = headerHtml + stepBody(cur);
+
+  // Update button states
+  document.getElementById('btn-back').style.visibility = cur===1?'hidden':'visible';
+  const btnNext = document.getElementById('btn-next');
+  if(cur===STEPS.length){
+      btnNext.style.display = 'none';
+  } else {
+      btnNext.style.display = 'block';
+  }
+
+  updateSummary();
+}
+
+// Helpers for inputs
+function inp(id,label,type,val,ph){
+    return `<div class="space-y-1">
+        <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">${label}</label>
+        <input id="${id}" type="${type}" value="${val}" placeholder="${ph||''}" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest text-body-sm transition-all" oninput="DATA['${id}']=this.value;updateSummary()"/>
+    </div>`;
+}
+
+function sel(id,label,opts,val,customOnchange){
+    return `<div class="space-y-1">
+        <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">${label}</label>
+        <select id="${id}" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest text-body-sm transition-all" onchange="DATA['${id}']=this.value;updateSummary();${customOnchange||''}">
+            ${opts.map(o=>`<option ${o===val?'selected':''}>${o}</option>`).join('')}
+        </select>
+    </div>`;
+}
+
+function txt(id,label,val,ph){
+    return `<div class="space-y-1 md:col-span-2 mt-2">
+        <label class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">${label}</label>
+        <textarea id="${id}" rows="3" placeholder="${ph||''}" class="w-full px-4 py-2.5 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none bg-surface-container-lowest text-body-sm transition-all resize-none" oninput="DATA['${id}']=this.value;updateSummary()">${val}</textarea>
+    </div>`;
+}
+
+function stepBody(n){
+  if(n===1){
+    return `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        ${CATEGORIES.map(c=>{
+            const active = DATA.tipo === c.id;
+            return `<div onclick="DATA.tipo='${c.id}'; buildContent();" class="p-4 rounded-xl cursor-pointer transition-all ${active ? 'card-sel' : 'card-idle'}">
+                <div class="w-10 h-10 rounded-full ${active ? 'bg-primary text-white' : 'bg-surface-container text-on-surface-variant'} flex items-center justify-center mb-3 transition-colors">
+                    <span class="material-symbols-outlined">${c.icon}</span>
+                </div>
+                <h4 class="font-bold text-on-surface text-sm">${c.name}</h4>
+                <p class="text-xs text-on-surface-variant mt-1">${c.desc}</p>
+            </div>`;
+        }).join('')}
+    </div>`;
+  }
+  
+  if(n===2){
+      if(!DATA.tipo) return `<div class="bg-warning-container text-on-warning-container p-4 rounded-xl flex items-center gap-3"><span class="material-symbols-outlined">warning</span><strong>Atenção:</strong> Por favor, retorne ao Passo 1 e selecione um Tipo de Cadastro primeiro.</div>`;
+
+      return `<div class="space-y-6">
+          <div class="max-w-md">
+              ${inp('nome','Nome / Identificação *','text',DATA.nome,'Ex: Torre de Vídeo Storz...')}
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Foto / Logotipo</label>
+            <div class="upload-area rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer bg-surface-container-lowest text-center max-w-md">
+                <div class="w-12 h-12 bg-surface-container-high rounded-full flex items-center justify-center mb-3">
+                    <span class="material-symbols-outlined text-[24px] text-primary">add_photo_alternate</span>
+                </div>
+                <p class="text-sm font-bold text-on-surface mb-1">Clique para enviar imagem</p>
+                <p class="text-xs text-on-surface-variant">PNG, JPG ou WEBP (Máx. 2MB)</p>
+            </div>
+          </div>
+      </div>`;
+  }
+
+  if(n===3){
+      if(!DATA.tipo) return `<div class="bg-warning-container text-on-warning-container p-4 rounded-xl">Selecione um Tipo no Passo 1.</div>`;
+
+      if(DATA.tipo === 'produto'){
+          let eqHtml = '';
+          if(DATA.pd_tipo === 'Equipamento') {
+              eqHtml = `
+              ${sel('pd_equip_tipo','Tipo de Equipamento',['Piezo','Motor','Ótica','Cx de apoio'],DATA.pd_equip_tipo)}
+              ${inp('pd_modelo','Modelo / Fabricante','text',DATA.pd_modelo,'Ex: Storz Rubina')}
+              ${inp('pd_serial','Número de Série (S/N)','text',DATA.pd_serial,'Ex: 88A923B')}
+              `;
+          }
+          return `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              ${sel('pd_tipo','Classificação do Produto',['Kit','Consumíveis','Equipamento'],DATA.pd_tipo,'buildContent()')}
+              ${inp('pd_fornecedor','Fornecedor / Fabricante','text',DATA.pd_fornecedor,'Ex: MedTech Solutions')}
+              ${eqHtml}
+              ${txt('pd_descricao','Descrição do Produto',DATA.pd_descricao,'Descreva as características, uso ou observações adicionais...')}
+          </div>`;
+      }
+      else if(DATA.tipo === 'medico'){
+          return `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              ${sel('md_especialidade','Especialidade Principal',['Cirurgia Geral','Ortopedia','Neurocirurgia','Cardiologia'],DATA.md_especialidade)}
+              ${inp('md_crm','CRM','text',DATA.md_crm,'000000')}
+              ${inp('md_tel','Telefone / WhatsApp','tel',DATA.md_tel,'(11) 90000-0000')}
+          </div>`;
+      }
+      else if(DATA.tipo === 'plano_saude'){
+          return `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              ${inp('ps_ans','Registro ANS','text',DATA.ps_ans,'Ex: 123456')}
+              ${sel('ps_tabela','Tipo de Tabela Padrão',['CBHPM','AMB','Tabela Própria'],DATA.ps_tabela)}
+              <div class="col-span-1 md:col-span-2">
+                  ${inp('ps_url','Portal de Autorização (URL)','url',DATA.ps_url,'https://')}
+              </div>
+          </div>`;
+      }
+      else {
+          return `<div class="flex flex-col items-center justify-center p-8 text-center bg-surface-container rounded-xl border border-outline-variant border-dashed">
+              <span class="material-symbols-outlined text-[48px] text-outline mb-4">check_circle</span>
+              <h4 class="text-sm font-bold text-on-surface">Configuração Básica Concluída</h4>
+              <p class="text-xs text-on-surface-variant mt-2 max-w-sm">Para as categorias <b>Hospital, Procedimento ou Empresa</b>, a configuração de dados básicos é o suficiente nesta etapa.</p>
+          </div>`;
+      }
+  }
+
+  if(n===4){
+      return `<div class="bg-success-container/50 border border-success/30 p-6 rounded-xl flex items-start gap-4">
+          <div class="w-12 h-12 bg-success text-white rounded-full flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined">done_all</span>
+          </div>
+          <div>
+              <h4 class="text-on-surface font-bold text-lg mb-1">Tudo pronto!</h4>
+              <p class="text-sm text-on-surface-variant">Revise as informações no painel ao lado. Se tudo estiver correto, clique em "Salvar Registro" para adicionar este item ao banco de dados.</p>
+          </div>
+      </div>`;
+  }
+}
+
+function updateSummary(){
+  const sBody = document.getElementById('summary-body');
+  const btn = document.getElementById('btn-finish');
+  const catObj = CATEGORIES.find(c => c.id === DATA.tipo);
+
+  // Update Header Icon and Name
+  if(catObj) {
+      document.getElementById('sum-cat-label').innerText = catObj.name;
+      document.getElementById('summary-header').querySelector('span').innerText = catObj.icon;
+      document.getElementById('summary-header').querySelector('.w-12').classList.add('bg-primary/10', 'text-primary');
+  }
+  document.getElementById('sum-name-label').innerText = DATA.nome || 'Sem Nome';
+
+  let html = '';
+
+  const item = (lbl,val)=>`<div class="flex justify-between items-center py-2 border-b border-outline-variant/30 last:border-0"><span class="text-on-surface-variant">${lbl}</span><span class="font-bold text-on-surface text-right max-w-[60%] truncate" title="${val}">${val}</span></div>`;
+
+  if(DATA.tipo){
+      html += item('Categoria', catObj.name);
+      if(DATA.nome) html += item('Nome', DATA.nome);
+      
+      if(DATA.tipo === 'produto'){
+          html += item('Classe', DATA.pd_tipo);
+          if(DATA.pd_fornecedor) html += item('Fornecedor', DATA.pd_fornecedor);
+          if(DATA.pd_tipo === 'Equipamento'){
+              html += item('Equipamento', DATA.pd_equip_tipo);
+              if(DATA.pd_modelo) html += item('Modelo', DATA.pd_modelo);
+              if(DATA.pd_serial) html += item('Serial', DATA.pd_serial);
+          }
+          if(DATA.pd_descricao) html += item('Descrição', DATA.pd_descricao);
+      }
+      else if(DATA.tipo === 'medico'){
+          if(DATA.md_especialidade) html += item('Espec.', DATA.md_especialidade);
+          if(DATA.md_crm) html += item('CRM', DATA.md_crm);
+          if(DATA.md_tel) html += item('Contato', DATA.md_tel);
+      }
+      else if(DATA.tipo === 'plano_saude'){
+          if(DATA.ps_ans) html += item('ANS', DATA.ps_ans);
+          if(DATA.ps_tabela) html += item('Tabela', DATA.ps_tabela);
+      }
+  } else {
+      html = '<p class="text-on-surface-variant italic text-center py-4 text-xs">Preencha as informações para visualizar o resumo.</p>';
+  }
+
+  sBody.innerHTML = html;
+
+  // Validation to enable save
+  if(DATA.tipo && DATA.nome && cur === STEPS.length){
+      btn.disabled = false;
+      btn.classList.remove('opacity-50','cursor-not-allowed');
+      btn.classList.add('hover:opacity-90','shadow-md');
+  } else {
+      btn.disabled = true;
+      btn.classList.add('opacity-50','cursor-not-allowed');
+      btn.classList.remove('hover:opacity-90','shadow-md');
+  }
+}
+
+function goStep(dir){
+  const next = cur+dir;
+  if(dir===1 && cur===1 && !DATA.tipo){
+      alert('Selecione uma categoria primeiro.');
+      return;
+  }
+  if(dir===1 && cur===2 && !DATA.nome){
+      alert('O Nome/Identificação é obrigatório.');
+      return;
+  }
+  if(next>0 && next<=STEPS.length){
+      cur=next;
+      buildStepBar();
+      buildContent();
+  }
+}
+
+function jumpStep(n){
+  if(n>cur) return; // Only allow jumping back to completed steps
+  cur=n;
+  buildStepBar();
+  buildContent();
+}
+
+function finish(){
+  if(!document.getElementById('btn-finish').disabled){
+      alert('Registro salvo com sucesso!');
+      window.location.href='06_cadastros_base.html';
+  }
+}
+
+// Init
+buildStepBar();
+buildContent();
+
+</script>
+</body>
+</html>
