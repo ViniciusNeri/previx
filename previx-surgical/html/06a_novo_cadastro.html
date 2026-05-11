@@ -103,17 +103,20 @@ body{font-family:'Inter',sans-serif;background:#f8f9fc}
 </header>
 
 <!-- Main -->
-<main class="ml-[260px] mt-[64px] p-8">
-<div class="max-w-[1400px] mx-auto">
+<main class="ml-[260px] pt-[64px] min-h-screen">
+<div class="p-container-padding max-w-[1600px] mx-auto">
 
   <!-- Page header -->
-  <div class="flex justify-between items-center mb-6">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
     <div>
-      <h2 class="text-display-lg font-bold text-on-surface">Novo Cadastro Base</h2>
-      <p class="text-body-md text-on-surface-variant">Siga o passo a passo para registrar um novo item no sistema.</p>
+      <h2 class="text-3xl font-bold text-on-surface mb-1 flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary text-[32px] bg-primary/10 p-1.5 rounded-lg">app_registration</span>
+        Novo Cadastro Base
+      </h2>
+      <p class="text-on-surface-variant text-sm mt-2">Siga o passo a passo para registrar um novo item no sistema.</p>
     </div>
     <div class="flex gap-3">
-      <button onclick="location.href='06_cadastros_base.html'" class="px-6 py-2.5 border border-outline-variant rounded-lg text-on-surface-variant font-bold hover:bg-surface-container-high">Cancelar</button>
+      <button onclick="location.href='06_cadastros_base.html'" class="px-6 py-2.5 border border-outline-variant rounded-lg text-on-surface-variant font-bold hover:bg-surface-container-high transition-colors">Cancelar</button>
     </div>
   </div>
 

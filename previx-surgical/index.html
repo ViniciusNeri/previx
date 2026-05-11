@@ -18,6 +18,7 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
     }
 
     .material-symbols-outlined {
@@ -106,7 +107,7 @@
   </script>
 </head>
 
-<body class="bg-background text-on-background">
+<body class="text-on-surface">
   <!-- SideNavBar (Authority: JSON) -->
   <aside
     class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
@@ -170,12 +171,12 @@
   <!-- TopAppBar (Authority: JSON) -->
   <header
     class="fixed top-0 right-0 left-[260px] h-header-height bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-container-padding z-10">
-    <div class="flex items-center gap-4 flex-1">
-      <div class="relative w-full max-w-md">
+    <div class="flex items-center flex-1 max-w-xl">
+      <div class="relative w-full">
         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
           data-icon="search">search</span>
         <input
-          class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-full text-body-sm focus:ring-2 focus:ring-primary"
+          class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-md font-body-md focus:ring-2 focus:ring-primary focus:outline-none"
           placeholder="Pesquisar procedimentos, equipamentos ou hospitais..." type="text" />
       </div>
     </div>
@@ -205,16 +206,20 @@
     <div class="p-container-padding max-w-[1600px] mx-auto">
       <!-- Welcome Section -->
       <section class="mb-8">
-        <div class="flex justify-between items-end">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 class="text-display-lg font-display-lg text-on-surface">Olá, Ricardo</h2>
-            <p class="text-body-md font-body-md text-on-surface-variant">Bem-vindo ao centro de operações da Previx.
-              Aqui está o resumo de hoje.</p>
+            <h2 class="text-3xl font-bold text-on-surface mb-1 flex items-center gap-3">
+              <span
+                class="material-symbols-outlined text-primary text-[32px] bg-primary/10 p-1.5 rounded-lg">dashboard</span>
+              Olá, Ricardo
+            </h2>
+            <p class="text-on-surface-variant text-sm mt-2">Bem-vindo ao centro de operações da Previx. Aqui está o
+              resumo de hoje.</p>
           </div>
           <div class="flex gap-2">
             <div
-              class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-lg text-on-surface-variant text-body-sm">
-              <span class="material-symbols-outlined text-[20px]" data-icon="event">event</span>
+              class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-lg text-on-surface-variant text-xs font-bold border border-outline-variant/30 shadow-sm">
+              <span class="material-symbols-outlined text-[20px]">calendar_today</span>
               24 de Outubro, 2024
             </div>
           </div>

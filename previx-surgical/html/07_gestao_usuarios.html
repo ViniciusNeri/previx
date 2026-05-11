@@ -213,16 +213,19 @@
   <main class="ml-[260px] pt-[64px] min-h-screen">
     <div class="p-container-padding max-w-[1600px] mx-auto">
       <!-- Page Header -->
-      <div class="flex justify-between items-end mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h2 class="text-display-lg font-display-lg text-on-surface mb-1">Usuários</h2>
-          <p class="text-body-md text-on-surface-variant">Gerencie o acesso e permissões dos membros da equipe
+          <h2 class="text-3xl font-bold text-on-surface mb-1 flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-[32px] bg-primary/10 p-1.5 rounded-lg">group</span>
+            Gestão de Usuários
+          </h2>
+          <p class="text-on-surface-variant text-sm mt-2">Gerencie o acesso e permissões dos membros da equipe
             cirúrgica.</p>
         </div>
         <button
-          class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-bold flex items-center gap-2 shadow-lg hover:opacity-90 transition-opacity active:scale-[0.98]"
+          class="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold text-sm shadow-sm hover:opacity-90 transition-all flex items-center gap-2"
           onclick="document.getElementById('novo-usuario-modal').classList.remove('hidden')">
-          <span class="material-symbols-outlined text-[20px]">add</span>
+          <span class="material-symbols-outlined text-[18px]">add</span>
           Novo Usuário
         </button>
       </div>
