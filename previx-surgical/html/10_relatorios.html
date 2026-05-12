@@ -125,9 +125,11 @@
 </head>
 
 <body class="text-on-surface">
-  <!-- SideNavBar Shell -->
-  <aside
-    class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+  <!-- Overlay for Mobile Sidebar -->
+<div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-50 transition-transform duration-300 transform -translate-x-full lg:translate-x-0">
     <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
       title="Ir para Dashboard">
       <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
@@ -186,10 +188,12 @@
     </div>
   </aside>
   <!-- TopNavBar Shell -->
-  <header
-    class="fixed top-0 right-0 left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-8 z-20">
+<header class="fixed top-0 right-0 left-0 lg:left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-4 sm:px-8 z-20">
     <div class="flex items-center flex-1 max-w-xl">
-      <div class="relative w-full">
+        <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors mr-2">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="relative w-full hidden sm:block">
         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
           data-icon="search">search</span>
         <input
@@ -220,8 +224,11 @@
     </div>
   </header>
   <!-- Main Content -->
-  <main class="ml-[260px] pt-[64px] min-h-screen">
-    <div class="p-container-padding max-w-[1600px] mx-auto">
+    </div>
+</header>
+<!-- Main Content -->
+<main class="lg:ml-[260px] pt-[64px] min-h-screen">
+    <div class="p-4 sm:p-container-padding max-w-[1600px] mx-auto">
       <!-- Page Header & Filters -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
@@ -337,7 +344,7 @@
       </div>
       <!-- Table Preview Section -->
       <div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
-        <div class="p-6 border-b border-outline-variant flex justify-between items-center bg-white">
+        <div class="p-4 sm:p-6 border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white">
           <div>
             <h3 class="text-title-sm font-bold text-on-surface">Pré-visualização dos Dados</h3>
             <p class="text-body-sm text-on-surface-variant">Exibindo os 10 registros mais recentes do filtro aplicado.
@@ -356,7 +363,8 @@
             </button>
           </div>
         </div>
-        <div class="overflow-x-auto">
+        <!-- Tabela (Desktop) -->
+        <div class="hidden lg:block overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead class="bg-surface-container-low">
               <tr>
@@ -428,6 +436,85 @@
             </tbody>
           </table>
         </div>
+
+        <!-- Cards (Mobile Enhanced Grid) -->
+        <div class="lg:hidden space-y-4 px-4 pb-4 bg-surface-container-low/30 pt-4">
+          <!-- Card 1 -->
+          <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-data-mono text-primary font-bold">#98231</span>
+              <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Realizada</span>
+            </div>
+            <div class="space-y-1">
+              <h4 class="font-bold text-on-surface">Artroplastia de Quadril</h4>
+              <p class="text-body-sm text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                12 Out, 2023 08:30
+              </p>
+            </div>
+            <div class="pt-2 border-t border-outline-variant/30 grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-[10px] text-on-surface-variant uppercase font-bold">Hospital</p>
+                <p class="text-body-sm text-on-surface">Sta. Luzia</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-on-surface-variant uppercase font-bold">Médico</p>
+                <p class="text-body-sm text-on-surface">Dr. Ricardo Silva</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-data-mono text-primary font-bold">#98244</span>
+              <span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-2 py-1 rounded-full uppercase">Em Andamento</span>
+            </div>
+            <div class="space-y-1">
+              <h4 class="font-bold text-on-surface">Colecistectomia</h4>
+              <p class="text-body-sm text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                12 Out, 2023 10:15
+              </p>
+            </div>
+            <div class="pt-2 border-t border-outline-variant/30 grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-[10px] text-on-surface-variant uppercase font-bold">Hospital</p>
+                <p class="text-body-sm text-on-surface">Centro Médico</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-on-surface-variant uppercase font-bold">Médico</p>
+                <p class="text-body-sm text-on-surface">Dra. Amanda C.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-data-mono text-primary font-bold">#98256</span>
+              <span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-full uppercase">Agendada</span>
+            </div>
+            <div class="space-y-1">
+              <h4 class="font-bold text-on-surface">Hernioplastia Inguinal</h4>
+              <p class="text-body-sm text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                13 Out, 2023 07:00
+              </p>
+            </div>
+            <div class="pt-2 border-t border-outline-variant/30 grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-[10px] text-on-surface-variant uppercase font-bold">Hospital</p>
+                <p class="text-body-sm text-on-surface">Sta. Luzia</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-on-surface-variant uppercase font-bold">Médico</p>
+                <p class="text-body-sm text-on-surface">Dr. Marcos O.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Table Footer -->
         <div
           class="px-6 py-4 border-t border-outline-variant/50 flex justify-between items-center bg-surface-container-lowest">
@@ -476,6 +563,14 @@
     </div>
   </main>
   <!-- FAB Suppression for Reports screen as per instructions -->
+  <script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('aside');
+        const overlay = document.getElementById('sidebar-overlay');
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+    }
+  </script>
 </body>
 
 </html>

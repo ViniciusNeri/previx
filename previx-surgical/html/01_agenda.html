@@ -121,9 +121,12 @@
 </head>
 
 <body class="text-on-surface">
+    <!-- Overlay for Mobile Sidebar -->
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
     <!-- SIDEBAR -->
     <aside
-        class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+        class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-50 transition-transform duration-300 transform -translate-x-full lg:translate-x-0">
         <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
             title="Ir para Dashboard">
             <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
@@ -183,14 +186,18 @@
     </aside>
     <!-- HEADER -->
     <header
-        class="fixed top-0 right-0 left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-8 z-20">
-        <div class="flex items-center flex-1 max-w-xl">
+        class="fixed top-0 right-0 left-0 lg:left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-4 sm:px-8 z-20">
+        <div class="flex items-center gap-4">
+            <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        <div class="flex items-center flex-1 max-w-xl hidden sm:block">
             <div class="relative w-full">
                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
                     data-icon="search">search</span>
                 <input
                     class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-md font-body-md focus:ring-2 focus:ring-primary focus:outline-none"
-                    placeholder="Pesquisar pacientes, procedimentos ou hospitais..." type="text" />
+                    placeholder="Pesquisar..." type="text" />
             </div>
         </div>
         <div class="flex items-center gap-4">
@@ -201,7 +208,7 @@
             </button>
             <div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
             <div class="flex items-center gap-3">
-                <div class="text-right">
+                <div class="text-right hidden sm:block">
                     <p class="text-label-bold font-label-bold text-on-surface">Dr. Ricardo Silva</p>
                     <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Administrador</p>
                 </div>
@@ -216,8 +223,8 @@
         </div>
     </header>
     <!-- MAIN CONTENT -->
-    <main class="ml-[260px] pt-[64px] min-h-screen">
-        <div class="p-container-padding max-w-[1600px] mx-auto">
+    <main class="lg:ml-[260px] pt-[64px] min-h-screen">
+        <div class="p-4 sm:p-container-padding max-w-[1600px] mx-auto">
             <!-- TOOLBAR / FILTERS -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div class="space-y-4 flex-1">
@@ -275,7 +282,7 @@
             </div>
 
             <!-- SELEÇÃO DE MATERIAIS — ATALHOS -->
-            <div class="flex items-center gap-3 mb-6 p-4 bg-surface-container rounded-xl border border-outline-variant">
+            <div class="flex flex-wrap items-center gap-3 mb-6 p-4 bg-surface-container rounded-xl border border-outline-variant">
                 <div class="flex items-center gap-2 text-on-surface-variant mr-2">
                     <span class="material-symbols-outlined text-sm" data-icon="inventory_2">inventory_2</span>
                     <span class="text-label-bold font-label-bold uppercase">Seleção de Materiais:</span>
@@ -307,8 +314,9 @@
                             PROCEDIMENTOS</span>
                         <div class="flex-1 h-[1px] bg-outline-variant"></div>
                     </div>
-                    <div class="bg-white rounded-xl border border-outline-variant shadow-sm relative z-10">
-                        <table class="w-full text-left border-collapse">
+                    <!-- Tabela Desktop -->
+                    <div class="bg-white rounded-xl border border-outline-variant shadow-sm relative z-10 overflow-x-auto hidden lg:block">
+                        <table class="w-full text-left border-collapse min-w-[1000px]">
                             <thead class="bg-surface-container-low border-b border-outline-variant">
                                 <tr>
                                 <tr>
@@ -610,6 +618,86 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Cards Mobile (Aprimorado) -->
+                    <div id="cards-hoje" class="lg:hidden space-y-4">
+                        <!-- Card 1 -->
+                        <div class="bg-white rounded-xl border border-outline-variant shadow-sm p-4 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-title-sm font-bold text-on-surface">08:30</span>
+                                    <p class="text-[10px] text-primary font-medium flex items-center gap-1 mt-1">
+                                        <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                                        Entrega: 07:30
+                                    </p>
+                                </div>
+                                <div class="flex items-center gap-1.5 px-3 py-1 bg-green-100 text-green-700 rounded-full text-[11px] font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Confirmado
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-on-surface">Maria Oliveira</h4>
+                                <p class="text-body-sm text-on-surface-variant">Artroplastia de Quadril</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 py-3 border-y border-outline-variant/30">
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Hospital</p>
+                                    <p class="text-body-sm text-on-surface">Hosp. Santa Catarina</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Representante</p>
+                                    <p class="text-body-sm text-on-surface">Ricardo Gomes</p>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span class="text-on-surface-variant">Materiais (Checklist)</span>
+                                    <span class="font-bold text-green-600">100%</span>
+                                </div>
+                                <div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-green-500 h-full w-full"></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 pt-2">
+                                <button onclick="window.location.href='03_detalhes_agendamento.html'" class="flex-1 py-2 bg-surface-container rounded-lg text-on-surface-variant text-[12px] font-bold flex items-center justify-center gap-1">
+                                    <span class="material-symbols-outlined text-[18px]">visibility</span> Detalhes
+                                </button>
+                                <button class="p-2 bg-surface-container rounded-lg text-outline">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 (Conflito) -->
+                        <div class="bg-red-50 rounded-xl border-l-4 border-red-500 border border-outline-variant/30 shadow-sm p-4 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-title-sm font-bold text-red-700">10:15</span>
+                                    <p class="text-[10px] text-red-600 font-medium flex items-center gap-1 mt-1">
+                                        <span class="material-symbols-outlined text-[14px]">warning</span>
+                                        CONFLITO
+                                    </p>
+                                </div>
+                                <div class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-[11px] font-bold">
+                                    Atenção
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-red-900">João Souza</h4>
+                                <p class="text-body-sm text-red-700">Histeroscopia Cirúrgica</p>
+                            </div>
+                            <div class="p-3 bg-white/50 rounded-lg border border-red-200">
+                                <p class="text-[11px] text-red-800 leading-tight">
+                                    <strong>Piezo X</strong> já alocado para Hospital Santa Catarina no horário selecionado.
+                                </p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 py-2 bg-red-600 text-white rounded-lg text-[12px] font-bold flex items-center justify-center gap-1">
+                                    <span class="material-symbols-outlined text-[18px]">build</span> Resolver Conflito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <!-- Group: PRÓXIMOS DIAS -->
                 <section>
@@ -620,8 +708,8 @@
                             PROCEDIMENTOS</span>
                         <div class="flex-1 h-[1px] bg-outline-variant opacity-50"></div>
                     </div>
-                    <div class="bg-white rounded-xl border border-outline-variant shadow-sm opacity-90 relative z-0">
-                        <table class="w-full text-left border-collapse">
+                    <div class="bg-white rounded-xl border border-outline-variant shadow-sm opacity-90 relative z-0 overflow-x-auto hidden lg:block">
+                        <table class="w-full text-left border-collapse min-w-[1000px]">
                             <thead class="bg-surface-container-low border-b border-outline-variant">
                                 <tr>
                                     <th
@@ -830,6 +918,87 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- Cards Mobile: Próximos Dias -->
+                    <div id="cards-proximos" class="lg:hidden space-y-4">
+                        <!-- Card Sample 1 -->
+                        <div class="bg-white rounded-xl border border-outline-variant shadow-sm p-4 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-[10px] font-bold text-primary/60 uppercase tracking-tight mb-0.5 block">25 OUT</span>
+                                    <span class="text-title-sm font-bold text-on-surface">07:00</span>
+                                    <p class="text-[10px] text-primary font-medium flex items-center gap-1 mt-1">
+                                        <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                                        Entrega: 06:00
+                                    </p>
+                                </div>
+                                <div class="flex items-center gap-1.5 px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-[11px] font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>Pendente
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-on-surface">Beatriz Melos</h4>
+                                <p class="text-body-sm text-on-surface-variant">Prótese Mamária</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 py-3 border-y border-outline-variant/30">
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Hospital</p>
+                                    <p class="text-body-sm text-on-surface">Sirio Libanês</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Representante</p>
+                                    <p class="text-body-sm text-on-surface">Felipe Amorim</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 pt-2">
+                                <button onclick="window.location.href='03_detalhes_agendamento.html'" class="flex-1 py-2 bg-surface-container rounded-lg text-on-surface-variant text-[12px] font-bold flex items-center justify-center gap-1">
+                                    <span class="material-symbols-outlined text-[18px]">visibility</span> Detalhes
+                                </button>
+                                <button class="p-2 bg-surface-container rounded-lg text-outline">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card Sample 2 -->
+                        <div class="bg-white rounded-xl border border-outline-variant shadow-sm p-4 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-[10px] font-bold text-primary/60 uppercase tracking-tight mb-0.5 block">26 OUT</span>
+                                    <span class="text-title-sm font-bold text-on-surface">11:30</span>
+                                    <p class="text-[10px] text-primary font-medium flex items-center gap-1 mt-1">
+                                        <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                                        Entrega: 10:30
+                                    </p>
+                                </div>
+                                <div class="flex items-center gap-1.5 px-3 py-1 bg-green-100 text-green-700 rounded-full text-[11px] font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Confirmado
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-on-surface">Carlos Eduardo</h4>
+                                <p class="text-body-sm text-on-surface-variant">Hernioplastia Inguinal</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 py-3 border-y border-outline-variant/30">
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Hospital</p>
+                                    <p class="text-body-sm text-on-surface">Hosp. Oswaldo Cruz</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Representante</p>
+                                    <p class="text-body-sm text-on-surface">Patricia Luz</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 pt-2">
+                                <button onclick="window.location.href='03_detalhes_agendamento.html'" class="flex-1 py-2 bg-surface-container rounded-lg text-on-surface-variant text-[12px] font-bold flex items-center justify-center gap-1">
+                                    <span class="material-symbols-outlined text-[18px]">visibility</span> Detalhes
+                                </button>
+                                <button class="p-2 bg-surface-container rounded-lg text-outline">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -1505,72 +1674,136 @@ Observações: Paciente alérgico a látex. Solicitar kit artroscopia padrão."
             appointments.forEach(app => {
                 const isToday = app.date === today;
                 const targetTbody = document.getElementById(isToday ? 'tbody-hoje' : 'tbody-proximos');
+                const targetCards = document.getElementById(isToday ? 'cards-hoje' : 'cards-proximos');
 
-                if (!targetTbody) return;
+                if (targetTbody) {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-surface-container-low transition-colors animate-fade-in';
+                    row.innerHTML = `
+                        <td class="px-6 py-5 w-[10%]">
+                            <div class="flex flex-col">
+                                ${!isToday ? `<span class="text-[10px] font-bold text-primary/60 uppercase tracking-tight mb-0.5">${formatDateString(app.date)}</span>` : ''}
+                                <span class="text-title-sm font-bold text-on-surface">${app.time || '00:00'}</span>
+                                <span class="text-[10px] text-primary font-medium flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">local_shipping</span>
+                                    Entrega: ${app.deliveryTime || '--:--'}
+                                </span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 w-[18%]">
+                            <div class="flex flex-col">
+                                <span class="font-bold text-body-md text-on-surface">${app.patient}</span>
+                                <span class="text-body-sm text-on-surface-variant">${app.procedure}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">${app.representative || 'Pedro Mendes'}</td>
+                        <td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">${app.instrumentist || 'Fernanda Luz'}</td>
+                        <td class="px-6 py-5 w-[15%]">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-outline text-lg" data-icon="local_hospital">local_hospital</span>
+                                <span class="text-body-sm text-on-surface">${app.hospital}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 w-[12%]">
+                            <div class="flex flex-col gap-1">
+                                <div class="flex items-center justify-between text-[11px] mb-1">
+                                    <span>Materiais</span>
+                                    <span class="font-bold">${app.materialsProgress}%</span>
+                                </div>
+                                <div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-primary h-full w-[${app.materialsProgress}%]"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 w-[14%]">
+                            <div class="relative" id="status-wrap-${app.id}">
+                                <button onclick="toggleStatusDrop('${app.id}')" class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 text-amber-700 rounded-full text-[11px] font-bold hover:ring-2 transition-all">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>${app.status}
+                                    <span class="material-symbols-outlined text-[14px]">arrow_drop_down</span>
+                                </button>
+                                <div id="status-drop-${app.id}" class="hidden absolute right-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
+                                    <button onclick="setStatus('${app.id}','Confirmado','bg-green-100 text-green-700','bg-green-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
+                                    <button onclick="setStatus('${app.id}','Em Rota','bg-blue-100 text-blue-700','bg-blue-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
+                                    <button onclick="setStatus('${app.id}','Pendente','bg-amber-100 text-amber-700','bg-amber-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 text-right relative w-[7%]" id="action-wrap-${app.id}">
+                            <button onclick="toggleActionDrop('${app.id}')" class="p-2 hover:bg-surface-container-high rounded-lg text-outline">
+                                <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+                            </button>
+                            <div id="action-drop-${app.id}" class="hidden absolute right-6 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
+                                <button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
+                                <button class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface text-error" onclick="deleteAppointment('${app.id}')"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
+                            </div>
+                        </td>
+                    `;
+                    targetTbody.appendChild(row);
+                }
 
-                const row = document.createElement('tr');
-                row.className = 'hover:bg-surface-container-low transition-colors animate-fade-in';
-                row.innerHTML = `
-            <td class="px-6 py-5 w-[10%]">
-<div class="flex flex-col">
-    ${!isToday ? `<span class="text-[10px] font-bold text-primary/60 uppercase tracking-tight mb-0.5">${formatDateString(app.date)}</span>` : ''}
-    <span class="text-title-sm font-bold text-on-surface">${app.time || '00:00'}</span>
-    <span class="text-[10px] text-primary font-medium flex items-center gap-1">
-        <span class="material-symbols-outlined text-[12px]">local_shipping</span>
-        Entrega: ${app.deliveryTime || '--:--'}
-    </span>
-</div>
-</td>
-            <td class="px-6 py-5 w-[18%]">
-                <div class="flex flex-col">
-                    <span class="font-bold text-body-md text-on-surface">${app.patient}</span>
-                    <span class="text-body-sm text-on-surface-variant">${app.procedure}</span>
+                if (targetCards) {
+                    const card = createAppointmentCard(app, isToday);
+                    targetCards.appendChild(card);
+                }
+            });
+        }
+
+        function createAppointmentCard(app, isToday) {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-xl border border-outline-variant shadow-sm p-4 space-y-4 animate-fade-in';
+            card.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div>
+                        ${!isToday ? `<span class="text-[10px] font-bold text-primary/60 uppercase tracking-tight mb-0.5 block">${formatDateString(app.date)}</span>` : ''}
+                        <span class="text-title-sm font-bold text-on-surface">${app.time || '00:00'}</span>
+                        <p class="text-[10px] text-primary font-medium flex items-center gap-1 mt-1">
+                            <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                            Entrega: ${app.deliveryTime || '--:--'}
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-1.5 px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-[11px] font-bold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>${app.status}
+                    </div>
                 </div>
-            </td>
-            <td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">${app.representative || 'Pedro Mendes'}</td>
-            <td class="px-6 py-5 w-[12%] text-body-sm text-on-surface">${app.instrumentist || 'Fernanda Luz'}</td>
-            <td class="px-6 py-5 w-[15%]">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-outline text-lg" data-icon="local_hospital">local_hospital</span>
-                    <span class="text-body-sm text-on-surface">${app.hospital}</span>
+                <div class="space-y-1">
+                    <h4 class="font-bold text-on-surface">${app.patient}</h4>
+                    <p class="text-body-sm text-on-surface-variant">${app.procedure}</p>
                 </div>
-            </td>
-            <td class="px-6 py-5 w-[12%]">
-                <div class="flex flex-col gap-1">
-                    <div class="flex items-center justify-between text-[11px] mb-1">
-                        <span>Materiais</span>
-                        <span class="font-bold">${app.materialsProgress}%</span>
+                <div class="grid grid-cols-2 gap-4 py-3 border-y border-outline-variant/30">
+                    <div>
+                        <p class="text-[10px] text-on-surface-variant uppercase font-bold">Hospital</p>
+                        <p class="text-body-sm text-on-surface">${app.hospital}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-on-surface-variant uppercase font-bold">Representante</p>
+                        <p class="text-body-sm text-on-surface">${app.representative || 'Pedro Mendes'}</p>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between text-[11px]">
+                        <span class="text-on-surface-variant">Materiais</span>
+                        <span class="font-bold text-primary">${app.materialsProgress}%</span>
                     </div>
                     <div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
                         <div class="bg-primary h-full w-[${app.materialsProgress}%]"></div>
                     </div>
                 </div>
-            </td>
-            <td class="px-6 py-5 w-[14%]">
-                <div class="relative" id="status-wrap-${app.id}">
-                    <button onclick="toggleStatusDrop('${app.id}')" class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 text-amber-700 rounded-full text-[11px] font-bold hover:ring-2 transition-all">
-                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>${app.status}
-                        <span class="material-symbols-outlined text-[14px]">arrow_drop_down</span>
+                <div class="flex gap-2 pt-2">
+                    <button onclick="window.location.href='03_detalhes_agendamento.html'" class="flex-1 py-2 bg-surface-container rounded-lg text-on-surface-variant text-[12px] font-bold flex items-center justify-center gap-1">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span> Detalhes
                     </button>
-                    <div id="status-drop-${app.id}" class="hidden absolute right-0 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-44">
-                        <button onclick="setStatus('${app.id}','Confirmado','bg-green-100 text-green-700','bg-green-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span>Confirmado</button>
-                        <button onclick="setStatus('${app.id}','Em Rota','bg-blue-100 text-blue-700','bg-blue-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Em Rota</button>
-                        <button onclick="setStatus('${app.id}','Pendente','bg-amber-100 text-amber-700','bg-amber-500')" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Pendente</button>
+                    <div class="relative" id="action-wrap-card-${app.id}">
+                        <button onclick="toggleActionDrop('card-${app.id}')" class="p-2 bg-surface-container rounded-lg text-outline">
+                            <span class="material-symbols-outlined">more_vert</span>
+                        </button>
+                        <div id="action-drop-card-${app.id}" class="hidden absolute right-0 bottom-full mb-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
+                            <button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
+                            <button class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface text-error" onclick="deleteAppointment('${app.id}')"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
+                        </div>
                     </div>
                 </div>
-            </td>
-            <td class="px-6 py-5 text-right relative w-[7%]" id="action-wrap-${app.id}">
-                <button onclick="toggleActionDrop('${app.id}')" class="p-2 hover:bg-surface-container-high rounded-lg text-outline">
-                    <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-                </button>
-                <div id="action-drop-${app.id}" class="hidden absolute right-6 top-full mt-1 z-20 bg-white border border-outline-variant rounded-xl shadow-xl py-1 w-48 text-left">
-                    <button onclick="openReplicateDrawer()" class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-[16px]">content_copy</span> Replicar Pedido</button>
-                    <button class="w-full text-left px-4 py-2 text-[12px] hover:bg-surface-container flex items-center gap-2 text-on-surface text-error" onclick="deleteAppointment('${app.id}')"><span class="material-symbols-outlined text-[16px]">delete</span> Excluir</button>
-                </div>
-            </td>
-        `;
-                targetTbody.appendChild(row);
-            });
+            `;
+            return card;
         }
 
         function formatDateString(dateStr) {
@@ -1598,6 +1831,14 @@ Observações: Paciente alérgico a látex. Solicitar kit artroscopia padrão."
         }
 
         window.onload = loadCachedAppointments;
+    </script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('aside');
+            const overlay = document.getElementById('sidebar-overlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
     </script>
 </body>
 

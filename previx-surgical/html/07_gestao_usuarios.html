@@ -115,9 +115,11 @@
 </head>
 
 <body class="font-body-md text-on-surface">
-  <!-- SideNavBar -->
-  <aside
-    class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+  <!-- Overlay for Mobile Sidebar -->
+<div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-50 transition-transform duration-300 transform -translate-x-full lg:translate-x-0">
     <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
       title="Ir para Dashboard">
       <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
@@ -176,10 +178,12 @@
     </div>
   </aside>
   <!-- TopNavBar -->
-  <header
-    class="fixed top-0 right-0 left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-8 z-20">
+<header class="fixed top-0 right-0 left-0 lg:left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-4 sm:px-8 z-20">
     <div class="flex items-center flex-1 max-w-xl">
-      <div class="relative w-full">
+        <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors mr-2">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="relative w-full hidden sm:block">
         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
           data-icon="search">search</span>
         <input
@@ -208,10 +212,10 @@
         <span class="material-symbols-outlined" data-icon="logout">logout</span>
       </button>
     </div>
-  </header>
-  <!-- Main Content -->
-  <main class="ml-[260px] pt-[64px] min-h-screen">
-    <div class="p-container-padding max-w-[1600px] mx-auto">
+</header>
+<!-- Main Content -->
+<main class="lg:ml-[260px] pt-[64px] min-h-screen">
+    <div class="p-4 sm:p-container-padding max-w-[1600px] mx-auto">
       <!-- Page Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
@@ -256,8 +260,8 @@
       </div>
       <!-- Users Table Container -->
       <div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
-        <div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
-          <div class="flex gap-4">
+        <div class="p-4 sm:p-6 border-b border-outline-variant flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface-container-lowest">
+          <div class="flex flex-wrap gap-4 w-full sm:w-auto">
             <select
               class="bg-surface-container border-none text-body-sm rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary">
               <option>Todos os Perfis</option>
@@ -277,7 +281,9 @@
             Filtros Avançados
           </button>
         </div>
-        <table class="w-full text-left border-collapse">
+        <!-- Tabela (Desktop) -->
+        <div class="hidden lg:block overflow-x-auto">
+          <table class="w-full text-left border-collapse min-w-[800px]">
           <thead>
             <tr class="bg-surface-container-low border-b border-outline-variant">
               <th class="p-table-cell-padding text-label-bold text-on-surface-variant uppercase tracking-wider">Nome
@@ -486,6 +492,81 @@
             </tr>
           </tbody>
         </table>
+        </div>
+
+        <!-- Cards (Mobile Enhanced Grid) -->
+        <div class="lg:hidden space-y-4 px-4 pb-4 bg-surface-container-low/30 pt-4">
+          <!-- Card 1 -->
+          <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img alt="User" class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=Ricardo+Almeida&background=630ed4&color=fff" />
+                <div>
+                  <p class="font-bold text-on-surface text-body-md">Ricardo Almeida</p>
+                  <p class="text-[12px] text-on-surface-variant">Último login: 2h atrás</p>
+                </div>
+              </div>
+              <span class="px-3 py-1 bg-primary-container/10 text-primary text-label-bold rounded-full text-[10px] uppercase">Admin</span>
+            </div>
+            <div class="space-y-2 pt-2 border-t border-outline-variant/30">
+              <div class="flex justify-between items-center">
+                <span class="text-label-bold text-on-surface-variant uppercase text-[10px]">E-mail</span>
+                <span class="text-body-sm text-on-surface">ricardo.almeida@hospital.com</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-label-bold text-on-surface-variant uppercase text-[10px]">Status</span>
+                <span class="flex items-center gap-1.5 text-green-600 font-bold text-body-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                  Ativo
+                </span>
+              </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-3 border-t border-outline-variant/30">
+              <button class="flex-1 py-2 flex items-center justify-center gap-2 bg-surface-container rounded-lg text-on-surface-variant text-label-bold">
+                <span class="material-symbols-outlined text-[18px]">edit</span> Editar
+              </button>
+              <button class="flex-1 py-2 flex items-center justify-center gap-2 bg-error-container/10 rounded-lg text-error text-label-bold">
+                <span class="material-symbols-outlined text-[18px]">delete</span> Excluir
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white p-4 rounded-xl border border-outline-variant shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img alt="User" class="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=Mariana+Costa&background=6a4fa0&color=fff" />
+                <div>
+                  <p class="font-bold text-on-surface text-body-md">Mariana Costa</p>
+                  <p class="text-[12px] text-on-surface-variant">Último login: Ontem</p>
+                </div>
+              </div>
+              <span class="px-3 py-1 bg-secondary-container/20 text-secondary text-label-bold rounded-full text-[10px] uppercase">Rep</span>
+            </div>
+            <div class="space-y-2 pt-2 border-t border-outline-variant/30">
+              <div class="flex justify-between items-center">
+                <span class="text-label-bold text-on-surface-variant uppercase text-[10px]">E-mail</span>
+                <span class="text-body-sm text-on-surface">mariana.costa@previx.com</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-label-bold text-on-surface-variant uppercase text-[10px]">Status</span>
+                <span class="flex items-center gap-1.5 text-green-600 font-bold text-body-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                  Ativo
+                </span>
+              </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-3 border-t border-outline-variant/30">
+              <button class="flex-1 py-2 flex items-center justify-center gap-2 bg-surface-container rounded-lg text-on-surface-variant text-label-bold">
+                <span class="material-symbols-outlined text-[18px]">edit</span> Editar
+              </button>
+              <button class="flex-1 py-2 flex items-center justify-center gap-2 bg-error-container/10 rounded-lg text-error text-label-bold">
+                <span class="material-symbols-outlined text-[18px]">delete</span> Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- Pagination -->
         <div class="px-6 py-4 flex items-center justify-between border-t border-outline-variant bg-white">
           <span class="text-body-sm text-on-surface-variant">Mostrando 1-10 de 124 usuários</span>
@@ -592,9 +673,9 @@
       </form>
     </div>
   </div>
-  <!-- Inventory Tracker (Contextual Module) -->
+  <!-- Inventory Tracker (Contextual Module) - Hidden on Mobile -->
   <div
-    class="fixed bottom-8 right-8 w-80 bg-white rounded-xl shadow-2xl border border-outline-variant overflow-hidden z-30">
+    class="fixed bottom-8 right-8 w-80 bg-white rounded-xl shadow-2xl border border-outline-variant overflow-hidden z-30 hidden lg:block">
     <div class="bg-secondary p-4 flex items-center justify-between text-on-secondary">
       <span class="font-bold flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">local_shipping</span>
@@ -624,6 +705,14 @@
       </div>
     </div>
   </div>
+  <script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('aside');
+        const overlay = document.getElementById('sidebar-overlay');
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+    }
+  </script>
 </body>
 
 </html>

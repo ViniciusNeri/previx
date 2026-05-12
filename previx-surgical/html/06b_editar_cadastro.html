@@ -25,8 +25,11 @@ body{font-family:'Inter',sans-serif;background:#f8f9fc}
 </head>
 <body class="text-on-surface">
 
+<!-- Overlay for Mobile Sidebar -->
+<div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30 shadow-sm">
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-50 transition-transform duration-300 transform -translate-x-full lg:translate-x-0 shadow-sm">
   <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity" title="Ir para Dashboard">
     <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
       <span class="material-symbols-outlined">clinical_notes</span>
@@ -69,9 +72,12 @@ body{font-family:'Inter',sans-serif;background:#f8f9fc}
 </aside>
 
 <!-- TopNavBar -->
-<header class="fixed top-0 right-0 left-[260px] h-[64px] bg-white border-b border-outline-variant/50 shadow-sm flex items-center justify-between px-8 z-20">
+<header class="fixed top-0 right-0 left-0 lg:left-[260px] h-[64px] bg-white border-b border-outline-variant/50 shadow-sm flex items-center justify-between px-4 sm:px-8 z-20">
   <div class="flex items-center gap-4">
-      <a href="06_cadastros_base.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm font-semibold">
+      <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+          <span class="material-symbols-outlined">menu</span>
+      </button>
+      <a href="06_cadastros_base.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm font-semibold hidden sm:flex">
           <span class="material-symbols-outlined text-[20px]">arrow_back</span>
           Voltar para Cadastros
       </a>
@@ -88,8 +94,8 @@ body{font-family:'Inter',sans-serif;background:#f8f9fc}
 </header>
 
 <!-- Main -->
-<main class="ml-[260px] pt-[64px] min-h-screen">
-<div class="p-container-padding max-w-[1600px] mx-auto">
+<main class="lg:ml-[260px] pt-[64px] min-h-screen">
+<div class="p-4 sm:p-container-padding max-w-[1600px] mx-auto">
 
   <!-- Page header -->
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
@@ -397,7 +403,13 @@ function finish() {
     }, 800);
 }
 
+function toggleSidebar() {
+    const sidebar = document.querySelector('aside');
+    const overlay = document.getElementById('sidebar-overlay');
+    sidebar.classList.toggle('-translate-x-full');
+    overlay.classList.toggle('hidden');
+}
+
 init();
 </script>
-</body>
-</html>
+</body></html>

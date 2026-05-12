@@ -63,9 +63,11 @@
 
 <body class="text-on-surface">
 
-    <!-- SideNavBar -->
-    <aside
-        class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-30">
+    <!-- Overlay for Mobile Sidebar -->
+<div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-50 transition-transform duration-300 transform -translate-x-full lg:translate-x-0">
         <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
             title="Ir para Dashboard">
             <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
@@ -124,10 +126,12 @@
     </aside>
 
     <!-- TopNavBar -->
-    <header
-        class="fixed top-0 right-0 left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-8 z-20">
-        <div class="flex items-center flex-1 max-w-xl">
-            <div class="relative w-full">
+<header class="fixed top-0 right-0 left-0 lg:left-[260px] h-[64px] bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-4 sm:px-8 z-20">
+    <div class="flex items-center flex-1 max-w-xl">
+        <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors mr-2">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="relative w-full hidden sm:block">
                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
                     data-icon="search">search</span>
                 <input
@@ -154,8 +158,8 @@
     </header>
 
     <!-- Main Content Area -->
-    <main class="ml-[260px] pt-[64px] min-h-screen pb-12">
-        <div class="p-container-padding max-w-[1600px] mx-auto">
+    <main class="lg:ml-[260px] pt-[64px] min-h-screen pb-12">
+        <div class="p-4 sm:p-container-padding max-w-[1600px] mx-auto">
 
             <!-- Header -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
@@ -335,6 +339,14 @@
             </div>
         </div>
     </main>
+  <script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('aside');
+        const overlay = document.getElementById('sidebar-overlay');
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+    }
+  </script>
 </body>
 
 </html>

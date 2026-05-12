@@ -106,9 +106,12 @@
 </head>
 
 <body class="text-on-surface">
+        <!-- Overlay for Mobile Sidebar -->
+        <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
         <!-- SideNavBar (Authority: JSON) -->
         <aside
-                class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface-container-low border-r border-outline-variant flex flex-col py-6 gap-stack-gap">
+                class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface-container-low border-r border-outline-variant flex flex-col py-6 gap-stack-gap z-50 transition-transform duration-300 transform -translate-x-full lg:translate-x-0">
                 <a href="../index.html" class="px-6 mb-4 flex items-center gap-3 hover:opacity-80 transition-opacity"
                         title="Ir para Dashboard">
                         <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
@@ -164,13 +167,17 @@
         </aside>
         <!-- TopAppBar (Authority: JSON) -->
         <header
-                class="fixed top-0 right-0 left-[260px] h-header-height bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-container-padding z-10">
-                                <div class="flex items-center flex-1 max-w-xl">
+                class="fixed top-0 right-0 left-0 lg:left-[260px] h-header-height bg-surface-container-lowest border-b border-outline-variant shadow-sm flex items-center justify-between px-4 sm:px-container-padding z-10">
+                <div class="flex items-center gap-4">
+                        <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+                                <span class="material-symbols-outlined">menu</span>
+                        </button>
+                                <div class="flex items-center flex-1 max-w-xl hidden sm:block">
                                         <div class="relative w-full">
                                                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
                                                         data-icon="search">search</span>
                                                 <input class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-md font-body-md focus:ring-2 focus:ring-primary focus:outline-none"
-                                                        placeholder="Pesquisar procedimentos, equipamentos ou hospitais..."
+                                                        placeholder="Pesquisar..."
                                                         type="text" />
                                         </div>
                                 </div>
@@ -181,7 +188,7 @@
                                 <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
                         </button>
                         <div class="flex items-center gap-3 pl-6 border-l border-outline-variant">
-                                <div class="text-right">
+                                <div class="text-right hidden sm:block">
                                         <p class="text-body-sm font-bold text-on-surface">Ricardo Silva</p>
                                         <p class="text-[10px] text-on-surface-variant">Administrador</p>
                                 </div>
@@ -196,8 +203,8 @@
                         </button>
                 </div>
         </header>
-        <main class="ml-[260px] pt-[64px] min-h-screen">
-                <div class="p-container-padding max-w-[1600px] mx-auto">
+        <main class="lg:ml-[260px] pt-[64px] min-h-screen">
+                <div class="p-4 sm:p-container-padding max-w-[1600px] mx-auto">
                         <!-- Welcome Section -->
                         <section class="mb-8">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -441,7 +448,7 @@
                                 </button>
                         </div>
                         <div class="overflow-x-auto">
-                                <table class="w-full text-left">
+                                <table class="w-full text-left min-w-[800px]">
                                         <thead
                                                 class="bg-surface-container-low text-on-surface-variant text-label-bold uppercase tracking-wider">
                                                 <tr>
@@ -581,6 +588,14 @@
                 </section>
                 </div>
         </main>
+        <script>
+                function toggleSidebar() {
+                        const sidebar = document.querySelector('aside');
+                        const overlay = document.getElementById('sidebar-overlay');
+                        sidebar.classList.toggle('-translate-x-full');
+                        overlay.classList.toggle('hidden');
+                }
+        </script>
 </body>
 
 </html>
